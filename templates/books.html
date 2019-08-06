@@ -1,15 +1,19 @@
-{% for book in books %}
-    {{ book.book_name }}
-    {{ book.book_cover_photo }}
-    {{ book.book_description }}
-    {% for book_press_review in book.book_press_reviews %}
-        {{ book_press_review }}
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for book in books %}
+        {{ book.book_name }}
+        {{ book.book_cover_photo }}
+        {{ book.book_description }}
+        {% for book_press_review in book.book_press_reviews %}
+            {{ book_press_review }}
+        {% endfor %}
+        {{ book.isbn }}
+        {{ book.publication_date }}
+        {{ book.author }}
+        {{ book.publisher }}
+        {% for genre in book.genres %}
+            {{ genre }}
+        {% endfor %}
     {% endfor %}
-    {{ book.isbn }}
-    {{ book.publication_date }}
-    {{ book.author }}
-    {{ book.publisher }}
-    {% for genre in book.genres %}
-        {{ genre }}
-    {% endfor %}
-{% endfor %}
+{% endblock %}

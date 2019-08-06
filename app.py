@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 # Mongo DB Setup
 app.config['MONGO_DBNAME'] = 'book_reviewer'
-app.config['MONGO_URI'] = 'mongodb+srv://root:48Kcr5un1Mmlwpw5@datacentricdevelopment-hxsk1.mongodb.net/book_reviewer?retryWrites=true&w=majority'
+app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
 
 mongo = PyMongo(app)
 
