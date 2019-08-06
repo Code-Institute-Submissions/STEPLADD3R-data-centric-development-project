@@ -1,0 +1,28 @@
+{
+  "name": "book-review-web-app",
+  "version": "1.0.0",
+  "description": "Project for the 'Data Centric Development' module of the Code Institute course, by Stuart Green.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/STEPLADD3R/data-centric-development-project.git"
+  },
+  "author": "Stuart Green",
+  "license": "UNLICENSED",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/STEPLADD3R/data-centric-development-project/issues"
+  },
+  "homepage": "https://github.com/STEPLADD3R/data-centric-development-project#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.0.2",
+    "node-sass": "^4.12.0"
+  },
+  "dependencies": {
+    "gulp-uglifycss": "^1.1.0"
+  }
+}
