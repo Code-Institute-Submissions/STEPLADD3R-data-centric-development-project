@@ -23,6 +23,9 @@
     "node-sass": "^4.12.0"
   },
   "dependencies": {
-    "gulp-uglifycss": "^1.1.0"
+    "bootstrap": "^4.3.1",
+    "gulp-uglifycss": "^1.1.0",
+    "jquery": "^3.0.0",
+    "popper.js": "^1.11.0"
   }
 }

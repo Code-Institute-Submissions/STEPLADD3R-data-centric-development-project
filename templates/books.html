@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <pre>
     {% for book in books %}
         {{ book.book_name }}
         {{ book.book_cover_photo }}
@@ -16,4 +17,5 @@
             {{ genre }}
         {% endfor %}
     {% endfor %}
+    </pre>
 {% endblock %}

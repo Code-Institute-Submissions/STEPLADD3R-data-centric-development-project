@@ -6,6 +6,22 @@ var uglifycss = require( 'gulp-uglifycss' );
 
 sass.compiler = require('node-sass');
 
+gulp.task('dependencies', function(done) {
+    gulp.src('./node_modules/bootstrap/dist/css/bootstrap.min.css')
+        .pipe(gulp.dest('./static/dist/css/'));
+        
+    gulp.src('./node_modules/jquery/dist/jquery.slim.min.js')
+        .pipe(gulp.dest('./static/dist/js/'));
+    
+    gulp.src('./node_modules/popper.js/dist/popper.min.js')
+        .pipe(gulp.dest('./static/dist/js/'));
+    
+    gulp.src('./node_modules/bootstrap/dist/js/bootstrap.min.js')
+        .pipe(gulp.dest('./static/dist/js/'));
+
+    done();
+});
+
 gulp.task('sass', function() {
     return gulp.src('./static/scss/*.scss')
         .pipe(sass().on('error', sass.logError))
@@ -17,7 +33,8 @@ gulp.task('uglify', function(done) {
         .pipe(uglifycss({
             'uglyComments': true,
         }))
-        .pipe(gulp.dest('./static/dist/'));
+        .pipe(gulp.dest('./static/dist/css/'));
+
     done();
 });
 
