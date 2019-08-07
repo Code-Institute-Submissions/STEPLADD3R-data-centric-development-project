@@ -16,6 +16,8 @@
         {% for genre in book.genres %}
             {{ genre }}
         {% endfor %}
+        {{ book.score }}
+        {{ book.amazon_affiliate_link }}
     {% endfor %}
     </pre>
 {% endblock %}

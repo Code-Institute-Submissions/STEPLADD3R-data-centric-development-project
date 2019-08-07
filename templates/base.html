@@ -6,12 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Book Reviews</title>
     
-    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/bootstrap.min.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/main.css') }}" type="text/css" />
 </head>
 <body>
+    <header class="site-header" itemscope itemtype="https://schema.org/WPHeader">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+            <a class="navbar-brand" href="#!">Book Reviews</a>
+            
+            <form class="form-inline my-2 mg-lg-0">
+                <input type="search" class="form-control mr-sm-2" placeholder="Search" aria-label="Search">
+                <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Search</button>
+            </form>
+        </nav>
+    </header>
+    
     {% block content %}
     {% endblock %}
+    
+    <footer class="site-footer" itemscope itemtype="https://schema.org/WPFooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <p>Placeholder</p>
+                </div>
+                <div class="col-lg-6">
+                    <p>Placeholder</p>
+                </div>
+            </div>
+        </div>
+    </footer>
     
     <script src="{{ url_for('static', filename='dist/js/jquery.slim.min.js') }}"></script>
     <script src="{{ url_for('static', filename='dist/js/popper.min.js') }}"></script>

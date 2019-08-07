@@ -7,8 +7,8 @@ var uglifycss = require( 'gulp-uglifycss' );
 sass.compiler = require('node-sass');
 
 gulp.task('dependencies', function(done) {
-    gulp.src('./node_modules/bootstrap/dist/css/bootstrap.min.css')
-        .pipe(gulp.dest('./static/dist/css/'));
+    // gulp.src('./node_modules/bootstrap/dist/css/bootstrap.min.css')
+        // .pipe(gulp.dest('./static/dist/css/'));
         
     gulp.src('./node_modules/jquery/dist/jquery.slim.min.js')
         .pipe(gulp.dest('./static/dist/js/'));
