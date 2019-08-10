@@ -1,23 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <pre>
-    {% for book in books %}
-        {{ book.book_name }}
-        {{ book.book_cover_photo }}
-        {{ book.book_description }}
-        {% for book_press_review in book.book_press_reviews %}
-            {{ book_press_review }}
-        {% endfor %}
-        {{ book.isbn }}
-        {{ book.publication_date }}
-        {{ book.author }}
-        {{ book.publisher }}
-        {% for genre in book.genres %}
-            {{ genre }}
-        {% endfor %}
-        {{ book.score }}
-        {{ book.amazon_affiliate_link }}
-    {% endfor %}
-    </pre>
+    {% include 'template-parts/banner.html' %}
+
+    <section id="books">
+        <div class="container">
+            <div class="row">
+                {% for book in books %}
+                <div class="book">
+                    <div class="book__image">
+                        <img src="{{ book.book_cover_photo }}" alt="The cover photo for the book, {{ book.book_name }} by {{ book.author }}." class="" />
+                    </div>
+                    <div class="book__title">
+                        <p>{{ book.book_name }}</p>
+                    </div>
+                    <div class="book__hover">
+                        <p>{{ book.book_name }}</p>
+                        <a href="#!" class="btn">Read More</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
 {% endblock %}

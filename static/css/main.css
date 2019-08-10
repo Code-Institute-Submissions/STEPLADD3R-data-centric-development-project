@@ -7019,3 +7019,50 @@ a.text-dark:hover, a.text-dark:focus {
   .table .thead-dark th {
     color: inherit;
     border-color: #dee2e6; } }
+
+.book {
+  flex: 1 0 20%;
+  max-width: 20%;
+  position: relative;
+  max-height: 400px;
+  overflow: hidden;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  transition: all 0.2s ease-in-out; }
+  .book:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); }
+    .book:hover .book__image,
+    .book:hover .book__title {
+      transform: translateY(-400px); }
+    .book:hover .book__hover {
+      transform: translateY(0); }
+  .book__image {
+    transition: all 0.2s ease-in-out; }
+    .book__image img {
+      width: 100%;
+      min-height: 400px;
+      max-height: 400px;
+      object-fit: cover;
+      object-position: center;
+      margin: 0; }
+  .book__title {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    transition: all 0.2s ease-in-out; }
+    .book__title p {
+      background-color: #fff;
+      text-align: center;
+      padding: .5rem;
+      margin: 0; }
+  .book__hover {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    min-height: 400px;
+    max-height: 400px;
+    transform: translateY(400px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    transition: all 0.2s ease-in-out; }
