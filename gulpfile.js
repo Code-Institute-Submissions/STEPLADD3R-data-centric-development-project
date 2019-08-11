@@ -14,10 +14,16 @@ gulp.task('dependencies', function(done) {
         .pipe(gulp.dest('./static/dist/js/'));
     
     gulp.src('./node_modules/popper.js/dist/popper.min.js')
-        .pipe(gulp.dest('./static/dist/js/'));
+        .pipe(gulp.dest('./static/dist/js/vendors/bootstrap/'));
     
     gulp.src('./node_modules/bootstrap/dist/js/bootstrap.min.js')
-        .pipe(gulp.dest('./static/dist/js/'));
+        .pipe(gulp.dest('./static/dist/js/vendors/bootstrap/'));
+        
+    gulp.src('./node_modules/chosen-js/chosen.jquery.min.js')
+        .pipe(gulp.dest('./static/dist/js/vendors/chosen-js/'));
+    
+    gulp.src('./node_modules/bootstrap4c-chosen/dist/css/component-chosen.css')
+        .pipe(gulp.dest('./static/dist/css/vendors/bootstrap4c/'));
 
     done();
 });

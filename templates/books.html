@@ -9,7 +9,7 @@
                 {% for book in books %}
                 <div class="book">
                     <div class="book__image">
-                        <img src="{{ book.book_cover_photo }}" alt="The cover photo for the book, {{ book.book_name }} by {{ book.author }}." class="" />
+                        <img src="{{ url_for('upload', filename=book.book_cover_photo) }}" alt="The cover photo for the book, {{ book.book_name }} by {{ book.author }}." class="" />
                     </div>
                     <div class="book__title">
                         <p>{{ book.book_name }}</p>
