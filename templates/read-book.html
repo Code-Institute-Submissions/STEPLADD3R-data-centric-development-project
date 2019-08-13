@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section id="create-book">
+        <div class="container">
+            <div class="row">
+                <h2>Read Book</h2>
+            </div>
+            
+            <div class="read-book">
+                <p>{{ book.book_name }}</p>
+                <p>{{ url_for('upload', filename=book.book_cover_photo) }}</p>
+                <p>{{ book.book_description }}</p>
+                <p>press {{ book.book_press_reviews }}</p>
+                <p>{{ book.isbn }}</p>
+                <p>{{ book.publication_date }}</p>
+                <p>{{ book.author }}</p>
+                <p>{{ book.publisher }}</p>
+                {% for genre in genres %}
+                    {% if genre.genre in book.genres %}
+                        <p>{{ genre.genre }}</p>
+                    {% endif %}
+                {% endfor %}
+                <p>{{ book.score }}</p>
+                <p>{{ book.amazon_affiliate_link }}</p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

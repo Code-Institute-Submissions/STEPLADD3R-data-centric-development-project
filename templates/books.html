@@ -7,16 +7,21 @@
         <div class="container">
             <div class="row">
                 {% for book in books %}
-                <div class="book">
-                    <div class="book__image">
-                        <img src="{{ url_for('upload', filename=book.book_cover_photo) }}" alt="The cover photo for the book, {{ book.book_name }} by {{ book.author }}." class="" />
-                    </div>
-                    <div class="book__title">
-                        <p>{{ book.book_name }}</p>
-                    </div>
-                    <div class="book__hover">
-                        <p>{{ book.book_name }}</p>
-                        <a href="#!" class="btn">Read More</a>
+                <div class="col-md-3 p-0">
+                    <div class="book ml-3 mr-3">
+                        <div class="book__image">
+                            {% if book.book_cover_photo %}
+                                <img src="{{ url_for('upload', filename=book.book_cover_photo) }}" alt="The cover photo for the book, {{ book.book_name }} by {{ book.author }}." class="" />
+                            {% endif %}
+                        </div>
+                        <div class="book__title">
+                            <p class="p-3">{{ book.book_name }}</p>
+                        </div>
+                        <div class="book__hover">
+                            <p class="pl-3 pr-3">{{ book.book_name }}</p>
+                            <a href="{{ url_for('read_book', book_id=book._id) }}" class="btn btn-secondary">Read More</a>
+                            <a href="{{ url_for('edit_book', book_id=book._id) }}" class="btn btn-primary">Edit</a>
+                        </div>
                     </div>
                 </div>
                 {% endfor %}

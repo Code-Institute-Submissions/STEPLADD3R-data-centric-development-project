@@ -13,12 +13,22 @@
 <body>
     <header class="site-header" itemscope itemtype="https://schema.org/WPHeader">
         <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
-            <a class="navbar-brand" href="#!">Book Reviews</a>
+            <a class="navbar-brand" href="/">Book Reviews</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             
-            <form class="form-inline my-2 mg-lg-0">
-                <input type="search" class="form-control mr-sm-2" placeholder="Search" aria-label="Search">
-                <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Search</button>
-            </form>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="{{ url_for('create_book') }}" class="nav-link">Add a Book</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 mg-lg-0">
+                    <input type="search" class="form-control mr-sm-2" placeholder="Search" aria-label="Search">
+                    <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Search</button>
+                </form>
+            </div>
         </nav>
     </header>
     
@@ -42,39 +52,6 @@
     <script src="{{ url_for('static', filename='dist/js/vendors/bootstrap/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='dist/js/vendors/chosen-js/chosen.jquery.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.13/js/gijgo.min.js"></script>
-    <script>
-        jQuery(document).ready(function() {
-            $('#genres').chosen();
-            
-            $('#publication_date').datepicker({
-                header: true,
-                footer: true,
-                format: 'dd mmmm yyyy',
-                modal: true,
-            });
-        });
-    </script>
-    
-    
-    <script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
-</script>
+    <script src="{{ url_for('static', filename='dist/js/main.js') }}"></script>
 </body>
 </html>
