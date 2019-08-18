@@ -1,111 +1,135 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <section id="hero-section" class="pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class="title">Add a Book</h2>
+                    <p class="sub-title">Please fill out the fields below. Fields marked with a * are required.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="create-book" class="pt-5 pb-5">
         <div class="container">
             <div class="row">
-                <h2>Add a Book</h2>
-            </div>
-            
-            <div class="create-book">
-                <form action="{{ url_for('insert_book') }}" method="POST" enctype="multipart/form-data" class="create-book__form needs-validation" novalidate>
-                    <div class="form-group">
-                        <label for="book_name">Book Name<span class="required">*</span></label>
-                        <input type="text" class="form-control" name="book_name" id="book_name" placeholder="e.g. Harry Potter and the Philosopher's Stone" required>
-                        <div class="invalid-feedback">
-                            Please provide a book name.
-                        </div>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
+                <div class="col">
+                    <div class="create-book">
+                        <form action="{{ url_for('insert_book') }}" method="POST" enctype="multipart/form-data" class="create-book__form needs-validation" novalidate>
+                            <div class="form-group">
+                                <label for="book_name">Book Name<span class="required">*</span></label>
+                                <input type="text" class="form-control" name="book_name" id="book_name" placeholder="e.g. Harry Potter and the Philosopher's Stone" required>
+                                <div class="invalid-feedback">
+                                    Please provide a book name.
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <!--<div class="form-group">-->
+                            <!--    <label for="book_cover_photo">Book Cover Photo<span class="required">*</span></label>-->
+                            <!--    <input type="file" class="form-control-file" name="book_cover_photo" id="book_cover_photo" required>-->
+                            <!--    <div class="invalid-feedback">-->
+                            <!--        Please upload an image of the books cover photo.-->
+                            <!--    </div>-->
+                            <!--    <div class="valid-feedback">-->
+                            <!--        Looks good!-->
+                            <!--    </div>-->
+                            <!--</div>-->
+                            
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Upload</span>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="form-control-file custom-file-input" name="book_cover_photo" id="book_cover_photo" required>
+                                        <label for="book_cover_photo" class="custom-file-label">Book Cover Photo<span class="required">*</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="book_description">Book Description<span class="required">*</span></label>
+                                <textarea class="form-control" name="book_description" id="book_description" rows="3" required></textarea>
+                                <div class="invalid-feedback">
+                                    Please provide a description of the book.
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" name="book_press_reviews" id="book_press_reviews" value="" />
+                            </div>
+                            <div class="form-group">
+                                <label for="isbn">ISBN<span class="required">*</span></label>
+                                <input type="number" class="form-control" name="isbn" id="isbn" placeholder="e.g. 9781408845646" required>
+                                <div class="invalid-feedback">
+                                    Please provide the book ISBN.
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="publication_date">Publication Date<span class="required">*</span></label>
+                                <input type="text" class="form-control" name="publication_date" id="publication_date" required>
+                                <div class="invalid-feedback">
+                                    Please provide the publication date.
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="author">Author<span class="required">*</span></label>
+                                <input type="text" class="form-control" name="author" id="author" placeholder="e.g. J. K. Rowling" required>
+                                <div class="invalid-feedback">
+                                    Please provide the book author.
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="publisher">Publisher<span class="required">*</span></label>
+                                <input type="text" class="form-control" name="publisher" id="publisher" placeholder="e.g. Harry Potter and the Philosopher's Stone" required>
+                                <div class="invalid-feedback">
+                                    Please provide the book publisher.
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="genres">Genres<span class="required">*</span></label>
+                                <select multiple class="form-control" name="genres" id="genres" required>
+                                    {% for genre in genres %}
+                                        <option value="{{ genre.genre }}">{{ genre.genre }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select at least one genre.
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" name="score" id="score" value="0" />
+                            </div>
+                            <div class="form-group">
+                                <label for="amazon_affiliate_link">Amazon Affiliate URL</label>
+                                <input type="text" class="form-control" name="amazon_affiliate_link" id="amazon_affiliate_link" placeholder="e.g. https://www.amazon.co.uk/">
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="book_cover_photo">Book Cover Photo<span class="required">*</span></label>
-                        <input type="file" class="form-control-file" name="book_cover_photo" id="book_cover_photo" required>
-                        <div class="invalid-feedback">
-                            Please upload an image of the books cover photo.
-                        </div>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="book_description">Book Description<span class="required">*</span></label>
-                        <textarea class="form-control" name="book_description" id="book_description" rows="3" required></textarea>
-                        <div class="invalid-feedback">
-                            Please provide a description of the book.
-                        </div>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="hidden" class="form-control" name="book_press_reviews" id="book_press_reviews" value="" />
-                    </div>
-                    <div class="form-group">
-                        <label for="isbn">ISBN<span class="required">*</span></label>
-                        <input type="number" class="form-control" name="isbn" id="isbn" placeholder="e.g. 9781408845646" required>
-                        <div class="invalid-feedback">
-                            Please provide the book ISBN.
-                        </div>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="publication_date">Publication Date<span class="required">*</span></label>
-                        <input type="text" class="form-control" name="publication_date" id="publication_date" required>
-                        <div class="invalid-feedback">
-                            Please provide the publication date.
-                        </div>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="author">Author<span class="required">*</span></label>
-                        <input type="text" class="form-control" name="author" id="author" placeholder="e.g. J. K. Rowling" required>
-                        <div class="invalid-feedback">
-                            Please provide the book author.
-                        </div>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="publisher">Publisher<span class="required">*</span></label>
-                        <input type="text" class="form-control" name="publisher" id="publisher" placeholder="e.g. Harry Potter and the Philosopher's Stone" required>
-                        <div class="invalid-feedback">
-                            Please provide the book publisher.
-                        </div>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="genres">Genres<span class="required">*</span></label>
-                        <select multiple class="form-control" name="genres" id="genres" required>
-                            {% for genre in genres %}
-                                <option value="{{ genre.genre }}">{{ genre.genre }}</option>
-                            {% endfor %}
-                        </select>
-                        <div class="invalid-feedback">
-                            Please select at least one genre.
-                        </div>
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="hidden" class="form-control" name="score" id="score" value="0" />
-                    </div>
-                    <div class="form-group">
-                        <label for="amazon_affiliate_link">Amazon Affiliate URL</label>
-                        <input type="text" class="form-control" name="amazon_affiliate_link" id="amazon_affiliate_link" placeholder="e.g. https://www.amazon.co.uk/">
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">Create</button>
-                </form>
+                </div>
             </div>
         </div>
     </section>

@@ -111,3 +111,30 @@
     left: 15px;
     right: 15px;
 }
+
+// Create book
+#create-book {
+    .required {
+        color: #ff0000;
+    }
+    
+    .gj-datepicker-md [role=right-icon] {
+        color: $body-color;
+        right: 7px !important;
+        top: 7px !important;
+    }
+    
+    form {
+        .form-group {
+            margin-bottom: 1.5rem;
+            
+            label {
+                margin-bottom: 0.75rem;
+                
+                > .required {
+                    margin-left: 4px;
+                }
+            }
+        }
+    }
+}
