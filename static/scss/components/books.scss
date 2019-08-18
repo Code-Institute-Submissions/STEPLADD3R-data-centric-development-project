@@ -113,7 +113,8 @@
 }
 
 // Create book
-#create-book {
+#create-book,
+#edit-book {
     .required {
         color: #ff0000;
     }

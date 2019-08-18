@@ -124,17 +124,19 @@ def update_book(book_id):
                 books.update_one(
                     {'_id' : ObjectId(book_id)},
                     {
-                        'book_name' : request.form.get('book_name'),
-                        'book_cover_photo' : secure_book_cover_photo_filename,
-                        'book_description' : request.form.get('book_description'),
-                        'book_press_reviews' : request.form.get('book_press_reviews'),
-                        'isbn' : request.form.get('isbn'),
-                        'publication_date' : request.form.get('publication_date'),
-                        'author' : request.form.get('author'),
-                        'publisher' : request.form.get('publisher'),
-                        'genres' : request.form.getlist('genres'),
-                        'score' : int(request.form.get('score')),
-                        'amazon_affiliate_link' : request.form.get('amazon_affiliate_link')
+                        '$set': {
+                            'book_name' : request.form.get('book_name'),
+                            'book_cover_photo' : secure_book_cover_photo_filename,
+                            'book_description' : request.form.get('book_description'),
+                            'book_press_reviews' : request.form.get('book_press_reviews'),
+                            'isbn' : request.form.get('isbn'),
+                            'publication_date' : request.form.get('publication_date'),
+                            'author' : request.form.get('author'),
+                            'publisher' : request.form.get('publisher'),
+                            'genres' : request.form.getlist('genres'),
+                            'score' : int(request.form.get('score')),
+                            'amazon_affiliate_link' : request.form.get('amazon_affiliate_link')
+                        }
                     }
                 )
                 print( 'I\'m not even ran' )

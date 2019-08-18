@@ -7105,19 +7105,24 @@ a.text-dark:hover, a.text-dark:focus {
   left: 15px;
   right: 15px; }
 
-#create-book .required {
+#create-book .required,
+#edit-book .required {
   color: #ff0000; }
 
-#create-book .gj-datepicker-md [role=right-icon] {
+#create-book .gj-datepicker-md [role=right-icon],
+#edit-book .gj-datepicker-md [role=right-icon] {
   color: #303030;
   right: 7px !important;
   top: 7px !important; }
 
-#create-book form .form-group {
+#create-book form .form-group,
+#edit-book form .form-group {
   margin-bottom: 1.5rem; }
-  #create-book form .form-group label {
+  #create-book form .form-group label,
+  #edit-book form .form-group label {
     margin-bottom: 0.75rem; }
-    #create-book form .form-group label > .required {
+    #create-book form .form-group label > .required,
+    #edit-book form .form-group label > .required {
       margin-left: 4px; }
 
 .site-footer {
