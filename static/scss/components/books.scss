@@ -1,65 +1,113 @@
-.book {
-    position: relative;
-    max-height: 400px;
-    overflow: hidden;
-    box-shadow: $box-shadow-sm;
-    transition: $transition-base;
+.book-scroller {
+    padding-bottom: calc(14px + 3rem);
     
-    &:hover {
-        box-shadow: $box-shadow;
-        
-        .book__image,
-        .book__title {
-            transform: translateY(-400px);
-        }
-        
-        .book__hover {
-            transform: translateY(0);
-        }
-    }
-    
-    &__image {
+    .book {
+        position: relative;
+        max-height: 400px;
+        overflow: hidden;
+        box-shadow: $box-shadow-sm;
         transition: $transition-base;
         
-        img {
+        &:hover {
+            box-shadow: $box-shadow;
+            
+            .book__image,
+            .book__title {
+                transform: translateY(-400px);
+            }
+            
+            .book__hover {
+                transform: translateY(0);
+            }
+        }
+        
+        &__image {
+            transition: $transition-base;
+            
+            img {
+                width: 100%;
+                min-height: 400px;
+                max-height: 400px;
+                object-fit: cover;
+                object-position: center;
+                margin: 0;
+            }
+        }
+        
+        &__title {
             width: 100%;
+            position: absolute;
+            bottom: 0;
+            transition: $transition-base;
+            
+            p  {
+                background-color: #fff;
+                text-align: center;
+                margin: 0;
+            }
+        }
+        
+        &__hover {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
             min-height: 400px;
             max-height: 400px;
-            object-fit: cover;
-            object-position: center;
-            margin: 0;
+            background-size: cover !important;
+            background-position: center !important;
+            transform: translateY(400px);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
+            transition: $transition-base;
+            
+            h2,
+            p {
+                flex: 1 0 100%;
+                text-align: center;
+                color: #fff;
+            }
+            
+            > div {
+                position: absolute;
+                bottom: 0;
+                text-align: center;
+                background-color: #f4f4f4;
+                border-top: 1px solid #dbdbdb;
+                transition: $transition-base;
+                
+                &:first-of-type {
+                    left: 0;
+                    border-right: 0.5px solid #dbdbdb;
+                    
+                    &:hover {
+                        background-color: #dbdbdb;
+                    }
+                }
+                
+                &:last-of-type {
+                    right: 0;
+                    border-left: 0.5px solid #dbdbdb;
+                    
+                    &:hover {
+                        background-color: #dbdbdb;
+                    }
+                }
+                
+                a {
+                    text-decoration: none;
+                    display: block;
+                    width: 100%;
+                }
+            }
         }
     }
-    
-    &__title {
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        transition: $transition-base;
-        
-        p  {
-            background-color: #fff;
-            text-align: center;
-            margin: 0;
-        }
-    }
-    
-    &__hover {
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        min-height: 400px;
-        max-height: 400px;
-        transform: translateY(400px);
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-content: center;
-        transition: $transition-base;
-        
-        p {
-            flex: 1 0 100%;
-            text-align: center;
-        }
-    }
+}
+
+
+//  move
+.os-host-resize-disabled.os-host-scrollbar-vertical-hidden>.os-scrollbar-horizontal, .os-host-rtl.os-host-resize-disabled.os-host-scrollbar-vertical-hidden>.os-scrollbar-horizontal {
+    left: 15px;
+    right: 15px;
 }

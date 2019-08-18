@@ -31,7 +31,7 @@ def upload(filename):
 @app.route('/')
 @app.route('/books')
 def get_books():
-    return render_template('books.html', books=mongo.db.books.find())
+    return render_template('books.html', top_books=mongo.db.books.find(), new_books=mongo.db.books.find())
 
 
 @app.route('/book/add')

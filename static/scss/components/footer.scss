@@ -1,0 +1,26 @@
+.site-footer {
+    background-color: #f4f4f4;
+    
+    .container-fluid {
+        .row {
+            .col-lg-3 {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+                
+                p {
+                    &:last-of-type {
+                        margin-bottom: 0;
+                        padding-bottom: 0;
+                    }
+                }
+                
+                &:first-of-type {
+                    background-color: $primary;
+                    color: #fff;
+                    padding-left: 3rem;
+                    padding-right: 3rem;
+                }
+            }
+        }
+    }
+}

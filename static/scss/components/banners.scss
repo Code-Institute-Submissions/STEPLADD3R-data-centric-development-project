@@ -1,0 +1,13 @@
+#review-banner {
+    .carousel-inner {
+        max-height: 500px;
+        
+        .carousel-item {
+            img {
+                object-fit: cover;
+                object-position: center;
+                max-height: 500px;
+            }
+        }
+    }
+}

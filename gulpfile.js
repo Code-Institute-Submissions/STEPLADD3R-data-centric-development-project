@@ -24,6 +24,12 @@ gulp.task('dependencies', function(done) {
     
     gulp.src('./node_modules/bootstrap4c-chosen/dist/css/component-chosen.css')
         .pipe(gulp.dest('./static/dist/css/vendors/bootstrap4c/'));
+    
+    gulp.src('./node_modules/overlayscrollbars/js/OverlayScrollbars.min.js')
+        .pipe(gulp.dest('./static/dist/js/vendors/overlayscrollbars/'));
+    
+    gulp.src('./node_modules/overlayscrollbars/css/OverlayScrollbars.min.css')
+        .pipe(gulp.dest('./static/dist/css/vendors/overlayscrollbars/'));
 
     done();
 });

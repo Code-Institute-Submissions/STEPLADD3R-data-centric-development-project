@@ -1,0 +1,64 @@
+.testimonial {
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #dbdbdb;
+    min-height: 350px;
+    
+    &__inner {
+        position: relative;
+        font-size: 1.25rem;
+        text-align: center;
+        padding: 3rem;
+    
+        span {
+            position: absolute;
+            font-size: 2.5rem;
+            
+            &:first-child {
+                top: 1.5rem;
+                left: 1.5rem;
+            }
+            
+            &:last-child {
+                bottom: 0.25rem;
+                right: 1.5rem;
+            }
+        }
+    }
+}
+
+.twitter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 350px;
+    color: #fff;
+    
+    &__inner {
+        font-size: 1.25rem;
+        text-align: center;
+        padding: 3rem;
+        
+        i {
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            a {
+                color: #ffffff;
+                transition: $transition-base;
+                text-decoration: none;
+                padding-bottom: 4px;
+                border-bottom: 1px dashed rgba(255, 255, 255, 0);
+                
+                &:hover {
+                    border-bottom: 1px dashed rgba(255, 255, 255, 0.45);
+                }
+            }
+            
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

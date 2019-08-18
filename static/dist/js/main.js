@@ -28,4 +28,11 @@
         });
     }, false);
     
+    // Scrollbars
+    $('.book-scroller').overlayScrollbars({
+       overflowBehavior : {
+           x : 'scroll'
+       },
+    });
+    
 })( jQuery );
