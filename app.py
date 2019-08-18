@@ -41,31 +41,31 @@ def create_book():
 
 @app.route('/book/insert', methods=['POST'])
 def insert_book():
-    if 'book_cover_photo' not in request.files:
+    if 'cover_photo' not in request.files:
         return redirect(url_for('create_book'))
 
-    book_cover_photo = request.files['book_cover_photo']
+    cover_photo = request.files['cover_photo']
 
-    if book_cover_photo.filename == '':
+    if cover_photo.filename == '':
         flash('The uploaded file MUST have a file name.')
         return redirect(url_for('create_book'))
 
-    if book_cover_photo and allowed_file(book_cover_photo.filename):
-        secure_book_cover_photo_filename = secure_filename(book_cover_photo.filename)
-        mongo.save_file(secure_book_cover_photo_filename, book_cover_photo)
+    if cover_photo and allowed_file(cover_photo.filename):
+        secure_cover_photo_filename = secure_filename(cover_photo.filename)
+        mongo.save_file(secure_cover_photo_filename, cover_photo)
         books = mongo.db.books
         books.insert_one({
-            'book_name' : request.form.get('book_name'),
-            'book_cover_photo' : secure_book_cover_photo_filename,
-            'book_description' : request.form.get('book_description'),
-            'book_press_reviews' : request.form.get('book_press_reviews'),
+            'name' : request.form.get('name'),
+            'cover_photo' : secure_cover_photo_filename,
+            'description' : request.form.get('description'),
             'isbn' : request.form.get('isbn'),
             'publication_date' : request.form.get('publication_date'),
             'author' : request.form.get('author'),
             'publisher' : request.form.get('publisher'),
+            'amazon_affiliate_url' : request.form.get('amazon_affiliate_url'),
             'genres' : request.form.getlist('genres'),
-            'score' : int(request.form.get('score')),
-            'amazon_affiliate_link' : request.form.get('amazon_affiliate_link')
+            'rating' : request.form.getlist('rating'),
+            'top_pick' : request.form.get('top_pick')
         })
         return redirect(url_for('get_books'))
     else:
@@ -87,30 +87,26 @@ def edit_book(book_id):
 
 @app.route('/book/<book_id>/update', methods=['POST'])
 def update_book(book_id):
-    if 'book_cover_photo' in request.files:
-        book_cover_photo = request.files['book_cover_photo']
-
-        # if book_cover_photo.filename = '':
-        #     flash('The uploaded file MUST have a file name.')
-        #     return redirect(request.url)
+    if 'cover_photo' in request.files:
+        cover_photo = request.files['cover_photo']
 
         books = mongo.db.books
 
-        if book_cover_photo.filename == '':
+        if cover_photo.filename == '':
             books.update_one(
                 {'_id' : ObjectId(book_id)},
                 {
                     '$set': {
-                        'book_name' : request.form.get('book_name'),
-                        'book_description' : request.form.get('book_description'),
-                        # 'book_press_reviews' : request.form.get('book_press_reviews'),
+                        'name' : request.form.get('name'),
+                        'description' : request.form.get('description'),
                         'isbn' : request.form.get('isbn'),
                         'publication_date' : request.form.get('publication_date'),
                         'author' : request.form.get('author'),
                         'publisher' : request.form.get('publisher'),
+                        'amazon_affiliate_url' : request.form.get('amazon_affiliate_url'),
                         'genres' : request.form.getlist('genres'),
-                        'score' : int(request.form.get('score')),
-                        'amazon_affiliate_link' : request.form.get('amazon_affiliate_link')
+                        'rating' : int(request.form.getlist('rating')),
+                        'top_pick' : request.form.get('top_pick')
                     }
                 }
             )
@@ -118,28 +114,27 @@ def update_book(book_id):
             print( 'This is empty... but the value of cover_photo is still set to null after this operation' )
             return redirect(url_for('get_books'))
         else:
-            if allowed_file(book_cover_photo.filename):
-                secure_book_cover_photo_filename = secure_filename(book_cover_photo.filename)
-                mongo.save_file(secure_book_cover_photo_filename, book_cover_photo)
+            if allowed_file(cover_photo.filename):
+                secure_cover_photo_filename = secure_filename(cover_photo.filename)
+                mongo.save_file(secure_cover_photo_filename, cover_photo)
                 books.update_one(
                     {'_id' : ObjectId(book_id)},
                     {
                         '$set': {
-                            'book_name' : request.form.get('book_name'),
-                            'book_cover_photo' : secure_book_cover_photo_filename,
-                            'book_description' : request.form.get('book_description'),
-                            'book_press_reviews' : request.form.get('book_press_reviews'),
+                            'name' : request.form.get('name'),
+                            'cover_photo' : secure_cover_photo_filename,
+                            'description' : request.form.get('description'),
                             'isbn' : request.form.get('isbn'),
                             'publication_date' : request.form.get('publication_date'),
                             'author' : request.form.get('author'),
                             'publisher' : request.form.get('publisher'),
+                            'amazon_affiliate_url' : request.form.get('amazon_affiliate_url'),
                             'genres' : request.form.getlist('genres'),
-                            'score' : int(request.form.get('score')),
-                            'amazon_affiliate_link' : request.form.get('amazon_affiliate_link')
+                            'rating' : int(request.form.getlist('rating')),
+                            'top_pick' : request.form.get('top_pick')
                         }
                     }
                 )
-                print( 'I\'m not even ran' )
                 return redirect(url_for('get_books'))
             else:
                 return redirect(url_for('edit_book', book_id=ObjectId(book_id)))

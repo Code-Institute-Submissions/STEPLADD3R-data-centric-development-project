@@ -139,3 +139,52 @@
         }
     }
 }
+
+// Read book
+#read-book {
+    .book__cover-photo {
+        width: 100%;
+        display: block;
+        margin: 0 auto 1.5em auto;
+    }
+    
+    .book__title {
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+    }
+    
+    .book__description {
+        white-space: pre-line;
+    }
+    
+    .book__affiliate-link {
+        text-transform: uppercase;
+        font-weight: 500;
+        width: 100%;
+        transition: $transition-base;
+        
+        i {
+            position: relative;
+            left: 0;
+            transition: $transition-base;
+        }
+        
+        &:hover {
+            i {
+                left: 8px;
+            }
+        }
+    }
+    
+    p {
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+    
+    small {
+        margin-top: .5em;
+        display: block;
+    }
+}

@@ -1,28 +1,61 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <section id="hero-section" class="pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class="title">{{ book.book_name }}</h2>
+                    <p class="sub-title">By {{ book.author }}.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <section id="read-book" class="pt-5 pb-5">
         <div class="container">
             <div class="row">
-                <h2>Read Book</h2>
-            </div>
-            
-            <div class="read-book">
-                <p>{{ book.book_name }}</p>
-                <p>{{ url_for('upload', filename=book.book_cover_photo) }}</p>
-                <p>{{ book.book_description }}</p>
-                <p>press {{ book.book_press_reviews }}</p>
-                <p>{{ book.isbn }}</p>
-                <p>{{ book.publication_date }}</p>
-                <p>{{ book.author }}</p>
-                <p>{{ book.publisher }}</p>
-                {% for genre in genres %}
-                    {% if genre.genre in book.genres %}
-                        <p>{{ genre.genre }}</p>
-                    {% endif %}
-                {% endfor %}
-                <p>{{ book.score }}</p>
-                <p>{{ book.amazon_affiliate_link }}</p>
+                <div class="col-md-8">
+                    <h3 class="book__title">{{ book.book_name }}</h3>
+                    <p class="book__description">{{ book.book_description }}</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="{{ url_for('upload', filename=book.book_cover_photo) }}" alt="The cover photo for the book, {{ book.book_name }} by {{ book.author }}." class="book__cover-photo" />
+                    
+                    <table class="table book-info">
+                        <tbody>
+                            <tr>
+                                <th scope="col">ISBN:</th>
+                                <td>{{ book.isbn }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Publication Date:</th>
+                                <td>{{ book.publication_date }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Author:</th>
+                                <td>{{ book.author }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Publisher:</th>
+                                <td>{{ book.publisher }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Genres:</th>
+                                <td>
+                                    {% for genre in genres %}
+                                        {% if genre.genre in book.genres %}
+                                            <span class="genre">{{ genre.genre }}</span>
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <p><a href="{{ book.amazon_affiliate_link }}" target="_blank" class="btn btn-primary book__affiliate-link">Buy on Amazon <i class="fa fa-long-arrow-right"></i></a></p>
+                    <small class="text-center">* Affiliated with Amazon</small>
+                </div>
             </div>
         </div>
     </section>

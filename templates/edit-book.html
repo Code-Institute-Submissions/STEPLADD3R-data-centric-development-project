@@ -5,8 +5,8 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h2 class="title">Edit Book</h2>
-                    <p class="sub-title">Please fill out the fields below. Fields marked with a * are required.</p>
+                    <h2 class="title">{{ book.book_name }}</h2>
+                    <p class="sub-title">You are currently editing {{ book.book_name }}.</p>
                 </div>
             </div>
         </div>
@@ -14,74 +14,70 @@
     
     <section id="edit-book" class="pt-5 pb-5">
         <div class="container">
-            <div class="edit-book">
-                <form action="{{ url_for('update_book', book_id=book._id) }}" method="POST" enctype="multipart/form-data" class="create-book__form">
-                    <div class="form-group">
-                        <label for="book_name">Book Name</label>
-                        <input type="text" class="form-control" name="book_name" id="book_name" value="{{ book.book_name }}">
-                    </div>
-                    <!--<div class="form-group">-->
-                    <!--    <label for="book_cover_photo">Book Cover Photo</label>-->
-                    <!--    <input type="file" class="form-control-file" name="book_cover_photo" id="book_cover_photo" value="{{ book.book_cover_name }}">-->
-                    <!--</div>-->
-                    
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Upload</span>
+            <div class="row">
+                <div class="col">
+                    <div class="edit-book">
+                        <form action="{{ url_for('update_book', book_id=book._id) }}" method="POST" enctype="multipart/form-data" class="create-book__form">
+                            <div class="form-group">
+                                <label for="book_name">Book Name</label>
+                                <input type="text" class="form-control" name="book_name" id="book_name" value="{{ book.book_name }}">
                             </div>
-                            <div class="custom-file">
-                                <input type="file" class="form-control-file custom-file-input" name="book_cover_photo" id="book_cover_photo">
-                                <label for="book_cover_photo" class="custom-file-label">Book Cover Photo</label>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Upload</span>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="form-control-file custom-file-input" name="book_cover_photo" id="book_cover_photo">
+                                        <label for="book_cover_photo" class="custom-file-label">Book Cover Photo</label>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            
+                            <div class="form-group">
+                                <label for="book_description">Book Description</label>
+                                <textarea class="form-control" name="book_description" id="book_description" rows="3">{{ book.book_description }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="isbn">ISBN</label>
+                                <input type="number" class="form-control" name="isbn" id="isbn" value="{{ book.isbn }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="publication_date">Publication Date</label>
+                                <input type="text" class="form-control" name="publication_date" id="publication_date" value="{{ book.publication_date }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="author">Author</label>
+                                <input type="text" class="form-control" name="author" id="author" value="{{ book.author }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="publisher">Publisher</label>
+                                <input type="text" class="form-control" name="publisher" id="publisher" value="{{ book.publisher }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="genres">Genres</label>
+                                <select multiple class="form-control" name="genres" id="genres">
+                                    {% for genre in genres %}
+                                        {% if genre.genre in book.genres %}
+                                            <option value="{{ genre.genre }}" selected>{{ genre.genre }}</option>
+                                        {% else %}
+                                            <option value="{{ genre.genre }}">{{ genre.genre }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" name="score" id="score" value="{{ book.score }}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="amazon_affiliate_link">Amazon Affiliate URL</label>
+                                <input type="text" class="form-control" name="amazon_affiliate_link" id="amazon_affiliate_link" value="{{ book.amazon_affiliate_link }}">
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </form>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="book_description">Book Description</label>
-                        <textarea class="form-control" name="book_description" id="book_description" rows="3">{{ book.book_description }}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <input type="hidden" class="form-control" name="book_press_reviews" id="book_press_reviews" value="{{ book.book_press_reviews }}" />
-                    </div>
-                    <div class="form-group">
-                        <label for="isbn">ISBN</label>
-                        <input type="number" class="form-control" name="isbn" id="isbn" value="{{ book.isbn }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="publication_date">Publication Date</label>
-                        <input type="text" class="form-control" name="publication_date" id="publication_date" value="{{ book.publication_date }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="author">Author</label>
-                        <input type="text" class="form-control" name="author" id="author" value="{{ book.author }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="publisher">Publisher</label>
-                        <input type="text" class="form-control" name="publisher" id="publisher" value="{{ book.publisher }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="genres">Genres</label>
-                        <select multiple class="form-control" name="genres" id="genres">
-                            {% for genre in genres %}
-                                {% if genre.genre in book.genres %}
-                                    <option value="{{ genre.genre }}" selected>{{ genre.genre }}</option>
-                                {% else %}
-                                    <option value="{{ genre.genre }}">{{ genre.genre }}</option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input type="hidden" class="form-control" name="score" id="score" value="{{ book.score }}" />
-                    </div>
-                    <div class="form-group">
-                        <label for="amazon_affiliate_link">Amazon Affiliate URL</label>
-                        <input type="text" class="form-control" name="amazon_affiliate_link" id="amazon_affiliate_link" value="{{ book.amazon_affiliate_link }}">
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">Update</button>
-                </form>
+                </div>
             </div>
         </div>
     </section>

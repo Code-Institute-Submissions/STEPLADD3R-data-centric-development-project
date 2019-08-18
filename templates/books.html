@@ -18,14 +18,14 @@
                 <div class="col-md-3 p-0">
                     <div class="book ml-3 mr-3">
                         <div class="book__image">
-                            {% if book.book_cover_photo %}<img src="{{ url_for('upload', filename=book.book_cover_photo) }}" alt="The cover photo for the book, {{ book.book_name }} by {{ book.author }}." class="" />{% endif %}
+                            {% if book.cover_photo %}<img src="{{ url_for('upload', filename=book.cover_photo) }}" alt="The cover photo for the book, {{ book.name }} by {{ book.author }}." class="" />{% endif %}
                         </div>
                         <div class="book__title">
-                            <p class="p-3">{{ book.book_name }}</p>
+                            <p class="p-3">{{ book.name }}</p>
                         </div>
                         <div class="book__hover" style="background: radial-gradient(circle farthest-corner at 75% 37.8%, rgba(24, 132, 128, 0.99) 0%, rgba(24, 132, 128, 0.75) 100.2%), url('{{ url_for('upload', filename=book.book_cover_photo) }}');">
-                            <h2 class="pl-3 pr-3">{{ book.book_name }}</h2>
-                            <p class="pl-3 pr-3">{{ book.book_description }}</p>
+                            <h2 class="pl-3 pr-3">{{ book.name }}</h2>
+                            <p class="pl-3 pr-3">{{ book.description | truncate(100) }}</p>
                             <div class="col-sm-12 col-md-6">
                                 <a href="{{ url_for('read_book', book_id=book._id) }}" class="p-3"><i class="fa fa-eye"></i> Read</a>
                             </div>
@@ -57,14 +57,14 @@
                 <div class="col-md-3 p-0">
                     <div class="book ml-3 mr-3">
                         <div class="book__image">
-                            {% if book.book_cover_photo %}<img src="{{ url_for('upload', filename=book.book_cover_photo) }}" alt="The cover photo for the book, {{ book.book_name }} by {{ book.author }}." class="" />{% endif %}
+                            {% if book.cover_photo %}<img src="{{ url_for('upload', filename=book.cover_photo) }}" alt="The cover photo for the book, {{ book.name }} by {{ book.author }}." class="" />{% endif %}
                         </div>
                         <div class="book__title">
-                            <p class="p-3">{{ book.book_name }}</p>
+                            <p class="p-3">{{ book.name }}</p>
                         </div>
                         <div class="book__hover" style="background: radial-gradient(circle farthest-corner at 75% 37.8%, rgba(24, 132, 128, 0.99) 0%, rgba(24, 132, 128, 0.75) 100.2%), url('{{ url_for('upload', filename=book.book_cover_photo) }}');">
-                            <h2 class="pl-3 pr-3">{{ book.book_name }}</h2>
-                            <p class="pl-3 pr-3">{{ book.book_description }}</p>
+                            <h2 class="pl-3 pr-3">{{ book.name }}</h2>
+                            <p class="pl-3 pr-3">{{ book.description }}</p>
                             <div class="col-sm-12 col-md-6">
                                 <a href="{{ url_for('read_book', book_id=book._id) }}" class="p-3"><i class="fa fa-eye"></i> Read</a>
                             </div>

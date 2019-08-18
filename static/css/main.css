@@ -7125,6 +7125,38 @@ a.text-dark:hover, a.text-dark:focus {
     #edit-book form .form-group label > .required {
       margin-left: 4px; }
 
+#read-book .book__cover-photo {
+  width: 100%;
+  display: block;
+  margin: 0 auto 1.5em auto; }
+
+#read-book .book__title {
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 1.5rem; }
+
+#read-book .book__description {
+  white-space: pre-line; }
+
+#read-book .book__affiliate-link {
+  text-transform: uppercase;
+  font-weight: 500;
+  width: 100%;
+  transition: all 0.2s ease-in-out; }
+  #read-book .book__affiliate-link i {
+    position: relative;
+    left: 0;
+    transition: all 0.2s ease-in-out; }
+  #read-book .book__affiliate-link:hover i {
+    left: 8px; }
+
+#read-book p:last-of-type {
+  margin-bottom: 0; }
+
+#read-book small {
+  margin-top: .5em;
+  display: block; }
+
 .site-footer {
   background-color: #f4f4f4; }
   .site-footer .container-fluid .row .col-lg-3 {
