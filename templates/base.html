@@ -53,19 +53,31 @@
             <div class="row">
                 <div class="col-lg-3">
                     <h5 class="footer__title">Browse By Genre</h5>
-                    <p>List of books by genre</p>
+                    <ul class="footer__ul">
+                        {% for genre in footer_genres %}
+                            <li>{{ genre.genre }}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
                 <div class="col-lg-3">
                     <h5 class="footer__title">Browse By Staff Picks</h5>
-                    <p>List of books by staff picks</p>
+                    <ul class="footer__ul">
+                        {% for top_pick in footer_top_picks %}
+                            <li>{{ top_pick.name }}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
                 <div class="col-lg-3">
                     <h5 class="footer__title">Browse By User Ratings</h5>
-                    <p>List of books by user rating</p>
+                    <p>Coming soon...</p>
                 </div>
                 <div class="col-lg-3">
                     <h5 class="footer__title">Browse By Upload Date</h5>
-                    <p>List of books by upload date</p>
+                    <ul class="footer__ul">
+                        {% for recent_book in footer_recent_books %}
+                            <li>{{ recent_book.name }}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         </div>

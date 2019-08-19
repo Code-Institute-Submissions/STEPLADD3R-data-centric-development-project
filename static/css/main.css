@@ -7176,6 +7176,10 @@ a.text-dark:hover, a.text-dark:focus {
     .site-footer .container-fluid .row .col-lg-3:first-of-type {
       background-color: #188480;
       color: #fff; }
+    .site-footer .container-fluid .row .col-lg-3 .footer__ul {
+      padding: 0;
+      margin: 0;
+      list-style-type: none; }
 
 .testimonial {
   display: flex;

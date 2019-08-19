@@ -15,6 +15,14 @@ app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg', 'gif'}
 
 mongo = PyMongo(app)
 
+@app.context_processor
+def global_template_variables():
+    footer_genres = mongo.db.genres.find().limit(8);
+    footer_top_picks = mongo.db.books.find({ 'top_pick' : 'on' }).limit(8)
+    footer_user_picks = mongo.db.genres.find();
+    footer_recent_books = mongo.db.books.find().sort([( '$natural', -1 )]).limit(8)
+    return dict(footer_genres=footer_genres, footer_top_picks=footer_top_picks, footer_user_picks=footer_user_picks, footer_recent_books=footer_recent_books)
+
 # File Upload Helper Functions
 # Used to check extensions allowed
 def allowed_file(filename):
