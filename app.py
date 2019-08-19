@@ -31,15 +31,15 @@ def upload(filename):
 @app.route('/')
 @app.route('/books')
 def get_books():
-    top_books = mongo.db.books.find({ 'top_pick' : 'on' }).limit(8)
+    top_books = mongo.db.books.find({ 'top_pick' : 'on' }).limit(8) # potentionally add sort?
     recent_books = mongo.db.books.find().sort([( '$natural', -1 )]).limit(8)
-    
     return render_template('books.html', top_books=top_books, recent_books=recent_books)
 
 
 @app.route('/book/add')
 def create_book():
-    return render_template('create-book.html', genres=mongo.db.genres.find())
+    genres = mongo.db.genres.find()
+    return render_template('create-book.html', genres=genres)
 
 
 @app.route('/book/insert', methods=['POST'])
@@ -67,7 +67,7 @@ def insert_book():
             'publisher' : request.form.get('publisher'),
             'amazon_affiliate_url' : request.form.get('amazon_affiliate_url'),
             'genres' : request.form.getlist('genres'),
-            'rating' : request.form.getlist('rating'),
+            # 'rating' : request.form.getlist('rating'),
             'top_pick' : request.form.get('top_pick')
         })
         return redirect(url_for('get_books'))
@@ -75,11 +75,11 @@ def insert_book():
         return redirect(url_for('create_book'))
 
 
-# read
 @app.route('/book/<book_id>')
 def read_book(book_id):
     the_book = mongo.db.books.find_one({ '_id' : ObjectId(book_id) })
-    return render_template('read-book.html', book=the_book, genres=mongo.db.genres.find())
+    genres = mongo.db.genres.find()
+    return render_template('read-book.html', book=the_book, genres=genres)
 
 
 @app.route('/book/<book_id>/edit')
@@ -108,13 +108,11 @@ def update_book(book_id):
                         'publisher' : request.form.get('publisher'),
                         'amazon_affiliate_url' : request.form.get('amazon_affiliate_url'),
                         'genres' : request.form.getlist('genres'),
-                        'rating' : request.form.getlist('rating'),
+                        # 'rating' : request.form.getlist('rating'),
                         'top_pick' : request.form.get('top_pick')
                     }
                 }
             )
-            # print( ObjectId(book_id) )
-            print( 'This is empty... but the value of cover_photo is still set to null after this operation' )
             return redirect(url_for('get_books'))
         else:
             if allowed_file(cover_photo.filename):
@@ -133,7 +131,7 @@ def update_book(book_id):
                             'publisher' : request.form.get('publisher'),
                             'amazon_affiliate_url' : request.form.get('amazon_affiliate_url'),
                             'genres' : request.form.getlist('genres'),
-                            'rating' : request.form.getlist('rating'),
+                            # 'rating' : request.form.getlist('rating'),
                             'top_pick' : request.form.get('top_pick')
                         }
                     }

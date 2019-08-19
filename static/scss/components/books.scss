@@ -148,6 +148,20 @@
         margin: 0 auto 1.5em auto;
     }
     
+    .book__info-table {
+        .genre {
+            &:after {
+                content: ',';
+            }
+            
+            &:last-of-type {
+                &:after {
+                    content: '';
+                }
+            }
+        }
+    }
+    
     .book__title {
         text-transform: uppercase;
         font-weight: 700;

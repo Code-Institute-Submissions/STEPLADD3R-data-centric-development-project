@@ -7130,6 +7130,12 @@ a.text-dark:hover, a.text-dark:focus {
   display: block;
   margin: 0 auto 1.5em auto; }
 
+#read-book .book__info-table .genre:after {
+  content: ','; }
+
+#read-book .book__info-table .genre:last-of-type:after {
+  content: ''; }
+
 #read-book .book__title {
   text-transform: uppercase;
   font-weight: 700;

@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block title %}<title>{{ book.name }} by {{ book.author }} - BookReviews</title>{% endblock %}
+
 {% block content %}
     <section id="hero-section" class="pt-5 pb-5">
         <div class="container">
@@ -20,9 +22,11 @@
                     <p class="book__description">{{ book.description }}</p>
                 </div>
                 <div class="col-md-4">
-                    <img src="{{ url_for('upload', filename=book.cover_photo) }}" alt="The cover photo for the book, {{ book.name }} by {{ book.author }}." class="book__cover-photo" />
+                    <a href="{{ url_for('upload', filename=book.cover_photo) }}">
+                        <img src="{{ url_for('upload', filename=book.cover_photo) }}" alt="The cover photo for the book, {{ book.name }} by {{ book.author }}." class="book__cover-photo" />
+                    </a>
                     
-                    <table class="table book-info">
+                    <table class="table book__info-table">
                         <tbody>
                             <tr>
                                 <th scope="col">ISBN:</th>
