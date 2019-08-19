@@ -7176,10 +7176,25 @@ a.text-dark:hover, a.text-dark:focus {
     .site-footer .container-fluid .row .col-lg-3:first-of-type {
       background-color: #188480;
       color: #fff; }
+      .site-footer .container-fluid .row .col-lg-3:first-of-type .footer__ul li {
+        display: inline-block; }
+        .site-footer .container-fluid .row .col-lg-3:first-of-type .footer__ul li a {
+          color: #fff; }
     .site-footer .container-fluid .row .col-lg-3 .footer__ul {
       padding: 0;
       margin: 0;
       list-style-type: none; }
+      .site-footer .container-fluid .row .col-lg-3 .footer__ul li {
+        padding: 0 0 8px 8px;
+        text-transform: capitalize;
+        font-weight: 400; }
+        .site-footer .container-fluid .row .col-lg-3 .footer__ul li a {
+          color: #303030;
+          text-decoration: none;
+          padding-bottom: 4px;
+          transition: all 0.2s ease-in-out; }
+          .site-footer .container-fluid .row .col-lg-3 .footer__ul li a:hover {
+            border-bottom: 1px dashed rgba(48, 48, 48, 0.45); }
 
 .testimonial {
   display: flex;

@@ -17,11 +17,13 @@ mongo = PyMongo(app)
 
 @app.context_processor
 def global_template_variables():
-    footer_genres = mongo.db.genres.find().limit(8);
-    footer_top_picks = mongo.db.books.find({ 'top_pick' : 'on' }).limit(8)
+    navbar_genres = mongo.db.genres.find()
+    footer_genres = mongo.db.genres.find()
+    footer_top_picks = mongo.db.books.find({ 'top_pick' : 'on' }).limit(4)
     footer_user_picks = mongo.db.genres.find();
-    footer_recent_books = mongo.db.books.find().sort([( '$natural', -1 )]).limit(8)
-    return dict(footer_genres=footer_genres, footer_top_picks=footer_top_picks, footer_user_picks=footer_user_picks, footer_recent_books=footer_recent_books)
+    footer_recent_books = mongo.db.books.find().sort([( '$natural', -1 )]).limit(4)
+    return dict(navbar_genres=navbar_genres, footer_genres=footer_genres, footer_top_picks=footer_top_picks, footer_user_picks=footer_user_picks, footer_recent_books=footer_recent_books)
+
 
 # File Upload Helper Functions
 # Used to check extensions allowed
@@ -34,6 +36,22 @@ def allowed_file(filename):
 @app.route('/uploads/<filename>')
 def upload(filename):
     return mongo.send_file(filename)
+
+
+@app.route('/search/', methods=['POST'])
+@app.route('/books/search/', methods=['POST'])
+def search_books():
+    search_term = request.form.get('search_term')
+    return redirect(url_for('search_results', search_term=search_term))
+
+
+@app.route('/search/<search_term>')
+@app.route('/books/search/<search_term>')
+def search_results(search_term):
+    mongo.db.books.create_index([( 'name', 'text' )])
+    search_results = mongo.db.books.find({ '$text': { '$search' : search_term } }).limit(8)
+    search_results_count = mongo.db.books.find({ '$text': { '$search' : search_term } }).count()
+    return render_template('search-results.html', search_term=search_term, search_results=search_results, search_results_count=search_results_count)
 
 
 @app.route('/')

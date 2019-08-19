@@ -23,12 +23,39 @@
                 &:first-of-type {
                     background-color: $primary;
                     color: #fff;
+                    
+                    .footer__ul {
+                        li {
+                            display: inline-block;
+                            
+                            a {
+                                color: #fff;
+                            }
+                        }
+                    }
                 }
                 
                 .footer__ul  {
                     padding: 0;
                     margin: 0;
                     list-style-type: none;
+                    
+                    li {
+                        padding: 0 0 8px 8px;
+                        text-transform: capitalize;
+                        font-weight: 400;
+                        
+                        a {
+                            color: #303030;
+                            text-decoration: none;
+                            padding-bottom: 4px;
+                            transition: $transition-base;
+                            
+                            &:hover {
+                                border-bottom: 1px dashed rgba(48,48,48,0.45);
+                            }
+                        }
+                    }
                 }
             }
         }

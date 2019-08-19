@@ -26,9 +26,9 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Genres</a>
                         
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a href="" class="dropdown-item">Sci-Fi</a>
-                            <a href="" class="dropdown-item">Fantasy</a>
-                            <a href="" class="dropdown-item">Western</a>
+                            {% for genre in navbar_genres %}
+                            <a href="" class="dropdown-item">{{ genre.genre }}</a>
+                            {% endfor %}
                         </div>
                     </li>
                     <li class="nav-item">
@@ -38,8 +38,8 @@
                         <a href="#!" class="nav-link">Login / Logout</a>
                     </li>
                 </ul>
-                <form class="form-inline">
-                    <input type="search" class="form-control" placeholder="Search by book name" aria-label="Search by book name">
+                <form action="{{ url_for('search_books') }}" method="POST" class="search-form form-inline">
+                    <input type="search" class="form-control" placeholder="Search by book name" aria-label="Search by book name" name="search_term" id="search_term">
                     <button type="submit" class="btn btn-outline-primary">Search</button>
                 </form>
             </div>
@@ -63,7 +63,7 @@
                     <h5 class="footer__title">Browse By Staff Picks</h5>
                     <ul class="footer__ul">
                         {% for top_pick in footer_top_picks %}
-                            <li>{{ top_pick.name }}</li>
+                            <li><a href="{{ url_for('read_book', book_id=top_pick._id) }}">{{ top_pick.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -75,7 +75,7 @@
                     <h5 class="footer__title">Browse By Upload Date</h5>
                     <ul class="footer__ul">
                         {% for recent_book in footer_recent_books %}
-                            <li>{{ recent_book.name }}</li>
+                            <li><a href="{{ url_for('read_book', book_id=recent_book._id) }}">{{ recent_book.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
