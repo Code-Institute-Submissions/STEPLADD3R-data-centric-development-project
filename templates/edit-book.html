@@ -5,8 +5,8 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h2 class="title">{{ book.book_name }}</h2>
-                    <p class="sub-title">You are currently editing {{ book.book_name }}.</p>
+                    <h2 class="title">{{ book.name }}</h2>
+                    <p class="sub-title">You are currently editing {{ book.name }}.</p>
                 </div>
             </div>
         </div>
@@ -17,10 +17,10 @@
             <div class="row">
                 <div class="col">
                     <div class="edit-book">
-                        <form action="{{ url_for('update_book', book_id=book._id) }}" method="POST" enctype="multipart/form-data" class="create-book__form">
+                        <form action="{{ url_for('update_book', book_id=book._id) }}" method="POST" enctype="multipart/form-data" class="edit-book__form needs-validation" novalidate>
                             <div class="form-group">
-                                <label for="book_name">Book Name</label>
-                                <input type="text" class="form-control" name="book_name" id="book_name" value="{{ book.book_name }}">
+                                <label for="name">Book Name</label>
+                                <input type="text" class="form-control" name="name" id="name" value="{{ book.name }}">
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
@@ -28,15 +28,14 @@
                                         <span class="input-group-text">Upload</span>
                                     </div>
                                     <div class="custom-file">
-                                        <input type="file" class="form-control-file custom-file-input" name="book_cover_photo" id="book_cover_photo">
-                                        <label for="book_cover_photo" class="custom-file-label">Book Cover Photo</label>
+                                        <input type="file" class="form-control-file custom-file-input" name="cover_photo" id="cover_photo">
+                                        <label for="cover_photo" class="custom-file-label">Cover Photo</label>
                                     </div>
                                 </div>
                             </div>
-                            
                             <div class="form-group">
-                                <label for="book_description">Book Description</label>
-                                <textarea class="form-control" name="book_description" id="book_description" rows="3">{{ book.book_description }}</textarea>
+                                <label for="description">Book Description</label>
+                                <textarea class="form-control" name="description" id="description" rows="3">{{ book.description }}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="isbn">ISBN</label>
@@ -55,6 +54,10 @@
                                 <input type="text" class="form-control" name="publisher" id="publisher" value="{{ book.publisher }}">
                             </div>
                             <div class="form-group">
+                                <label for="amazon_affiliate_url">Amazon Affiliate URL</label>
+                                <input type="text" class="form-control" name="amazon_affiliate_url" id="amazon_affiliate_url" value="{{ book.amazon_affiliate_url }}">
+                            </div>
+                            <div class="form-group">
                                 <label for="genres">Genres</label>
                                 <select multiple class="form-control" name="genres" id="genres">
                                     {% for genre in genres %}
@@ -67,11 +70,17 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <input type="hidden" class="form-control" name="score" id="score" value="{{ book.score }}" />
+                                <input type="hidden" class="form-control" name="rating" id="rating" value="{{ book.rating }}" />
                             </div>
                             <div class="form-group">
-                                <label for="amazon_affiliate_link">Amazon Affiliate URL</label>
-                                <input type="text" class="form-control" name="amazon_affiliate_link" id="amazon_affiliate_link" value="{{ book.amazon_affiliate_link }}">
+                                <div class="custom-control custom-checkbox">
+                                    {% if book.top_pick %}
+                                    <input class="custom-control-input" type="checkbox" name="top_pick" id="top_pick" checked>
+                                    {% else %}
+                                    <input class="custom-control-input" type="checkbox" name="top_pick" id="top_pick">
+                                    {% endif %}
+                                    <label class="custom-control-label" for="top_pick">Staff Top Pick?</label>
+                                </div>
                             </div>
                             
                             <button type="submit" class="btn btn-primary">Update</button>

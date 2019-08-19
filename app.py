@@ -105,7 +105,7 @@ def update_book(book_id):
                         'publisher' : request.form.get('publisher'),
                         'amazon_affiliate_url' : request.form.get('amazon_affiliate_url'),
                         'genres' : request.form.getlist('genres'),
-                        'rating' : int(request.form.getlist('rating')),
+                        'rating' : request.form.getlist('rating'),
                         'top_pick' : request.form.get('top_pick')
                     }
                 }
@@ -130,7 +130,7 @@ def update_book(book_id):
                             'publisher' : request.form.get('publisher'),
                             'amazon_affiliate_url' : request.form.get('amazon_affiliate_url'),
                             'genres' : request.form.getlist('genres'),
-                            'rating' : int(request.form.getlist('rating')),
+                            'rating' : request.form.getlist('rating'),
                             'top_pick' : request.form.get('top_pick')
                         }
                     }
