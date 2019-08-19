@@ -31,7 +31,10 @@ def upload(filename):
 @app.route('/')
 @app.route('/books')
 def get_books():
-    return render_template('books.html', top_books=mongo.db.books.find(), new_books=mongo.db.books.find())
+    top_books = mongo.db.books.find({ 'top_pick' : 'on' }).limit(8)
+    recent_books = mongo.db.books.find().sort([( '$natural', -1 )]).limit(8)
+    
+    return render_template('books.html', top_books=top_books, recent_books=recent_books)
 
 
 @app.route('/book/add')
