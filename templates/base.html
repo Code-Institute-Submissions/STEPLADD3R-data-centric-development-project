@@ -6,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% block title %}<title>BookReviews</title>{% endblock %}
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" /> <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gijgo@1.9.13/css/gijgo.min.css" type="text/css" /> <!-- Date Picker -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/vendors/bootstrap4c/component-chosen.css') }}" type="text/css" /> <!-- Chosen Select -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/vendors/overlayscrollbars/OverlayScrollbars.min.css') }}" type="text/css" /> <!-- Overlay Scrollbars -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/main.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/vendors/css/toastr/toastr.min.css') }}" type="text/css" /> <!-- Toastr | 7 KB -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/vendors/css/bootstrap4c/component-chosen.css') }}" type="text/css" /> <!-- Chosen Select | 15 KB -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/vendors/css/overlayscrollbars/OverlayScrollbars.min.css') }}" type="text/css" /> <!-- Overlay Scrollbars | 20 KB -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" /> <!-- Font Awesome | 21 KB -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gijgo@1.9.13/css/gijgo.min.css" type="text/css" /> <!-- Gijgo Date Picker | 43 KB -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/main.css') }}" type="text/css" /> <!-- Main CSS -->
 </head>
 <body>
     <header class="site-header" itemscope itemtype="https://schema.org/WPHeader">
@@ -92,11 +93,12 @@
     </footer>
     
     <script src="{{ url_for('static', filename='dist/js/jquery.slim.min.js') }}"></script> <!-- jQuery -->
-    <script src="{{ url_for('static', filename='dist/js/vendors/bootstrap/popper.min.js') }}"></script> <!-- Popper -->
-    <script src="{{ url_for('static', filename='dist/js/vendors/bootstrap/bootstrap.min.js') }}"></script> <!-- Bootstrap -->
-    <script src="{{ url_for('static', filename='dist/js/vendors/chosen-js/chosen.jquery.min.js') }}"></script> <!-- Chosen Select -->
-    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.13/js/gijgo.min.js"></script> <!-- Date Picker -->
-    <script src="{{ url_for('static', filename='dist/js/vendors/overlayscrollbars/OverlayScrollbars.min.js') }}"></script> <!-- Overlay Scrollbars -->
-    <script src="{{ url_for('static', filename='dist/js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='dist/vendors/js/toastr/toastr.min.js') }}"></script> <!-- Toastr | 6 KB -->
+    <script src="{{ url_for('static', filename='dist/vendors/js/bootstrap/popper.min.js') }}"></script> <!-- Popper | 21 KB -->
+    <script src="{{ url_for('static', filename='dist/vendors/js/chosen-js/chosen.jquery.min.js') }}"></script> <!-- Chosen Select | 29 KB -->
+    <script src="{{ url_for('static', filename='dist/vendors/js/overlayscrollbars/OverlayScrollbars.min.js') }}"></script> <!-- Overlay Scrollbars | 52 KB -->
+    <script src="{{ url_for('static', filename='dist/vendors/js/bootstrap/bootstrap.min.js') }}"></script> <!-- Bootstrap | 57 KB -->
+    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.13/js/gijgo.min.js"></script> <!-- Gijgo Date Picker | 174 KB -->
+    <script src="{{ url_for('static', filename='dist/js/main.js') }}"></script> <!-- Main JS -->
 </body>
 </html>

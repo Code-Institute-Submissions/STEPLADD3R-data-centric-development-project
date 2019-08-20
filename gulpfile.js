@@ -6,30 +6,33 @@ var uglifycss = require( 'gulp-uglifycss' );
 
 sass.compiler = require('node-sass');
 
-gulp.task('dependencies', function(done) {
-    // gulp.src('./node_modules/bootstrap/dist/css/bootstrap.min.css')
-        // .pipe(gulp.dest('./static/dist/css/'));
-        
+gulp.task('dependencies', function(done) {        
     gulp.src('./node_modules/jquery/dist/jquery.slim.min.js')
         .pipe(gulp.dest('./static/dist/js/'));
     
     gulp.src('./node_modules/popper.js/dist/popper.min.js')
-        .pipe(gulp.dest('./static/dist/js/vendors/bootstrap/'));
+        .pipe(gulp.dest('./static/dist/vendors/js/bootstrap/'));
     
     gulp.src('./node_modules/bootstrap/dist/js/bootstrap.min.js')
-        .pipe(gulp.dest('./static/dist/js/vendors/bootstrap/'));
+        .pipe(gulp.dest('./static/dist/vendors/js/bootstrap/'));
         
     gulp.src('./node_modules/chosen-js/chosen.jquery.min.js')
-        .pipe(gulp.dest('./static/dist/js/vendors/chosen-js/'));
+        .pipe(gulp.dest('./static/dist/vendors/js/chosen-js/'));
     
     gulp.src('./node_modules/bootstrap4c-chosen/dist/css/component-chosen.css')
-        .pipe(gulp.dest('./static/dist/css/vendors/bootstrap4c/'));
+        .pipe(gulp.dest('./static/dist/vendors/css/bootstrap4c/'));
     
     gulp.src('./node_modules/overlayscrollbars/js/OverlayScrollbars.min.js')
-        .pipe(gulp.dest('./static/dist/js/vendors/overlayscrollbars/'));
+        .pipe(gulp.dest('./static/dist/vendors/js/overlayscrollbars/'));
     
     gulp.src('./node_modules/overlayscrollbars/css/OverlayScrollbars.min.css')
-        .pipe(gulp.dest('./static/dist/css/vendors/overlayscrollbars/'));
+        .pipe(gulp.dest('./static/dist/vendors/css/overlayscrollbars/'));
+    
+    gulp.src('./node_modules/toastr/build/toastr.min.js')
+        .pipe(gulp.dest('./static/dist/vendors/js/toastr/'));
+    
+    gulp.src('./node_modules/toastr/build/toastr.min.css')
+        .pipe(gulp.dest('./static/dist/vendors/css/toastr/'));
 
     done();
 });

@@ -29,6 +29,7 @@
     "gulp-uglifycss": "^1.1.0",
     "jquery": "^3.0.0",
     "overlayscrollbars": "^1.9.1",
-    "popper.js": "^1.11.0"
+    "popper.js": "^1.11.0",
+    "toastr": "^2.1.4"
   }
 }
