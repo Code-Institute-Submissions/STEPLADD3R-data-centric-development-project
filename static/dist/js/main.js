@@ -2,17 +2,6 @@
     
     'use strict';
     
-    // Chosen-js
-    $('#genres').chosen();
-    
-    // Datepicker
-    $('#publication_date').datepicker({
-        header: true,
-        footer: true,
-        modal: true,
-        format: 'dd mmmm yyyy',
-    });
-    
     // Bootstrap form validation
     window.addEventListener('load', function() {
         var forms = document.getElementsByClassName('needs-validation');
@@ -27,6 +16,17 @@
             }, false);
         });
     }, false);
+    
+    // Chosen-js
+    $('#genres').chosen();
+    
+    // Datepicker
+    $('#publication_date').datepicker({
+        header: true,
+        footer: true,
+        modal: true,
+        format: 'dd mmmm yyyy',
+    });
     
     // Scrollbars
     $('.book-scroller').overlayScrollbars({
