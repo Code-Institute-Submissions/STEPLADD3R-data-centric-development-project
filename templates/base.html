@@ -35,9 +35,6 @@
                     <li class="nav-item">
                         <a href="{{ url_for('create_book') }}" class="nav-link {% if request.path == url_for('create_book') %}active{% endif %}">Add a Book</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#!" class="nav-link">Login / Logout</a>
-                    </li>
                 </ul>
                 <form action="{{ url_for('search_books') }}" method="POST" class="search-form form-inline">
                     <input type="search" class="form-control" placeholder="Search by book name" aria-label="Search by book name" name="search_term" id="search_term">
@@ -50,7 +47,7 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
-                {{ category }} | {{ message }}
+                <div class="toastr" data-category="{{ category }}" data-message="{{ message }}"></div>
             {% endfor %}
         {% endif %}
     {% endwith %}
@@ -92,7 +89,7 @@
         </div>
     </footer>
     
-    <script src="{{ url_for('static', filename='dist/js/jquery.slim.min.js') }}"></script> <!-- jQuery -->
+    <script src="{{ url_for('static', filename='dist/vendors/js/jquery/jquery.min.js') }}"></script> <!-- jQuery -->
     <script src="{{ url_for('static', filename='dist/vendors/js/toastr/toastr.min.js') }}"></script> <!-- Toastr | 6 KB -->
     <script src="{{ url_for('static', filename='dist/vendors/js/bootstrap/popper.min.js') }}"></script> <!-- Popper | 21 KB -->
     <script src="{{ url_for('static', filename='dist/vendors/js/chosen-js/chosen.jquery.min.js') }}"></script> <!-- Chosen Select | 29 KB -->

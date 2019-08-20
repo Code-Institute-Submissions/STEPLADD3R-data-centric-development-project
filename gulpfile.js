@@ -7,10 +7,10 @@ var uglifycss = require( 'gulp-uglifycss' );
 sass.compiler = require('node-sass');
 
 gulp.task('dependencies', function(done) {        
-    gulp.src('./node_modules/jquery/dist/jquery.slim.min.js')
-        .pipe(gulp.dest('./static/dist/js/'));
+    gulp.src('./node_modules/jquery/dist/jquery.min.js')
+        .pipe(gulp.dest('./static/dist/vendors/js/jquery/'));
     
-    gulp.src('./node_modules/popper.js/dist/popper.min.js')
+    gulp.src('./node_modules/popper.js/dist/umd/popper.min.js')
         .pipe(gulp.dest('./static/dist/vendors/js/bootstrap/'));
     
     gulp.src('./node_modules/bootstrap/dist/js/bootstrap.min.js')

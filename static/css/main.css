@@ -7301,6 +7301,20 @@ nav.navbar {
   #hero-section .sub-title {
     margin-bottom: 0; }
 
+#toast-container .toast {
+  background-color: #030303; }
+  #toast-container .toast-success {
+    background-color: #51a351; }
+  #toast-container .toast-warning {
+    background-color: #f89406; }
+  #toast-container .toast-error {
+    background-color: #bd362f; }
+  #toast-container .toast-info {
+    background-color: #2f96b4; }
+
+#toast-container .toast-message {
+  color: #fff; }
+
 .has-primary-background-color {
   background-color: #188480; }
 

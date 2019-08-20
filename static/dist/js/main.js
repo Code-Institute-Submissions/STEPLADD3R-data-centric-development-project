@@ -35,4 +35,27 @@
        },
     });
     
+    // Toastr
+    $('.toastr').each(function() {
+        var toastr_category = $(this).attr('data-category');
+        var toastr_message = $(this).attr('data-message');
+        
+        if ( toastr_category == 'success' ) {
+            toastr.success(toastr_message);
+        } else if ( toastr_category == 'warning' ) {
+            toastr.warning(toastr_message);
+        } else if ( toastr_category == 'error' ) {
+            toastr.error(toastr_message);
+        } else if ( toastr_category == 'info' ) {
+            toastr.info(toastr_message);
+        } else {
+            toastr.info(toastr_message);
+        }
+        
+        toastr.options = {
+            'progressBar' : true,
+            'preventDuplicates' : true,
+        }
+    });
+    
 })( jQuery );
