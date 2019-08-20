@@ -15,9 +15,9 @@
     </section>
 
     <section id="search-results" class="pt-5 pb-5">
+        {% if search_results_count > 1 %}
         <div class="container book-scroller">
             <div class="row flex-nowrap">
-                {% if search_results_count > 1 %}
                 {% for search_result in search_results %}
                 <div class="col-md-3 p-0">
                     <div class="book ml-3 mr-3">
@@ -40,10 +40,16 @@
                     </div>
                 </div>
                 {% endfor %}
-                {% else %}
-                <p>Empty</p>
-                {% endif %}
             </div>
         </div>
+        {% else %}
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p>Empty</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </section>
 {% endblock %}

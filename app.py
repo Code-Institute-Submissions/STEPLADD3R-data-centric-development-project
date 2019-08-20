@@ -7,10 +7,14 @@ from bson.objectid import ObjectId
 # Create an instance of a Flask app
 app = Flask(__name__)
 
+# Secret Key
+app.config['SECRET_KEY'] = 'test'
+
 # Mongo DB Setup
 app.config['MONGO_DBNAME'] = 'book_reviewer'
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
-# File Upload
+
+# File Upload Config
 app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg', 'gif'}
 
 mongo = PyMongo(app)
@@ -26,18 +30,19 @@ def global_template_variables():
 
 
 # File Upload Helper Functions
-# Used to check extensions allowed
+# Checks if the extension is allowed
 def allowed_file(filename):
     return '.' in filename and \
     filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
 
-# Used to retrieve the URL of the upload from MongoDB
+# Retrieve the URL of the upload from MongoDB
 @app.route('/uploads/<filename>')
 def upload(filename):
     return mongo.send_file(filename)
 
 
+# Get the search term
 @app.route('/search/', methods=['POST'])
 @app.route('/books/search/', methods=['POST'])
 def search_books():
@@ -45,6 +50,7 @@ def search_books():
     return redirect(url_for('search_results', search_term=search_term))
 
 
+# Return the search results
 @app.route('/search/<search_term>')
 @app.route('/books/search/<search_term>')
 def search_results(search_term):
@@ -54,6 +60,10 @@ def search_results(search_term):
     return render_template('search-results.html', search_term=search_term, search_results=search_results, search_results_count=search_results_count)
 
 
+#
+#   BOOKS
+#
+# Return top picks and recent books
 @app.route('/')
 @app.route('/books')
 def get_books():
@@ -62,12 +72,14 @@ def get_books():
     return render_template('books.html', top_books=top_books, recent_books=recent_books)
 
 
+# Create Book (Form)
 @app.route('/book/add')
 def create_book():
     genres = mongo.db.genres.find()
     return render_template('create-book.html', genres=genres)
 
 
+# Insert into the DB
 @app.route('/book/insert', methods=['POST'])
 def insert_book():
     if 'cover_photo' not in request.files:
@@ -76,7 +88,7 @@ def insert_book():
     cover_photo = request.files['cover_photo']
 
     if cover_photo.filename == '':
-        flash('The uploaded file MUST have a file name.')
+        flash('The uploaded file MUST have a file name.', 'error')
         return redirect(url_for('create_book'))
 
     if cover_photo and allowed_file(cover_photo.filename):
@@ -93,14 +105,15 @@ def insert_book():
             'publisher' : request.form.get('publisher'),
             'amazon_affiliate_url' : request.form.get('amazon_affiliate_url'),
             'genres' : request.form.getlist('genres'),
-            # 'rating' : request.form.getlist('rating'),
             'top_pick' : request.form.get('top_pick')
         })
+        flash('Upload Successful.', 'success')
         return redirect(url_for('get_books'))
     else:
         return redirect(url_for('create_book'))
 
 
+# Read Book
 @app.route('/book/<book_id>')
 def read_book(book_id):
     the_book = mongo.db.books.find_one({ '_id' : ObjectId(book_id) })
@@ -108,12 +121,14 @@ def read_book(book_id):
     return render_template('read-book.html', book=the_book, genres=genres)
 
 
+# Update Book (Form)
 @app.route('/book/<book_id>/edit')
 def edit_book(book_id):
     the_book = mongo.db.books.find_one({ '_id' : ObjectId(book_id) })
     return render_template('edit-book.html', book=the_book, genres=mongo.db.genres.find())
 
 
+# Update the DB
 @app.route('/book/<book_id>/update', methods=['POST'])
 def update_book(book_id):
     if 'cover_photo' in request.files:
@@ -134,7 +149,6 @@ def update_book(book_id):
                         'publisher' : request.form.get('publisher'),
                         'amazon_affiliate_url' : request.form.get('amazon_affiliate_url'),
                         'genres' : request.form.getlist('genres'),
-                        # 'rating' : request.form.getlist('rating'),
                         'top_pick' : request.form.get('top_pick')
                     }
                 }
@@ -157,7 +171,6 @@ def update_book(book_id):
                             'publisher' : request.form.get('publisher'),
                             'amazon_affiliate_url' : request.form.get('amazon_affiliate_url'),
                             'genres' : request.form.getlist('genres'),
-                            # 'rating' : request.form.getlist('rating'),
                             'top_pick' : request.form.get('top_pick')
                         }
                     }
@@ -167,10 +180,21 @@ def update_book(book_id):
                 return redirect(url_for('edit_book', book_id=ObjectId(book_id)))
 
 
+# Delete Book
 @app.route('/book/<book_id>/delete')
 def delete_book(book_id):
     mongo.db.books.remove({'_id' : ObjectId(book_id)})
     return redirect(url_for('get_books'))
+
+
+#
+#   GENRES
+#
+
+
+#
+#   REVIEWS
+#
 
 
 # Set up IP address and Port number
