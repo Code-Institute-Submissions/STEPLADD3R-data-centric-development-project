@@ -3,6 +3,7 @@
 var gulp = require( 'gulp' );
 var sass = require( 'gulp-sass' );
 var uglifycss = require( 'gulp-uglifycss' );
+var imagemin = require('gulp-imagemin');
 
 sass.compiler = require('node-sass');
 
@@ -53,7 +54,15 @@ gulp.task('uglify', function(done) {
     done();
 });
 
-gulp.task('run', gulp.series('sass', 'uglify'));
+gulp.task('imagemin', function(done) {
+    gulp.src('./static/img/*')
+        .pipe(imagemin())
+        .pipe(gulp.dest('./static/dist/img/'));
+
+    done();
+});
+
+gulp.task('run', gulp.series('sass', 'uglify', 'imagemin'));
 
 gulp.task('watch', function() {
     gulp.watch('./static/scss/*.scss', gulp.series('sass'));
