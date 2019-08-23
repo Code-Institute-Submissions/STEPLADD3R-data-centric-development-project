@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from flask import Flask, flash, render_template, redirect, request, url_for
 from werkzeug.utils import secure_filename
 from flask_pymongo import PyMongo
@@ -67,9 +68,9 @@ def search_results(search_term):
 @app.route('/')
 @app.route('/books')
 def get_books():
-    top_books = mongo.db.books.find({ 'top_pick' : 'on' }).sort([( '$natural', -1 )]).limit(8)
+    top_picks = mongo.db.books.find({ 'top_pick' : 'on' }).sort([( '$natural', -1 )]).limit(8)
     recent_books = mongo.db.books.find().sort([( '$natural', -1 )]).limit(8)
-    return render_template('books.html', top_books=top_books, recent_books=recent_books)
+    return render_template('books.html', top_picks=top_picks, recent_books=recent_books)
 
 
 # Create Book (Form)
@@ -118,7 +119,8 @@ def insert_book():
 def read_book(book_id):
     the_book = mongo.db.books.find_one({ '_id' : ObjectId(book_id) })
     genres = mongo.db.genres.find()
-    return render_template('read-book.html', book=the_book, genres=genres)
+    reviews = mongo.db.reviews.find({ 'book_id' : book_id })
+    return render_template('read-book.html', book=the_book, genres=genres, reviews=reviews)
 
 
 # Update Book (Form)
@@ -254,6 +256,19 @@ def delete_genre(genre_id):
 #
 #   REVIEWS
 #
+# Insert into the DB
+@app.route('/book/<book_id>/review/insert', methods=['POST'])
+def insert_review(book_id):
+    reviews = mongo.db.reviews
+    reviews.insert_one({
+        'book_id' : request.form.get('book_id'),
+        'posted_at' : datetime.utcnow(),
+        'author' : request.form.get('author'),
+        'review' : request.form.get('review'),
+        'rating' : int(request.form.get('rating')),
+    })
+    flash('Upload Successful.', 'success')
+    return redirect(url_for('read_book', book_id=book_id))
 
 
 # Set up IP address and Port number

@@ -15,7 +15,7 @@
     </section>
 
     <section id="search-results" class="pt-5 pb-5">
-        {% if search_results_count > 1 %}
+        {% if search_results_count >= 1 %}
         <div class="container book-scroller">
             <div class="row flex-nowrap">
                 {% for search_result in search_results %}
