@@ -3,7 +3,7 @@
         opacity: 1 !important;
     }
     
-    .toast {
+    > .toast {
         background-color: #303030;
         
         .toast-message {
@@ -12,6 +12,7 @@
         
         &-success {
             background-color: #dff2bf;
+            background-image: url('../img/success-227700.png') !important;
             
             .toast-message {
                 color: #227700;

@@ -7389,25 +7389,26 @@ nav.navbar {
 #toast-container > div {
   opacity: 1 !important; }
 
-#toast-container .toast {
+#toast-container > .toast {
   background-color: #303030; }
-  #toast-container .toast .toast-message {
+  #toast-container > .toast .toast-message {
     color: #fff; }
-  #toast-container .toast-success {
-    background-color: #dff2bf; }
-    #toast-container .toast-success .toast-message {
+  #toast-container > .toast-success {
+    background-color: #dff2bf;
+    background-image: url("../img/success-227700.png") !important; }
+    #toast-container > .toast-success .toast-message {
       color: #227700; }
-  #toast-container .toast-warning {
+  #toast-container > .toast-warning {
     background-color: #feefb3; }
-    #toast-container .toast-warning .toast-message {
+    #toast-container > .toast-warning .toast-message {
       color: #9f6000; }
-  #toast-container .toast-error {
+  #toast-container > .toast-error {
     background-color: #ffbaba; }
-    #toast-container .toast-error .toast-message {
+    #toast-container > .toast-error .toast-message {
       color: #d8000c; }
-  #toast-container .toast-info {
+  #toast-container > .toast-info {
     background-color: #bbeeff; }
-    #toast-container .toast-info .toast-message {
+    #toast-container > .toast-info .toast-message {
       color: #005599; }
 
 #list-genres .genre {

@@ -8,7 +8,7 @@ from bson.objectid import ObjectId
 app = Flask(__name__)
 
 # Secret Key
-app.config['SECRET_KEY'] = 'test'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 # Mongo DB Setup
 app.config['MONGO_DBNAME'] = 'book_reviewer'
