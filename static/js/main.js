@@ -28,6 +28,15 @@
         format: 'dd mmmm yyyy',
     });
     
+    // Magnific Popup
+    $('.image-popup-fit-width').magnificPopup({
+       type: 'image',
+       closeOnContentClick: true,
+       image: {
+           verticalFit: false,
+       }
+    });
+    
     // Scrollbars
     $('.book-scroller').overlayScrollbars({
        overflowBehavior : {

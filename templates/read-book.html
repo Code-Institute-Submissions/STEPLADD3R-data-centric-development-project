@@ -22,7 +22,7 @@
                     <p class="book__description">{{ book.description }}</p>
                 </div>
                 <div class="col-md-4">
-                    <a href="{{ url_for('upload', filename=book.cover_photo) }}">
+                    <a href="{{ url_for('upload', filename=book.cover_photo) }}" class="image-popup-fit-width">
                         <img src="{{ url_for('upload', filename=book.cover_photo) }}" alt="The cover photo for the book, {{ book.name }} by {{ book.author }}." class="book__cover-photo" />
                     </a>
                     
