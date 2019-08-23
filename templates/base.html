@@ -28,29 +28,25 @@
                         
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             {% for genre in navbar_genres %}
-                            <a href="" class="dropdown-item">{{ genre.genre }}</a>
+                            <a href="{{ url_for('read_genre', genre=genre.genre) }}" class="dropdown-item">{{ genre.genre }}</a>
                             {% endfor %}
+                            <a href="{{ url_for('get_genres') }}" class="dropdown-item">View All</a>
                         </div>
                     </li>
                     <li class="nav-item">
                         <a href="{{ url_for('create_book') }}" class="nav-link {% if request.path == url_for('create_book') %}active{% endif %}">Add a Book</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('create_genre') }}" class="nav-link {% if request.path == url_for('create_genre') %}active{% endif %}">Add a Genre</a>
+                    </li>
                 </ul>
                 <form action="{{ url_for('search_books') }}" method="POST" class="search-form form-inline">
-                    <input type="search" class="form-control" placeholder="Search by book name" aria-label="Search by book name" name="search_term" id="search_term">
+                    <input type="search" class="form-control" placeholder="Search by book name" aria-label="Search by book name" name="search_term" id="search_term" required>
                     <button type="submit" class="btn btn-outline-primary">Search</button>
                 </form>
             </div>
         </nav>
     </header>
-    
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <div class="toastr" data-category="{{ category }}" data-message="{{ message }}"></div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
     
     {% block content %}{% endblock %}
     
@@ -61,7 +57,7 @@
                     <h5 class="footer__title">Browse By Genre</h5>
                     <ul class="footer__ul">
                         {% for genre in footer_genres %}
-                            <li>{{ genre.genre }}</li>
+                            <li><a href="{{ url_for('read_genre', genre=genre.genre) }}">{{ genre.genre }}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -88,6 +84,14 @@
             </div>
         </div>
     </footer>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="toastr" data-category="{{ category }}" data-message="{{ message }}"></div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     
     <script src="{{ url_for('static', filename='dist/vendors/js/jquery/jquery.min.js') }}"></script> <!-- jQuery -->
     <script src="{{ url_for('static', filename='dist/vendors/js/toastr/toastr.min.js') }}"></script> <!-- Toastr | 6 KB -->

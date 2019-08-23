@@ -66,7 +66,7 @@
                         </div>
                         <div class="book__hover" style="background: radial-gradient(circle farthest-corner at 75% 37.8%, rgba(24, 132, 128, 0.99) 0%, rgba(24, 132, 128, 0.75) 100.2%), url('{{ url_for('upload', filename=book.cover_photo) }}');">
                             <h2 class="pl-3 pr-3">{{ book.name }}</h2>
-                            <p class="pl-3 pr-3">{{ book.description }}</p>
+                            <p class="pl-3 pr-3">{{ book.description | truncate(100) }}</p>
                             <div class="col-sm-12 col-md-6">
                                 <a href="{{ url_for('read_book', book_id=book._id) }}" class="p-3"><i class="fa fa-eye"></i> Read</a>
                             </div>

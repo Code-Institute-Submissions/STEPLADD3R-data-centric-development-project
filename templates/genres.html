@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Genres - BookReviews</title>{% endblock %}
+
+{% block content %}
+    <section id="hero-section" class="pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class="title">Genres</h2>
+                    <p class="sub-title">Would you like to browse for books by a specific genre?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="list-genres" class="pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                {% for genre in genres %}
+                <div class="col-md-3 p-0">
+                    <div class="genre ml-3 mr-3">
+                        <div class="genre__title">
+                            <p class="p-3">{{ genre.genre }}</p>
+                            <a href="{{ url_for('read_genre', genre=genre.genre) }}">Read</a>
+                            <a href="{{ url_for('edit_genre', genre_id=genre._id) }}">Edit</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

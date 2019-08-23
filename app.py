@@ -21,7 +21,7 @@ mongo = PyMongo(app)
 
 @app.context_processor
 def global_template_variables():
-    navbar_genres = mongo.db.genres.find()
+    navbar_genres = mongo.db.genres.find().limit(4)
     footer_genres = mongo.db.genres.find()
     footer_top_picks = mongo.db.books.find({ 'top_pick' : 'on' }).limit(4)
     footer_user_picks = mongo.db.genres.find();
@@ -101,9 +101,9 @@ def insert_book():
             'description' : request.form.get('description'),
             'isbn' : request.form.get('isbn'),
             'publication_date' : request.form.get('publication_date'),
-            'author' : request.form.get('author'),
-            'publisher' : request.form.get('publisher'),
-            'amazon_affiliate_url' : request.form.get('amazon_affiliate_url'),
+            'author' : request.form.get('author').lower(),
+            'publisher' : request.form.get('publisher').lower(),
+            'amazon_affiliate_url' : request.form.get('amazon_affiliate_url').lower(),
             'genres' : request.form.getlist('genres'),
             'top_pick' : request.form.get('top_pick')
         })
@@ -145,9 +145,9 @@ def update_book(book_id):
                         'description' : request.form.get('description'),
                         'isbn' : request.form.get('isbn'),
                         'publication_date' : request.form.get('publication_date'),
-                        'author' : request.form.get('author'),
-                        'publisher' : request.form.get('publisher'),
-                        'amazon_affiliate_url' : request.form.get('amazon_affiliate_url'),
+                        'author' : request.form.get('author').lower(),
+                        'publisher' : request.form.get('publisher').lower(),
+                        'amazon_affiliate_url' : request.form.get('amazon_affiliate_url').lower(),
                         'genres' : request.form.getlist('genres'),
                         'top_pick' : request.form.get('top_pick')
                     }
@@ -167,9 +167,9 @@ def update_book(book_id):
                             'description' : request.form.get('description'),
                             'isbn' : request.form.get('isbn'),
                             'publication_date' : request.form.get('publication_date'),
-                            'author' : request.form.get('author'),
-                            'publisher' : request.form.get('publisher'),
-                            'amazon_affiliate_url' : request.form.get('amazon_affiliate_url'),
+                            'author' : request.form.get('author').lower(),
+                            'publisher' : request.form.get('publisher').lower(),
+                            'amazon_affiliate_url' : request.form.get('amazon_affiliate_url').lower(),
                             'genres' : request.form.getlist('genres'),
                             'top_pick' : request.form.get('top_pick')
                         }
@@ -190,6 +190,65 @@ def delete_book(book_id):
 #
 #   GENRES
 #
+# Returns a list of genres
+@app.route('/genres')
+def get_genres():
+    genres = mongo.db.genres.find()
+    return render_template('genres.html', genres=genres)
+
+
+# Create Genre (Form)
+@app.route('/genre/add')
+def create_genre():
+    return render_template('create-genre.html')
+
+
+# Insert into the DB
+@app.route('/genre/insert', methods=['POST'])
+def insert_genre():
+    genres = mongo.db.genres
+    genres.insert_one({
+        'genre' : request.form.get('genre').lower(),
+    })
+    flash('Successfully added!', 'success')
+    return redirect(url_for('get_genres'))
+
+
+# Read Genre (from Books)
+@app.route('/genre/<genre>')
+def read_genre(genre):
+    books = mongo.db.books.find({ 'genres' : genre })
+    return render_template('read-genre.html', books=books)
+
+
+# Update Genre (Form)
+@app.route('/genre/<genre_id>/edit')
+def edit_genre(genre_id):
+    the_genre = mongo.db.genres.find_one({ '_id' : ObjectId(genre_id) })
+    return render_template('edit-genre.html', genre=the_genre)
+
+
+# Update the DB
+@app.route('/genre/<genre_id>/update', methods=['POST'])
+def update_genre(genre_id):
+    genres = mongo.db.genres
+    
+    genres.update_one(
+        {'_id' : ObjectId(genre_id)},
+        {
+            '$set': {
+                'genre' : request.form.get('genre')
+            }
+        }
+    )
+    return redirect(url_for('get_genres'))
+
+
+# Delete Genre
+@app.route('/genre/<genre_id>/delete')
+def delete_genre(genre_id):
+    mongo.db.genres.remove({'_id' : ObjectId(genre_id)})
+    return redirect(url_for('get_genres'))
 
 
 #

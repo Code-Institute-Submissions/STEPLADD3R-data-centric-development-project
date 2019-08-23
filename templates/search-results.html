@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}<title>Search results for {{ search_term }} - BookReviews</title>{% endblock %}
+{% block title %}<title>You searched for {{ search_term }} - BookReviews</title>{% endblock %}
 
 {% block content %}
     <section id="hero-section" class="pt-5 pb-5">
@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col">
                     <h2 class="title">Search Results</h2>
-                    <p class="sub-title">You searched for {{ search_term }}.</p>
+                    <p class="sub-title">You searched for <strong>{{ search_term }}</strong>.</p>
                 </div>
             </div>
         </div>
@@ -46,7 +46,12 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <p>Empty</p>
+                    <p class="text-center">Sorry, no results have been returned for <strong>"{{ search_term }}"</strong>. Would you like to search for something else?</p>
+                    
+                    <form action="{{ url_for('search_books') }}" method="POST" class="search-form form-inline">
+                        <input type="search" class="form-control" placeholder="Search by book name" aria-label="Search by book name" name="search_term" id="search_term" required>
+                        <button type="submit" class="btn btn-outline-primary">Search</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -1,0 +1,28 @@
+#list-genres {
+    .genre {
+        box-shadow: $box-shadow-sm;
+        transition: $transition-base;
+        
+        &:hover {
+            box-shadow: $box-shadow;
+        }
+        
+        .genre__title {
+            p {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #f4f4f4;
+                min-height: 80px;
+                transition: $transition-base;
+            }
+            
+            &:hover {
+                p {
+                    background-color: $primary;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

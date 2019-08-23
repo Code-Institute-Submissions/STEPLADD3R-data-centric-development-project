@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Add a new genre - BookReviews</title>{% endblock %}
+
+{% block content %}
+    <section id="hero-section" class="pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2 class="title">Add a Genre</h2>
+                    <p class="sub-title">Please fill out the fields below. Fields marked with a <strong>*</strong> are required.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="create-genre" class="pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="create-genre">
+                        <form action="{{ url_for('insert_genre') }}" method="POST" class="create-genre__form needs-validation" novalidate>
+                            <div class="form-group">
+                                <label for="name">Genre<span class="required">*</span></label>
+                                <input type="text" class="form-control" name="genre" id="genre" placeholder="e.g. Fantasy" required>
+                                <div class="invalid-feedback">
+                                    Please provide a genre.
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
