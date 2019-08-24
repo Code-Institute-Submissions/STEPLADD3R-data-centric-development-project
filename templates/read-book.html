@@ -22,10 +22,17 @@
                     <p class="book__description">{{ book.description }}</p>
                     
                     {% for review in reviews %}
-                        {{ review.author }}
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <p>{{ review.author }}</p>
+                                <p>{{ review.review }}</p>
+                                <p>Posted on <strong>{{ review.posted_at.strftime('%m/%d/%Y') }}</strong> at <strong>{{ review.posted_at.strftime('%H:%M:%S') }}</strong></p>
+                                <p>{{ review.rating }}/5</p>
+                            </div>
+                        </div>
                     {% endfor %}
                     
-                    <form action="{{ url_for('insert_review', book_id=book._id) }}" method="POST">
+                    <form action="{{ url_for('insert_review', book_id=book._id) }}" method="POST" id="insert-review">
                         <div class="form-group">
                             <input type="hidden" id="book_id" name="book_id" value="{{ book._id }}">
                         </div>
@@ -43,9 +50,37 @@
                                 Looks good!
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="name">Rating</label>
-                            <input type="number" class="form-control" name="rating" id="rating">
+                        <div class="form-group rating">
+                            <label>
+                                <input type="radio" name="rating" value="1">
+                                <span class="icon"><i class="fa fa-star"></i></span>
+                            </label>
+                            <label>
+                                <input type="radio" name="rating" value="2">
+                                <span class="icon"><i class="fa fa-star"></i></span>
+                                <span class="icon"><i class="fa fa-star"></i></span>
+                            </label>
+                            <label>
+                                <input type="radio" name="rating" value="3">
+                                <span class="icon"><i class="fa fa-star"></i></span>
+                                <span class="icon"><i class="fa fa-star"></i></span>
+                                <span class="icon"><i class="fa fa-star"></i></span>
+                            </label>
+                            <label>
+                                <input type="radio" name="rating" value="4">
+                                <span class="icon"><i class="fa fa-star"></i></span>
+                                <span class="icon"><i class="fa fa-star"></i></span>
+                                <span class="icon"><i class="fa fa-star"></i></span>
+                                <span class="icon"><i class="fa fa-star"></i></span>
+                            </label>
+                            <label>
+                                <input type="radio" name="rating" value="5">
+                                <span class="icon"><i class="fa fa-star"></i></span>
+                                <span class="icon"><i class="fa fa-star"></i></span>
+                                <span class="icon"><i class="fa fa-star"></i></span>
+                                <span class="icon"><i class="fa fa-star"></i></span>
+                                <span class="icon"><i class="fa fa-star"></i></span>
+                            </label>
                         </div>
                         
                         <button type="submit" class="btn btn-primary">Review</button>

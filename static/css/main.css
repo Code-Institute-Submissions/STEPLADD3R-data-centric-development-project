@@ -7078,7 +7078,9 @@ a.text-dark:hover, a.text-dark:focus {
       .book-scroller .book__hover p {
         flex: 1 0 100%;
         text-align: center;
-        color: #fff; }
+        color: #fff;
+        position: relative;
+        top: -23px; }
       .book-scroller .book__hover > div {
         position: absolute;
         bottom: 0;
@@ -7142,6 +7144,8 @@ a.text-dark:hover, a.text-dark:focus {
 
 #read-book .book__description {
   white-space: pre-line; }
+  #read-book .book__description + .card {
+    margin-top: 1.5rem; }
 
 #read-book .book__affiliate-link {
   font-weight: 500;
@@ -7222,7 +7226,9 @@ a.text-dark:hover, a.text-dark:focus {
     #read-genre .book__hover p {
       flex: 1 0 100%;
       text-align: center;
-      color: #fff; }
+      color: #fff;
+      position: relative;
+      top: -23px; }
     #search-results .book__hover > div,
     #read-genre .book__hover > div {
       position: absolute;
@@ -7426,6 +7432,44 @@ nav.navbar {
   #list-genres .genre .genre__title:hover p {
     background-color: #188480;
     color: #fff; }
+
+#insert-review .form-group.rating {
+  position: relative; }
+  #insert-review .form-group.rating label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-bottom: 0;
+    cursor: pointer;
+    font-size: 1.6rem; }
+    #insert-review .form-group.rating label:nth-child(1) {
+      z-index: 5; }
+    #insert-review .form-group.rating label:nth-child(2) {
+      z-index: 4; }
+    #insert-review .form-group.rating label:nth-child(3) {
+      z-index: 3; }
+    #insert-review .form-group.rating label:nth-child(4) {
+      z-index: 2; }
+    #insert-review .form-group.rating label:nth-child(5) {
+      z-index: 1; }
+    #insert-review .form-group.rating label:last-child {
+      position: static; }
+      #insert-review .form-group.rating label:last-child .icon {
+        color: #000; }
+    #insert-review .form-group.rating label input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0; }
+    #insert-review .form-group.rating label .icon {
+      float: left;
+      color: transparent;
+      transition: all 0.2s ease-in-out; }
+      #insert-review .form-group.rating label .icon i:before {
+        margin-right: 6px; }
+  #insert-review .form-group.rating:not(:hover) label input:checked ~ .icon,
+  #insert-review .form-group.rating:hover label:hover input ~ .icon {
+    color: #188480; }
 
 .has-primary-background-color {
   background-color: #188480; }

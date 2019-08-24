@@ -67,4 +67,9 @@
         }
     });
     
+    // Forms
+    $('input[name="rating"]').on('change', function() {
+        console.log('New value is ' + $(this).val())
+    });
+    
 })( jQuery );

@@ -67,6 +67,9 @@
                 flex: 1 0 100%;
                 text-align: center;
                 color: #fff;
+                
+                position: relative;
+                top: -23px;
             }
             
             > div {
@@ -170,6 +173,10 @@
     
     .book__description {
         white-space: pre-line;
+        
+        + .card {
+            margin-top: 1.5rem;
+        }
     }
     
     .book__affiliate-link {
@@ -271,6 +278,9 @@
                 flex: 1 0 100%;
                 text-align: center;
                 color: #fff;
+                
+                position: relative;
+                top: -23px;
             }
             
             > div {
