@@ -21,9 +21,9 @@
                 <div class="col-md-3 p-0">
                     <div class="genre ml-3 mr-3">
                         <div class="genre__title">
-                            <p class="p-3">{{ genre.genre }}</p>
-                            <a href="{{ url_for('read_genre', genre=genre.genre) }}">Read</a>
-                            <a href="{{ url_for('edit_genre', genre_id=genre._id) }}">Edit</a>
+                            <a href="{{ url_for('read_genre', genre=genre.genre) }}">
+                                <p class="p-3">{{ genre.genre }}</p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -32,3 +32,5 @@
         </div>
     </section>
 {% endblock %}
+
+<!--<a href="{{ url_for('edit_genre', genre_id=genre._id) }}">Edit</a>-->

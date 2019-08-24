@@ -14,7 +14,13 @@
                 justify-content: center;
                 background-color: #f4f4f4;
                 min-height: 80px;
+                text-transform: capitalize;
                 transition: $transition-base;
+            }
+            
+            a {
+                color: $body-color;
+                text-decoration: none;
             }
             
             &:hover {

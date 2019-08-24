@@ -12,7 +12,7 @@ nav {
             li.nav-item {
                 a {
                     padding: 2rem;
-                    // text-transform: uppercase;
+                    text-transform: uppercase;
                     font-weight: 500;
                     border-right: 1px solid #dbdbdb;
                     transition: $transition-base;
@@ -83,7 +83,7 @@ nav {
             button {
                 color: #fff;
                 background-color: $primary;
-                // text-transform: uppercase;
+                text-transform: uppercase;
                 font-weight: 500;
                 transition: $transition-base;
                 

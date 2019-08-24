@@ -120,7 +120,11 @@ def read_book(book_id):
     the_book = mongo.db.books.find_one({ '_id' : ObjectId(book_id) })
     genres = mongo.db.genres.find()
     reviews = mongo.db.reviews.find({ 'book_id' : book_id })
-    return render_template('read-book.html', book=the_book, genres=genres, reviews=reviews)
+    
+    ratings = [1, 3, 5]
+    average_rating = sum(ratings) / len(ratings)
+    
+    return render_template('read-book.html', book=the_book, genres=genres, reviews=reviews, average_rating=average_rating)
 
 
 # Update Book (Form)
@@ -219,8 +223,9 @@ def insert_genre():
 # Read Genre (from Books)
 @app.route('/genre/<genre>')
 def read_genre(genre):
+    the_genre = genre
     books = mongo.db.books.find({ 'genres' : genre })
-    return render_template('read-genre.html', books=books)
+    return render_template('read-genre.html', the_genre=the_genre, books=books)
 
 
 # Update Genre (Form)

@@ -22,6 +22,10 @@
                     <p class="book__description">{{ book.description }}</p>
                     
                     <h3 class="book__title mt-4">Read the Reviews</h3>
+                    
+                    {{ average_rating }}
+                    
+                    
                     {% for review in reviews %}
                         <div class="card mb-4 book__review">
                             <div class="card-body">
