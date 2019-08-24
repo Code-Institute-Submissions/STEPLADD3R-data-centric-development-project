@@ -152,6 +152,13 @@
     }
     
     .book__info-table {
+        tr:first-of-type {
+            th,
+            td {
+                border-top: 0;
+            }
+        }
+        
         .genre {
             &:after {
                 content: ',';
@@ -173,13 +180,10 @@
     
     .book__description {
         white-space: pre-line;
-        
-        + .card {
-            margin-top: 1.5rem;
-        }
     }
     
-    .book__affiliate-link {
+    .book__affiliate-link,
+    .book__leave-review {
         // text-transform: uppercase;
         font-weight: 500;
         width: 100%;

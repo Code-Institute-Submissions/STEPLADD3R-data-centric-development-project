@@ -1,0 +1,29 @@
+#insert-review-popup {
+    &.white-popup-block {
+        background: #fff;
+        padding: 1.5rem;
+        max-width: 650px;
+        margin: auto;
+        position: relative;
+    }
+}
+
+.book__review {
+    background-color: #f4f4f4;
+    
+    &-review {
+        white-space: pre-line;
+    }
+        
+    p {
+        i {
+            &.fa-star--primary {
+                color: $primary;
+            }
+                
+            &:before {
+                margin-right: 3px;
+            }
+        }
+    }
+}

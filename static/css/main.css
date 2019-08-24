@@ -7132,6 +7132,10 @@ a.text-dark:hover, a.text-dark:focus {
   display: block;
   margin: 0 auto 1.5em auto; }
 
+#read-book .book__info-table tr:first-of-type th,
+#read-book .book__info-table tr:first-of-type td {
+  border-top: 0; }
+
 #read-book .book__info-table .genre:after {
   content: ','; }
 
@@ -7144,18 +7148,19 @@ a.text-dark:hover, a.text-dark:focus {
 
 #read-book .book__description {
   white-space: pre-line; }
-  #read-book .book__description + .card {
-    margin-top: 1.5rem; }
 
-#read-book .book__affiliate-link {
+#read-book .book__affiliate-link,
+#read-book .book__leave-review {
   font-weight: 500;
   width: 100%;
   transition: all 0.2s ease-in-out; }
-  #read-book .book__affiliate-link i {
+  #read-book .book__affiliate-link i,
+  #read-book .book__leave-review i {
     position: relative;
     left: 0;
     transition: all 0.2s ease-in-out; }
-  #read-book .book__affiliate-link:hover i {
+  #read-book .book__affiliate-link:hover i,
+  #read-book .book__leave-review:hover i {
     left: 8px; }
 
 #read-book p:last-of-type {
@@ -7289,48 +7294,67 @@ a.text-dark:hover, a.text-dark:focus {
           .site-footer .container-fluid .row .col-lg-3 .footer__ul li a:hover {
             border-bottom: 1px dashed rgba(48, 48, 48, 0.45); }
 
-.testimonial {
-  display: flex;
-  align-items: center;
-  border-right: 1px solid #dbdbdb;
-  min-height: 350px; }
-  .testimonial__inner {
-    position: relative;
-    font-size: 1.25rem;
-    text-align: center;
-    padding: 3rem; }
-    .testimonial__inner span {
+#insert-review .form-group.rating {
+  position: relative; }
+  #insert-review .form-group.rating label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-bottom: 0;
+    cursor: pointer;
+    font-size: 1.6rem; }
+    #insert-review .form-group.rating label:nth-child(1) {
+      z-index: 5; }
+    #insert-review .form-group.rating label:nth-child(2) {
+      z-index: 4; }
+    #insert-review .form-group.rating label:nth-child(3) {
+      z-index: 3; }
+    #insert-review .form-group.rating label:nth-child(4) {
+      z-index: 2; }
+    #insert-review .form-group.rating label:nth-child(5) {
+      z-index: 1; }
+    #insert-review .form-group.rating label:last-child {
+      position: static; }
+      #insert-review .form-group.rating label:last-child .icon {
+        color: #000; }
+    #insert-review .form-group.rating label input {
       position: absolute;
-      font-size: 2.5rem; }
-      .testimonial__inner span:first-child {
-        top: 1.5rem;
-        left: 1.5rem; }
-      .testimonial__inner span:last-child {
-        bottom: 0.25rem;
-        right: 1.5rem; }
+      top: 0;
+      left: 0;
+      opacity: 0; }
+    #insert-review .form-group.rating label .icon {
+      float: left;
+      color: transparent;
+      transition: all 0.2s ease-in-out; }
+      #insert-review .form-group.rating label .icon i:before {
+        margin-right: 6px; }
+  #insert-review .form-group.rating:not(:hover) label input:checked ~ .icon,
+  #insert-review .form-group.rating:hover label:hover input ~ .icon {
+    color: #188480; }
 
-.twitter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 350px;
-  color: #fff; }
-  .twitter__inner {
-    font-size: 1.25rem;
-    text-align: center;
-    padding: 3rem; }
-    .twitter__inner i {
-      margin-bottom: 1rem; }
-    .twitter__inner p a {
-      color: #ffffff;
-      transition: all 0.2s ease-in-out;
-      text-decoration: none;
-      padding-bottom: 4px;
-      border-bottom: 1px dashed rgba(255, 255, 255, 0); }
-      .twitter__inner p a:hover {
-        border-bottom: 1px dashed rgba(255, 255, 255, 0.45); }
-    .twitter__inner p:last-of-type {
-      margin-bottom: 0; }
+#list-genres .genre {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  transition: all 0.2s ease-in-out; }
+  #list-genres .genre:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); }
+  #list-genres .genre .genre__title p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f4;
+    min-height: 80px;
+    transition: all 0.2s ease-in-out; }
+  #list-genres .genre .genre__title:hover p {
+    background-color: #188480;
+    color: #fff; }
+
+#hero-section {
+  background-color: #188480; }
+  #hero-section .title,
+  #hero-section .sub-title {
+    color: #ffffff; }
+  #hero-section .sub-title {
+    margin-bottom: 0; }
 
 nav.navbar {
   border: 0;
@@ -7384,13 +7408,64 @@ nav.navbar {
     nav.navbar form.form-inline button:hover {
       box-shadow: inset 0 0 200px rgba(255, 255, 255, 0.15); }
 
-#hero-section {
-  background-color: #188480; }
-  #hero-section .title,
-  #hero-section .sub-title {
-    color: #ffffff; }
-  #hero-section .sub-title {
-    margin-bottom: 0; }
+#insert-review-popup.white-popup-block {
+  background: #fff;
+  padding: 1.5rem;
+  max-width: 650px;
+  margin: auto;
+  position: relative; }
+
+.book__review {
+  background-color: #f4f4f4; }
+  .book__review-review {
+    white-space: pre-line; }
+  .book__review p i.fa-star--primary {
+    color: #188480; }
+  .book__review p i:before {
+    margin-right: 3px; }
+
+.testimonial {
+  display: flex;
+  align-items: center;
+  border-right: 1px solid #dbdbdb;
+  min-height: 350px; }
+  .testimonial__inner {
+    position: relative;
+    font-size: 1.25rem;
+    text-align: center;
+    padding: 3rem; }
+    .testimonial__inner span {
+      position: absolute;
+      font-size: 2.5rem; }
+      .testimonial__inner span:first-child {
+        top: 1.5rem;
+        left: 1.5rem; }
+      .testimonial__inner span:last-child {
+        bottom: 0.25rem;
+        right: 1.5rem; }
+
+.twitter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+  color: #fff; }
+  .twitter__inner {
+    font-size: 1.25rem;
+    text-align: center;
+    padding: 3rem; }
+    .twitter__inner i {
+      margin-bottom: 1rem; }
+    .twitter__inner p a {
+      color: #ffffff;
+      transition: all 0.2s ease-in-out;
+      text-decoration: none;
+      padding-bottom: 4px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0); }
+      .twitter__inner p a:hover {
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.45); }
+    .twitter__inner p:last-of-type {
+      margin-bottom: 0; }
 
 #toast-container > div {
   opacity: 1 !important; }
@@ -7416,60 +7491,6 @@ nav.navbar {
     background-color: #bbeeff; }
     #toast-container > .toast-info .toast-message {
       color: #005599; }
-
-#list-genres .genre {
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-  transition: all 0.2s ease-in-out; }
-  #list-genres .genre:hover {
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); }
-  #list-genres .genre .genre__title p {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f4f4f4;
-    min-height: 80px;
-    transition: all 0.2s ease-in-out; }
-  #list-genres .genre .genre__title:hover p {
-    background-color: #188480;
-    color: #fff; }
-
-#insert-review .form-group.rating {
-  position: relative; }
-  #insert-review .form-group.rating label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin-bottom: 0;
-    cursor: pointer;
-    font-size: 1.6rem; }
-    #insert-review .form-group.rating label:nth-child(1) {
-      z-index: 5; }
-    #insert-review .form-group.rating label:nth-child(2) {
-      z-index: 4; }
-    #insert-review .form-group.rating label:nth-child(3) {
-      z-index: 3; }
-    #insert-review .form-group.rating label:nth-child(4) {
-      z-index: 2; }
-    #insert-review .form-group.rating label:nth-child(5) {
-      z-index: 1; }
-    #insert-review .form-group.rating label:last-child {
-      position: static; }
-      #insert-review .form-group.rating label:last-child .icon {
-        color: #000; }
-    #insert-review .form-group.rating label input {
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0; }
-    #insert-review .form-group.rating label .icon {
-      float: left;
-      color: transparent;
-      transition: all 0.2s ease-in-out; }
-      #insert-review .form-group.rating label .icon i:before {
-        margin-right: 6px; }
-  #insert-review .form-group.rating:not(:hover) label input:checked ~ .icon,
-  #insert-review .form-group.rating:hover label:hover input ~ .icon {
-    color: #188480; }
 
 .has-primary-background-color {
   background-color: #188480; }

@@ -37,6 +37,22 @@
        }
     });
     
+    $('.popup-with-form').magnificPopup({
+        type: 'inline',
+        preloader: false,
+        focus: '#author',
+        
+        callbacks: {
+            beforeOpen: function() {
+                if($(window).width() < 700) {
+                    this.st.focus = false;
+                } else {
+                    this.st.focus = '#author'
+                }
+            }
+        }
+    });
+    
     // Scrollbars
     $('.book-scroller').overlayScrollbars({
        overflowBehavior : {
@@ -65,11 +81,6 @@
             'progressBar' : true,
             'preventDuplicates' : true,
         }
-    });
-    
-    // Forms
-    $('input[name="rating"]').on('change', function() {
-        console.log('New value is ' + $(this).val())
     });
     
 })( jQuery );

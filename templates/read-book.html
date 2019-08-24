@@ -21,75 +21,128 @@
                     <h3 class="book__title">{{ book.name }}</h3>
                     <p class="book__description">{{ book.description }}</p>
                     
+                    <h3 class="book__title mt-4">Read the Reviews</h3>
                     {% for review in reviews %}
-                        <div class="card mb-4">
+                        <div class="card mb-4 book__review">
                             <div class="card-body">
-                                <p>{{ review.author }}</p>
-                                <p>{{ review.review }}</p>
-                                <p>Posted on <strong>{{ review.posted_at.strftime('%m/%d/%Y') }}</strong> at <strong>{{ review.posted_at.strftime('%H:%M:%S') }}</strong></p>
-                                <p>{{ review.rating }}/5</p>
+                                {% if review.rating == 1 %}
+                                    <p class="book__review-rating">
+                                        <i class="fa fa-star fa-star--primary"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </p>
+                                {% elif review.rating == 2 %}
+                                    <p class="book__review-rating">
+                                        <i class="fa fa-star fa-star--primary"></i>
+                                        <i class="fa fa-star fa-star--primary"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </p>
+                                {% elif review.rating == 3 %}
+                                    <p class="book__review-rating">
+                                        <i class="fa fa-star fa-star--primary"></i>
+                                        <i class="fa fa-star fa-star--primary"></i>
+                                        <i class="fa fa-star fa-star--primary"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </p>
+                                {% elif review.rating == 4 %}
+                                    <p class="book__review-rating">
+                                        <i class="fa fa-star fa-star--primary"></i>
+                                        <i class="fa fa-star fa-star--primary"></i>
+                                        <i class="fa fa-star fa-star--primary"></i>
+                                        <i class="fa fa-star fa-star--primary"></i>
+                                        <i class="fa fa-star"></i>
+                                    </p>
+                                {% elif review.rating == 5 %}
+                                    <p class="book__review-rating">
+                                        <i class="fa fa-star fa-star--primary"></i>
+                                        <i class="fa fa-star fa-star--primary"></i>
+                                        <i class="fa fa-star fa-star--primary"></i>
+                                        <i class="fa fa-star fa-star--primary"></i>
+                                        <i class="fa fa-star fa-star--primary"></i>
+                                    </p>
+                                {% else %}
+                                    <p class="book__review-rating">No review has been posted by {{ review.author }}</p>
+                                {% endif %}
+                                <p class="book__review-review">{{ review.review }}</p>
+                                <p><small>Posted by {{ review.author }} on <strong>{{ review.posted_at.strftime('%m/%d/%Y') }}</strong> at <strong>{{ review.posted_at.strftime('%H:%M:%S') }}</strong></small></p>
                             </div>
                         </div>
                     {% endfor %}
                     
-                    <form action="{{ url_for('insert_review', book_id=book._id) }}" method="POST" id="insert-review">
-                        <div class="form-group">
-                            <input type="hidden" id="book_id" name="book_id" value="{{ book._id }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" name="author" id="author" placeholder="Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="description">Review<span class="required">*</span></label>
-                            <textarea class="form-control" name="review" id="review" rows="3" required></textarea>
-                            <div class="invalid-feedback">
-                                Please provide a description of the book.
+                    <div id="insert-review-popup" class="white-popup-block mfp-hide">
+                        <form action="{{ url_for('insert_review', book_id=book._id) }}" method="POST" id="insert-review" class="insert-review__form needs-validation" novalidate>
+                            <div class="form-group">
+                                <input type="hidden" id="book_id" name="book_id" value="{{ book._id }}">
                             </div>
-                            <div class="valid-feedback">
-                                Looks good!
+                            <div class="form-group">
+                                <label for="name">Name<span class="required">*</span></label>
+                                <input type="text" class="form-control" name="author" id="author" placeholder="Please enter your name" required>
+                                <div class="invalid-feedback">
+                                    Please enter your name.
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group rating">
-                            <label>
-                                <input type="radio" name="rating" value="1">
-                                <span class="icon"><i class="fa fa-star"></i></span>
-                            </label>
-                            <label>
-                                <input type="radio" name="rating" value="2">
-                                <span class="icon"><i class="fa fa-star"></i></span>
-                                <span class="icon"><i class="fa fa-star"></i></span>
-                            </label>
-                            <label>
-                                <input type="radio" name="rating" value="3">
-                                <span class="icon"><i class="fa fa-star"></i></span>
-                                <span class="icon"><i class="fa fa-star"></i></span>
-                                <span class="icon"><i class="fa fa-star"></i></span>
-                            </label>
-                            <label>
-                                <input type="radio" name="rating" value="4">
-                                <span class="icon"><i class="fa fa-star"></i></span>
-                                <span class="icon"><i class="fa fa-star"></i></span>
-                                <span class="icon"><i class="fa fa-star"></i></span>
-                                <span class="icon"><i class="fa fa-star"></i></span>
-                            </label>
-                            <label>
-                                <input type="radio" name="rating" value="5">
-                                <span class="icon"><i class="fa fa-star"></i></span>
-                                <span class="icon"><i class="fa fa-star"></i></span>
-                                <span class="icon"><i class="fa fa-star"></i></span>
-                                <span class="icon"><i class="fa fa-star"></i></span>
-                                <span class="icon"><i class="fa fa-star"></i></span>
-                            </label>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">Review</button>
-                    </form>
+                            <div class="form-group">
+                                <label for="description">Review<span class="required">*</span></label>
+                                <textarea class="form-control" name="review" id="review" rows="3" required></textarea>
+                                <div class="invalid-feedback">
+                                    Please provide a review of the book.
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <p>Rating<span class="required">*</span></p>
+                            <div class="form-group rating">
+                                <label>
+                                    <input type="radio" name="rating" value="1" required>
+                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="rating" value="2" required>
+                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="rating" value="3" required>
+                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="rating" value="4" required>
+                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="rating" value="5" required>
+                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <a href="{{ url_for('upload', filename=book.cover_photo) }}" class="image-popup-fit-width">
                         <img src="{{ url_for('upload', filename=book.cover_photo) }}" alt="The cover photo for the book, {{ book.name }} by {{ book.author }}." class="book__cover-photo" />
                     </a>
+                    
+                    <p><a href="#insert-review-popup" class="popup-with-form btn btn-primary book__leave-review">Leave a Review <i class="fa fa-long-arrow-right"></i></a></p>
                     
                     <table class="table book__info-table">
                         <tbody>
