@@ -7163,9 +7163,6 @@ a.text-dark:hover, a.text-dark:focus {
   #read-book .book__leave-review:hover i {
     left: 8px; }
 
-#read-book p:last-of-type {
-  margin-bottom: 0; }
-
 #read-book small {
   margin-top: .5em;
   display: block; }
