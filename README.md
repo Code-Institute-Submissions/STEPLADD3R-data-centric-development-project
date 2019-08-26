@@ -33,12 +33,32 @@ This feature allows users to post a review that relates to a specific book and p
 #### Book Search
 This feature allows the user to search for books of a certain name, if they are looking for a specific book, this is how they would find it.
 
-## Features for the Future
+### Features for the Future
+In the future, I would like to add a user roles to the application, so that only specific users can handle the creating, updating and deleting of books and genres. It would also be good to have the user sign up before posting a review, to limit the amount of fake reviews that may be posted on the application.
 
 ### Technologies
+Here's a list of technologies used:
+
+1. HTML5 - Used for marking up the DOM.
+2. SCSS (CSS Pre Processor) - Used to create the styling.
+3. jQuery - Used to provide some neat functionalities such as popup modals, toast notifications and more.
+4. Gulp - Used to automate my workflow, e.g. image minification, javascript minification as well as processing my SCSS into CSS.
+5. NPM - Used to pull in packages, such as Bootstrap so that I could control the SCSS more easily.
+6. Git - Used to handle version control
+7. Python & Flask - Python Framework to handle config, routes and more.
+8. MongoDB - Database of choice
 
 ### Testing
 
 ### Deployment
+To deploy the application, I chose to use Heroku, below are the steps I took to get the project up and running on Heroku.
+
+1. Created requirements.txt `freeze --local requirements.txt` and a Procfile `echo web: python app.py > Procfile`
+2. Created the Heroku App, then followed the steps provided by Heroku to deploy using Heroku CLI (these can be found inside the 'Deploy' section of Heroku)
+3. In the 'Settings' section of Heroku, add in the config vars that matched my environmental variables in app.py
+4. Application now live!
+
+### Demo
+A demo of the application can be found here: [Demo](https://data-centric-dev-project-mongo.herokuapp.com)
 
 ### Credits
