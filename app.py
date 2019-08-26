@@ -121,9 +121,9 @@ def insert_book():
 def read_book(book_id):
     the_book = mongo.db.books.find_one({ '_id' : ObjectId(book_id) })
     genres = mongo.db.genres.find()
-    reviews = mongo.db.reviews.find({ 'book_id' : book_id })
+    reviews = list(mongo.db.reviews.find({ 'book_id' : book_id }))
     
-    ratings = [1, 3, 5]
+    ratings = [review['rating'] for review in reviews]
     average_rating = sum(ratings) / len(ratings)
     
     return render_template('read-book.html', book=the_book, genres=genres, reviews=reviews, average_rating=average_rating)
