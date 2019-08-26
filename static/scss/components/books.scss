@@ -152,6 +152,8 @@
     }
     
     .book__info-table {
+        text-transform: capitalize;
+        
         tr:first-of-type {
             th,
             td {

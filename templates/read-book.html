@@ -23,7 +23,7 @@
                     
                     <h3 class="book__title mt-4">Read the Reviews</h3>
                     
-                    {{ average_rating }}
+                    <p>The average rating for {{book.name }} is: <strong>{{ average_rating | int }}</strong>.</p>
                     
                     
                     {% for review in reviews %}

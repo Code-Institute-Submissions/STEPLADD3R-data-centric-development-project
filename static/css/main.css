@@ -7132,15 +7132,15 @@ a.text-dark:hover, a.text-dark:focus {
   display: block;
   margin: 0 auto 1.5em auto; }
 
-#read-book .book__info-table tr:first-of-type th,
-#read-book .book__info-table tr:first-of-type td {
-  border-top: 0; }
-
-#read-book .book__info-table .genre:after {
-  content: ','; }
-
-#read-book .book__info-table .genre:last-of-type:after {
-  content: ''; }
+#read-book .book__info-table {
+  text-transform: capitalize; }
+  #read-book .book__info-table tr:first-of-type th,
+  #read-book .book__info-table tr:first-of-type td {
+    border-top: 0; }
+  #read-book .book__info-table .genre:after {
+    content: ','; }
+  #read-book .book__info-table .genre:last-of-type:after {
+    content: ''; }
 
 #read-book .book__title {
   font-weight: 700;
@@ -7358,7 +7358,8 @@ a.text-dark:hover, a.text-dark:focus {
   #hero-section .sub-title {
     color: #ffffff; }
   #hero-section .sub-title {
-    margin-bottom: 0; }
+    margin-bottom: 0;
+    text-transform: capitalize; }
 
 nav.navbar {
   border: 0;
