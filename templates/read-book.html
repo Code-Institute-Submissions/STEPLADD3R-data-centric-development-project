@@ -32,8 +32,45 @@
                     
                     <h3 class="book__title mt-4">Read the Reviews</h3>
                     
-                    <p>The average rating for {{book.name }} is: <strong>{{ average_rating | int }}</strong>.</p>
-                    
+                    <p class="average-rating">The average rating for {{book.name }} is:
+                    {% if average_rating | int == 0 %}
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    {% elif average_rating | int == 1 %}
+                        <i class="fa fa-star fa-star--primary"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    {% elif average_rating | int == 2 %}
+                        <i class="fa fa-star fa-star--primary"></i>
+                        <i class="fa fa-star fa-star--primary"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    {% elif average_rating | int == 3 %}
+                        <i class="fa fa-star fa-star--primary"></i>
+                        <i class="fa fa-star fa-star--primary"></i>
+                        <i class="fa fa-star fa-star--primary"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    {% elif average_rating | int == 4 %}
+                        <i class="fa fa-star fa-star--primary"></i>
+                        <i class="fa fa-star fa-star--primary"></i>
+                        <i class="fa fa-star fa-star--primary"></i>
+                        <i class="fa fa-star fa-star--primary"></i>
+                        <i class="fa fa-star"></i>
+                    {% elif average_rating | int == 5 %}
+                        <i class="fa fa-star fa-star--primary"></i>
+                        <i class="fa fa-star fa-star--primary"></i>
+                        <i class="fa fa-star fa-star--primary"></i>
+                        <i class="fa fa-star fa-star--primary"></i>
+                        <i class="fa fa-star fa-star--primary"></i>
+                    {% endif %}
+                    </p>
                     
                     {% for review in reviews %}
                         <div class="card mb-4 book__review">

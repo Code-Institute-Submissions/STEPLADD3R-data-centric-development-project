@@ -7461,6 +7461,15 @@ nav.navbar {
   .book__review p i:before {
     margin-right: 3px; }
 
+p.average-rating i:first-of-type {
+  margin-left: 6px; }
+
+p.average-rating i.fa-star--primary {
+  color: #188480; }
+
+p.average-rating i:before {
+  margin-right: 3px; }
+
 .testimonial {
   display: flex;
   align-items: center;

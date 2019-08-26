@@ -27,3 +27,19 @@
         }
     }
 }
+
+p.average-rating {
+    i {
+        &:first-of-type {
+            margin-left: 6px;
+        }
+        
+        &.fa-star--primary {
+            color: $primary;
+        }
+                
+        &:before {
+            margin-right: 3px;
+        }
+    }
+}

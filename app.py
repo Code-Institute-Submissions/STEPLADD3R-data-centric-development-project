@@ -25,7 +25,7 @@ def global_template_variables():
     navbar_genres = mongo.db.genres.find().limit(4)
     footer_genres = mongo.db.genres.find()
     footer_top_picks = mongo.db.books.find({ 'top_pick' : 'on' }).limit(4)
-    footer_user_picks = mongo.db.genres.find();
+    footer_user_picks = mongo.db.reviews.find().limit(4)
     footer_recent_books = mongo.db.books.find().sort([( '$natural', -1 )]).limit(4)
     return dict(navbar_genres=navbar_genres, footer_genres=footer_genres, footer_top_picks=footer_top_picks, footer_user_picks=footer_user_picks, footer_recent_books=footer_recent_books)
 
@@ -127,10 +127,11 @@ def read_book(book_id):
     the_book = mongo.db.books.find_one({ '_id' : ObjectId(book_id) })
     genres = mongo.db.genres.find()
     reviews = list(mongo.db.reviews.find({ 'book_id' : book_id }))
-    
     ratings = [review['rating'] for review in reviews]
-    average_rating = sum(ratings) / len(ratings)
-    
+    if len(ratings) < 1:
+        average_rating = 0
+    else:
+        average_rating = sum(ratings) / len(ratings)
     return render_template('read-book.html', book=the_book, genres=genres, reviews=reviews, average_rating=average_rating)
 
 
