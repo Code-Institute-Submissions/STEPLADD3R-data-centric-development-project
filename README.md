@@ -49,6 +49,7 @@ Here's a list of technologies used:
 8. MongoDB - Database of choice
 
 ### Testing
+Details of the project testing process is available inside the 'project-supplements/testing' directory.
 
 ### Deployment
 To deploy the application, I chose to use Heroku, below are the steps I took to get the project up and running on Heroku.
