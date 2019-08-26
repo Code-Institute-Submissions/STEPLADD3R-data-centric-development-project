@@ -10,13 +10,12 @@ app = Flask(__name__)
 
 # Secret Key
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-
 # Mongo DB Setup
 app.config['MONGO_DBNAME'] = 'book_reviewer'
 app.config['MONGO_URI'] = os.environ.get('MONGO_URI')
-
 # File Upload Config
 app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg', 'gif'}
+
 
 mongo = PyMongo(app)
 
