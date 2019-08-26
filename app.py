@@ -84,6 +84,7 @@ def create_book():
 @app.route('/book/insert', methods=['POST'])
 def insert_book():
     if 'cover_photo' not in request.files:
+        flash('The uploaded file MUST have a file name.', 'error')
         return redirect(url_for('create_book'))
 
     cover_photo = request.files['cover_photo']
@@ -111,6 +112,7 @@ def insert_book():
         flash('Upload Successful.', 'success')
         return redirect(url_for('get_books'))
     else:
+        flash('Something has gone wrong, please try again.', 'error')
         return redirect(url_for('create_book'))
 
 
@@ -159,6 +161,7 @@ def update_book(book_id):
                     }
                 }
             )
+            flash('Update Successful.', 'success')
             return redirect(url_for('get_books'))
         else:
             if allowed_file(cover_photo.filename):
@@ -181,8 +184,10 @@ def update_book(book_id):
                         }
                     }
                 )
+                flash('Update Successful.', 'success')
                 return redirect(url_for('get_books'))
             else:
+                flash('Something has gone wrong, please try again.', 'error')
                 return redirect(url_for('edit_book', book_id=ObjectId(book_id)))
 
 
@@ -190,6 +195,7 @@ def update_book(book_id):
 @app.route('/book/<book_id>/delete')
 def delete_book(book_id):
     mongo.db.books.remove({'_id' : ObjectId(book_id)})
+    flash('Delete Successful.', 'success')
     return redirect(url_for('get_books'))
 
 
@@ -216,7 +222,7 @@ def insert_genre():
     genres.insert_one({
         'genre' : request.form.get('genre').lower(),
     })
-    flash('Successfully added!', 'success')
+    flash('Upload Successful.', 'success')
     return redirect(url_for('get_genres'))
 
 
@@ -248,6 +254,7 @@ def update_genre(genre_id):
             }
         }
     )
+    flash('Update Successful.', 'success')
     return redirect(url_for('get_genres'))
 
 
@@ -255,6 +262,7 @@ def update_genre(genre_id):
 @app.route('/genre/<genre_id>/delete')
 def delete_genre(genre_id):
     mongo.db.genres.remove({'_id' : ObjectId(genre_id)})
+    flash('Delete Successful.', 'success')
     return redirect(url_for('get_genres'))
 
 
