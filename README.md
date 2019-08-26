@@ -36,6 +36,8 @@ This feature allows the user to search for books of a certain name, if they are 
 ### Features for the Future
 In the future, I would like to add a user roles to the application, so that only specific users can handle the creating, updating and deleting of books and genres. It would also be good to have the user sign up before posting a review, to limit the amount of fake reviews that may be posted on the application.
 
+I would also have created a Twitter account and utilised the Twitter API to pull in recent posts on the homepage, but for now this is just a static 'tweet'.
+
 ### Technologies
 Here's a list of technologies used:
 
