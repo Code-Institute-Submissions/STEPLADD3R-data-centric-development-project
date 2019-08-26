@@ -53,7 +53,7 @@ Here's a list of technologies used:
 ### Deployment
 To deploy the application, I chose to use Heroku, below are the steps I took to get the project up and running on Heroku.
 
-1. Created requirements.txt `freeze --local requirements.txt` and a Procfile `echo web: python app.py > Procfile`
+1. Created requirements.txt `pip3 freeze --local requirements.txt` and a Procfile `echo web: python app.py > Procfile`
 2. Created the Heroku App, then followed the steps provided by Heroku to deploy using Heroku CLI (these can be found inside the 'Deploy' section of Heroku)
 3. In the 'Settings' section of Heroku, add in the config vars that matched my environmental variables in app.py
 4. Application now live!
