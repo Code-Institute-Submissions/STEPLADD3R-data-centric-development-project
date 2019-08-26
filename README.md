@@ -38,6 +38,8 @@ In the future, I would like to add a user roles to the application, so that only
 
 I would also have created a Twitter account and utilised the Twitter API to pull in recent posts on the homepage, but for now this is just a static 'tweet'.
 
+It would also be good to in the future instead of storing images inside of the MongoDB, to instead store them inside of an AWS Bucket using Amazon S3 (Amazon Simple Storage Service).
+
 ### Technologies
 Here's a list of technologies used:
 
