@@ -3,11 +3,11 @@
 {% block title %}<title>Books in the genre: {{ the_genre }} - BookReviews</title>{% endblock %}
 
 {% block nav_items %}
-<li class="nav-item">
-    <a href="{{ url_for('edit_genre', genre_id=the_genre_id._id) }}" class="nav-link darker">Edit</a>
+<li class="nav-item darker">
+    <a href="{{ url_for('edit_genre', genre_id=the_genre_id._id) }}" class="nav-link border-left">Edit</a>
 </li>
-<li class="nav-item">
-    <a href="{{ url_for('delete_genre', genre_id=the_genre_id._id) }}" class="nav-link darker">Delete</a>
+<li class="nav-item darker">
+    <a href="{{ url_for('delete_genre', genre_id=the_genre_id._id) }}" class="nav-link">Delete</a>
 </li>
 {% endblock %}
 

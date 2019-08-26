@@ -7403,9 +7403,12 @@ nav.navbar {
         border-bottom: 0; }
       nav.navbar ul.navbar-nav li.nav-item > .dropdown-menu .dropdown-item:hover {
         color: #ffffff; }
-  nav.navbar ul.navbar-nav li.nav-item .darker {
-    background-color: #dbdbdb;
-    border-color: #c3c3c3; }
+  nav.navbar ul.navbar-nav li.nav-item.darker {
+    background-color: #dbdbdb; }
+    nav.navbar ul.navbar-nav li.nav-item.darker .nav-link {
+      border-color: #c3c3c3; }
+      nav.navbar ul.navbar-nav li.nav-item.darker .nav-link.border-left {
+        border-left: 1px solid #c3c3c3 !important; }
   nav.navbar form.form-inline input,
   nav.navbar form.form-inline button {
     border-radius: 0; }

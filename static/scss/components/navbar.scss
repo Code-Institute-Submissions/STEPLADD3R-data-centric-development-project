@@ -68,9 +68,16 @@ nav {
                     }
                 }
                 
-                .darker {
+                &.darker {
                     background-color: #dbdbdb;
-                    border-color: #c3c3c3;
+                    
+                    .nav-link {
+                        border-color: #c3c3c3;
+                        
+                        &.border-left {
+                            border-left: 1px solid #c3c3c3 !important;
+                        }
+                    }
                 }
             }
         }
