@@ -62,3 +62,8 @@ To deploy the application, I chose to use Heroku, below are the steps I took to 
 A demo of the application can be found here: [Demo](https://data-centric-dev-project-mongo.herokuapp.com)
 
 ### Credits
+
+__Stuart Green__ - This project was created and built as a part of the Code Institute Full Stack Development course.
+
+#### Content & Media
+I took the content and media of the books on this project application from [LoveReading  UK](https://www.lovereading.co.uk/). This was used to pad out the site in terms of having some books to show, and if the project was ever taken into the real world, the images and content from this site would NOT be used.
