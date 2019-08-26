@@ -210,6 +210,7 @@
     }
 }
 
+#list-books,
 #search-results,
 #read-genre {
     .book {
@@ -315,6 +316,22 @@
                     width: 100%;
                 }
             }
+        }
+    }
+}
+
+#list-books {
+    .col-md-3 {
+        &:nth-last-of-type(-n+4) {
+            .book {
+                margin-bottom: 0;
+            }
+        }
+    }
+    
+    .col-md-3 {
+        .book {
+            margin-bottom: 2rem;
         }
     }
 }

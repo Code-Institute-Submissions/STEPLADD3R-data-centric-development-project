@@ -66,11 +66,16 @@ def search_results(search_term):
 #
 # Return top picks and recent books
 @app.route('/')
-@app.route('/books')
-def get_books():
+def index():
     top_picks = mongo.db.books.find({ 'top_pick' : 'on' }).sort([( '$natural', -1 )]).limit(8)
     recent_books = mongo.db.books.find().sort([( '$natural', -1 )]).limit(8)
-    return render_template('books.html', top_picks=top_picks, recent_books=recent_books)
+    return render_template('index.html', top_picks=top_picks, recent_books=recent_books)
+
+
+@app.route('/books')
+def get_books():
+    books = mongo.db.books.find()
+    return render_template('books.html', books=books)
 
 
 # Create Book (Form)

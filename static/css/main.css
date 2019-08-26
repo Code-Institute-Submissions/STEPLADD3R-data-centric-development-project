@@ -7167,6 +7167,7 @@ a.text-dark:hover, a.text-dark:focus {
   margin-top: .5em;
   display: block; }
 
+#list-books .book,
 #search-results .book,
 #read-genre .book {
   position: relative;
@@ -7174,20 +7175,26 @@ a.text-dark:hover, a.text-dark:focus {
   overflow: hidden;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   transition: all 0.2s ease-in-out; }
+  #list-books .book:hover,
   #search-results .book:hover,
   #read-genre .book:hover {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); }
+    #list-books .book:hover .book__image,
+    #list-books .book:hover .book__title,
     #search-results .book:hover .book__image,
     #search-results .book:hover .book__title,
     #read-genre .book:hover .book__image,
     #read-genre .book:hover .book__title {
       transform: translateY(-400px); }
+    #list-books .book:hover .book__hover,
     #search-results .book:hover .book__hover,
     #read-genre .book:hover .book__hover {
       transform: translateY(0); }
+  #list-books .book__image,
   #search-results .book__image,
   #read-genre .book__image {
     transition: all 0.2s ease-in-out; }
+    #list-books .book__image img,
     #search-results .book__image img,
     #read-genre .book__image img {
       width: 100%;
@@ -7196,17 +7203,20 @@ a.text-dark:hover, a.text-dark:focus {
       object-fit: cover;
       object-position: center;
       margin: 0; }
+  #list-books .book__title,
   #search-results .book__title,
   #read-genre .book__title {
     width: 100%;
     position: absolute;
     bottom: 0;
     transition: all 0.2s ease-in-out; }
+    #list-books .book__title p,
     #search-results .book__title p,
     #read-genre .book__title p {
       background-color: #fff;
       text-align: center;
       margin: 0; }
+  #list-books .book__hover,
   #search-results .book__hover,
   #read-genre .book__hover {
     width: 100%;
@@ -7222,6 +7232,8 @@ a.text-dark:hover, a.text-dark:focus {
     justify-content: center;
     align-content: center;
     transition: all 0.2s ease-in-out; }
+    #list-books .book__hover h2,
+    #list-books .book__hover p,
     #search-results .book__hover h2,
     #search-results .book__hover p,
     #read-genre .book__hover h2,
@@ -7231,6 +7243,7 @@ a.text-dark:hover, a.text-dark:focus {
       color: #fff;
       position: relative;
       top: -23px; }
+    #list-books .book__hover > div,
     #search-results .book__hover > div,
     #read-genre .book__hover > div {
       position: absolute;
@@ -7239,25 +7252,36 @@ a.text-dark:hover, a.text-dark:focus {
       background-color: #f4f4f4;
       border-top: 1px solid #dbdbdb;
       transition: all 0.2s ease-in-out; }
+      #list-books .book__hover > div:first-of-type,
       #search-results .book__hover > div:first-of-type,
       #read-genre .book__hover > div:first-of-type {
         left: 0;
         border-right: 0.5px solid #dbdbdb; }
+        #list-books .book__hover > div:first-of-type:hover,
         #search-results .book__hover > div:first-of-type:hover,
         #read-genre .book__hover > div:first-of-type:hover {
           background-color: #dbdbdb; }
+      #list-books .book__hover > div:last-of-type,
       #search-results .book__hover > div:last-of-type,
       #read-genre .book__hover > div:last-of-type {
         right: 0;
         border-left: 0.5px solid #dbdbdb; }
+        #list-books .book__hover > div:last-of-type:hover,
         #search-results .book__hover > div:last-of-type:hover,
         #read-genre .book__hover > div:last-of-type:hover {
           background-color: #dbdbdb; }
+      #list-books .book__hover > div a,
       #search-results .book__hover > div a,
       #read-genre .book__hover > div a {
         text-decoration: none;
         display: block;
         width: 100%; }
+
+#list-books .col-md-3:nth-last-of-type(-n+4) .book {
+  margin-bottom: 0; }
+
+#list-books .col-md-3 .book {
+  margin-bottom: 2rem; }
 
 .site-footer {
   background-color: #f4f4f4; }
