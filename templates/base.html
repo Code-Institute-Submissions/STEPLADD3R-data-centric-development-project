@@ -40,6 +40,7 @@
                     <li class="nav-item">
                         <a href="{{ url_for('create_genre') }}" class="nav-link {% if request.path == url_for('create_genre') %}active{% endif %}">Add a Genre</a>
                     </li>
+                    {% block nav_items %}{% endblock %}
                 </ul>
                 <form action="{{ url_for('search_books') }}" method="POST" class="search-form form-inline">
                     <input type="search" class="form-control" placeholder="Search by book name" aria-label="Search by book name" name="search_term" id="search_term" required>

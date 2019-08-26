@@ -230,8 +230,9 @@ def insert_genre():
 @app.route('/genre/<genre>')
 def read_genre(genre):
     the_genre = genre
+    the_genre_id = mongo.db.genres.find_one({ 'genre' : genre })
     books = mongo.db.books.find({ 'genres' : genre })
-    return render_template('read-genre.html', the_genre=the_genre, books=books)
+    return render_template('read-genre.html', the_genre=the_genre, the_genre_id=the_genre_id, books=books)
 
 
 # Update Genre (Form)
