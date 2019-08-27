@@ -27,9 +27,9 @@ def global_template_variables():
     """
     navbar_genres = mongo.db.genres.find().limit(4)
     footer_genres = mongo.db.genres.find()
-    footer_top_picks = mongo.db.books.find({ 'top_pick' : 'on' }).limit(4)
+    footer_top_picks = mongo.db.books.find({'top_pick': 'on'}).limit(4)
     footer_user_picks = mongo.db.reviews.find().limit(4)
-    footer_recent_books = mongo.db.books.find().sort([( '$natural', -1 )]).limit(4)
+    footer_recent_books = mongo.db.books.find().sort([('$natural', -1)]).limit(4)
     return dict(navbar_genres=navbar_genres, footer_genres=footer_genres, footer_top_picks=footer_top_picks, footer_user_picks=footer_user_picks, footer_recent_books=footer_recent_books)
 
 
@@ -67,9 +67,9 @@ def search_results(search_term):
     """
         Return the search results
     """
-    mongo.db.books.create_index([( 'name', 'text' )])
-    search_results = mongo.db.books.find({ '$text': { '$search' : search_term } }).limit(8)
-    search_results_count = mongo.db.books.find({ '$text': { '$search' : search_term } }).count()
+    mongo.db.books.create_index([('name', 'text')])
+    search_results = mongo.db.books.find({'$text': {'$search': search_term}}).limit(8)
+    search_results_count = mongo.db.books.find({'$text': {'$search': search_term}}).count()
     return render_template('search-results.html', search_term=search_term, search_results=search_results, search_results_count=search_results_count)
 
 
@@ -81,8 +81,8 @@ def index():
     """
         Return top picks and recent books
     """
-    top_picks = mongo.db.books.find({ 'top_pick' : 'on' }).sort([( '$natural', -1 )]).limit(8)
-    recent_books = mongo.db.books.find().sort([( '$natural', -1 )]).limit(8)
+    top_picks = mongo.db.books.find({'top_pick': 'on'}).sort([('$natural', -1)]).limit(8)
+    recent_books = mongo.db.books.find().sort([('$natural', -1)]).limit(8)
     return render_template('index.html', top_picks=top_picks, recent_books=recent_books)
 
 
@@ -126,16 +126,16 @@ def insert_book():
         mongo.save_file(secure_cover_photo_filename, cover_photo)
         books = mongo.db.books
         books.insert_one({
-            'name' : request.form.get('name'),
-            'cover_photo' : secure_cover_photo_filename,
-            'description' : request.form.get('description'),
-            'isbn' : request.form.get('isbn'),
-            'publication_date' : request.form.get('publication_date'),
-            'author' : request.form.get('author').lower(),
-            'publisher' : request.form.get('publisher').lower(),
-            'amazon_affiliate_url' : request.form.get('amazon_affiliate_url').lower(),
-            'genres' : request.form.getlist('genres'),
-            'top_pick' : request.form.get('top_pick')
+            'name': request.form.get('name'),
+            'cover_photo': secure_cover_photo_filename,
+            'description': request.form.get('description'),
+            'isbn': request.form.get('isbn'),
+            'publication_date': request.form.get('publication_date'),
+            'author': request.form.get('author').lower(),
+            'publisher': request.form.get('publisher').lower(),
+            'amazon_affiliate_url': request.form.get('amazon_affiliate_url').lower(),
+            'genres': request.form.getlist('genres'),
+            'top_pick': request.form.get('top_pick')
         })
         flash('Upload Successful.', 'success')
         return redirect(url_for('get_books'))
@@ -149,9 +149,9 @@ def read_book(book_id):
     """
         Read Book / Reviews
     """
-    the_book = mongo.db.books.find_one({ '_id' : ObjectId(book_id) })
+    the_book = mongo.db.books.find_one({'_id': ObjectId(book_id)})
     genres = mongo.db.genres.find()
-    reviews = list(mongo.db.reviews.find({ 'book_id' : book_id }))
+    reviews = list(mongo.db.reviews.find({'book_id': book_id}))
     ratings = [review['rating'] for review in reviews]
     if len(ratings) < 1:
         average_rating = 0
@@ -165,7 +165,7 @@ def edit_book(book_id):
     """
         Update Book (Form)
     """
-    the_book = mongo.db.books.find_one({ '_id' : ObjectId(book_id) })
+    the_book = mongo.db.books.find_one({'_id': ObjectId(book_id)})
     return render_template('edit-book.html', book=the_book, genres=mongo.db.genres.find())
 
 
@@ -182,18 +182,18 @@ def update_book(book_id):
 
         if cover_photo.filename == '':
             books.update_one(
-                {'_id' : ObjectId(book_id)},
+                {'_id': ObjectId(book_id)},
                 {
                     '$set': {
-                        'name' : request.form.get('name'),
-                        'description' : request.form.get('description'),
-                        'isbn' : request.form.get('isbn'),
-                        'publication_date' : request.form.get('publication_date'),
-                        'author' : request.form.get('author').lower(),
-                        'publisher' : request.form.get('publisher').lower(),
-                        'amazon_affiliate_url' : request.form.get('amazon_affiliate_url').lower(),
-                        'genres' : request.form.getlist('genres'),
-                        'top_pick' : request.form.get('top_pick')
+                        'name': request.form.get('name'),
+                        'description': request.form.get('description'),
+                        'isbn': request.form.get('isbn'),
+                        'publication_date': request.form.get('publication_date'),
+                        'author': request.form.get('author').lower(),
+                        'publisher': request.form.get('publisher').lower(),
+                        'amazon_affiliate_url': request.form.get('amazon_affiliate_url').lower(),
+                        'genres': request.form.getlist('genres'),
+                        'top_pick': request.form.get('top_pick')
                     }
                 }
             )
@@ -204,19 +204,19 @@ def update_book(book_id):
                 secure_cover_photo_filename = secure_filename(cover_photo.filename)
                 mongo.save_file(secure_cover_photo_filename, cover_photo)
                 books.update_one(
-                    {'_id' : ObjectId(book_id)},
+                    {'_id': ObjectId(book_id)},
                     {
                         '$set': {
-                            'name' : request.form.get('name'),
-                            'cover_photo' : secure_cover_photo_filename,
-                            'description' : request.form.get('description'),
-                            'isbn' : request.form.get('isbn'),
-                            'publication_date' : request.form.get('publication_date'),
-                            'author' : request.form.get('author').lower(),
-                            'publisher' : request.form.get('publisher').lower(),
-                            'amazon_affiliate_url' : request.form.get('amazon_affiliate_url').lower(),
-                            'genres' : request.form.getlist('genres'),
-                            'top_pick' : request.form.get('top_pick')
+                            'name': request.form.get('name'),
+                            'cover_photo': secure_cover_photo_filename,
+                            'description': request.form.get('description'),
+                            'isbn': request.form.get('isbn'),
+                            'publication_date': request.form.get('publication_date'),
+                            'author': request.form.get('author').lower(),
+                            'publisher': request.form.get('publisher').lower(),
+                            'amazon_affiliate_url': request.form.get('amazon_affiliate_url').lower(),
+                            'genres': request.form.getlist('genres'),
+                            'top_pick': request.form.get('top_pick')
                         }
                     }
                 )
@@ -232,7 +232,7 @@ def delete_book(book_id):
     """
         Delete Book
     """
-    mongo.db.books.remove({'_id' : ObjectId(book_id)})
+    mongo.db.books.remove({'_id': ObjectId(book_id)})
     flash('Delete Successful.', 'success')
     return redirect(url_for('get_books'))
 
@@ -264,7 +264,7 @@ def insert_genre():
     """
     genres = mongo.db.genres
     genres.insert_one({
-        'genre' : request.form.get('genre').lower(),
+        'genre': request.form.get('genre').lower(),
     })
     flash('Upload Successful.', 'success')
     return redirect(url_for('get_genres'))
@@ -276,8 +276,8 @@ def read_genre(genre):
         Read Genre (from Books)
     """
     the_genre = genre
-    the_genre_id = mongo.db.genres.find_one({ 'genre' : genre })
-    books = mongo.db.books.find({ 'genres' : genre })
+    the_genre_id = mongo.db.genres.find_one({'genre': genre})
+    books = mongo.db.books.find({'genres': genre})
     return render_template('read-genre.html', the_genre=the_genre, the_genre_id=the_genre_id, books=books)
 
 
@@ -286,7 +286,7 @@ def edit_genre(genre_id):
     """
         Update Genre (Form)
     """
-    the_genre = mongo.db.genres.find_one({ '_id' : ObjectId(genre_id) })
+    the_genre = mongo.db.genres.find_one({'_id': ObjectId(genre_id)})
     return render_template('edit-genre.html', genre=the_genre)
 
 
@@ -297,10 +297,10 @@ def update_genre(genre_id):
     """
     genres = mongo.db.genres
     genres.update_one(
-        {'_id' : ObjectId(genre_id)},
+        {'_id': ObjectId(genre_id)},
         {
             '$set': {
-                'genre' : request.form.get('genre')
+                'genre': request.form.get('genre')
             }
         }
     )
@@ -313,7 +313,7 @@ def delete_genre(genre_id):
     """
         Delete Genre
     """
-    mongo.db.genres.remove({'_id' : ObjectId(genre_id)})
+    mongo.db.genres.remove({'_id': ObjectId(genre_id)})
     flash('Delete Successful.', 'success')
     return redirect(url_for('get_genres'))
 
@@ -328,11 +328,11 @@ def insert_review(book_id):
     """
     reviews = mongo.db.reviews
     reviews.insert_one({
-        'book_id' : request.form.get('book_id'),
-        'posted_at' : datetime.utcnow(),
-        'author' : request.form.get('author'),
-        'review' : request.form.get('review'),
-        'rating' : int(request.form.get('rating')),
+        'book_id': request.form.get('book_id'),
+        'posted_at': datetime.utcnow(),
+        'author': request.form.get('author'),
+        'review': request.form.get('review'),
+        'rating': int(request.form.get('rating')),
     })
     flash('Upload Successful.', 'success')
     return redirect(url_for('read_book', book_id=book_id))
