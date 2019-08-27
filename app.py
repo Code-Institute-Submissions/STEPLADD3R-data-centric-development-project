@@ -277,10 +277,12 @@ def update_book(book_id):
                         'name': request.form.get('name'),
                         'description': request.form.get('description'),
                         'isbn': request.form.get('isbn'),
-                        'publication_date': request.form.get('publication_date'),
+                        'publication_date': request.form.get(
+                                            'publication_date'),
                         'author': request.form.get('author').lower(),
                         'publisher': request.form.get('publisher').lower(),
-                        'amazon_affiliate_url': request.form.get('amazon_affiliate_url'),
+                        'amazon_affiliate_url': request.form.get(
+                                                'amazon_affiliate_url'),
                         'genres': request.form.getlist('genres'),
                         'top_pick': request.form.get('top_pick')
                     }
@@ -290,7 +292,8 @@ def update_book(book_id):
             return redirect(url_for('get_books'))
         else:
             if allowed_file(cover_photo.filename):
-                secure_cover_photo_filename = secure_filename(cover_photo.filename)
+                secure_cover_photo_filename = secure_filename(
+                                                cover_photo.filename)
                 mongo.save_file(secure_cover_photo_filename, cover_photo)
                 books.update_one(
                     {'_id': ObjectId(book_id)},
@@ -300,10 +303,12 @@ def update_book(book_id):
                             'cover_photo': secure_cover_photo_filename,
                             'description': request.form.get('description'),
                             'isbn': request.form.get('isbn'),
-                            'publication_date': request.form.get('publication_date'),
+                            'publication_date': request.form.get(
+                                                'publication_date'),
                             'author': request.form.get('author').lower(),
                             'publisher': request.form.get('publisher').lower(),
-                            'amazon_affiliate_url': request.form.get('amazon_affiliate_url'),
+                            'amazon_affiliate_url': request.form.get(
+                                                    'amazon_affiliate_url'),
                             'genres': request.form.getlist('genres'),
                             'top_pick': request.form.get('top_pick')
                         }
@@ -313,7 +318,9 @@ def update_book(book_id):
                 return redirect(url_for('get_books'))
             else:
                 flash('Something has gone wrong, please try again.', 'error')
-                return redirect(url_for('edit_book', book_id=ObjectId(book_id)))
+                return redirect(
+                    url_for('edit_book', book_id=ObjectId(book_id))
+                )
 
 
 @app.route('/book/<book_id>/delete')
