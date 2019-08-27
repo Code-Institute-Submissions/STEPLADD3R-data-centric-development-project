@@ -35,7 +35,7 @@ def test_insert_book():
     books = app.mongo.db.books
     books.insert_one({
         'name': 'Test Book',
-        'cover_photo': 'test.jpg',
+        'cover_photo': 'test.jpg', # come back to image upload
         'description': 'Description',
         'isbn': 'ISBN',
         'publication_date': '27 August 2019',
@@ -47,3 +47,5 @@ def test_insert_book():
     })
     book_query = app.mongo.db.books.find_one({ 'name': 'Test Book'})
     assert book_query['name'] == 'Test Book'
+
+

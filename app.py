@@ -25,12 +25,38 @@ def global_template_variables():
     """
         This is used to pass in global variables to the base template
     """
-    navbar_genres = mongo.db.genres.find().limit(4)
-    footer_genres = mongo.db.genres.find()
-    footer_top_picks = mongo.db.books.find({'top_pick': 'on'}).limit(4)
-    footer_user_picks = mongo.db.reviews.find().limit(4)
-    footer_recent_books = mongo.db.books.find().sort([('$natural', -1)]).limit(4)
-    return dict(navbar_genres=navbar_genres, footer_genres=footer_genres, footer_top_picks=footer_top_picks, footer_user_picks=footer_user_picks, footer_recent_books=footer_recent_books)
+    navbar_genres = (
+        mongo.db.genres
+        .find()
+        .limit(4)
+    )
+    footer_genres = (
+        mongo.db.genres
+        .find()
+    )
+    footer_top_picks = (
+        mongo.db.books
+        .find({'top_pick': 'on'})
+        .limit(4)
+    )
+    footer_user_picks = (
+        mongo.db.reviews
+        .find()
+        .limit(4)
+    )
+    footer_recent_books = (
+        mongo.db.books
+        .find()
+        .sort([('$natural', -1)])
+        .limit(4)
+    )
+    return dict(
+        navbar_genres=navbar_genres,
+        footer_genres=footer_genres,
+        footer_top_picks=footer_top_picks,
+        footer_user_picks=footer_user_picks,
+        footer_recent_books=footer_recent_books
+    )
 
 
 def allowed_file(filename):
@@ -39,7 +65,7 @@ def allowed_file(filename):
         Check if the extension is allowed
     """
     return '.' in filename and \
-    filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
+        filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
 
 @app.route('/uploads/<filename>')
@@ -68,9 +94,22 @@ def search_results(search_term):
         Return the search results
     """
     mongo.db.books.create_index([('name', 'text')])
-    search_results = mongo.db.books.find({'$text': {'$search': search_term}}).limit(8)
-    search_results_count = mongo.db.books.find({'$text': {'$search': search_term}}).count()
-    return render_template('search-results.html', search_term=search_term, search_results=search_results, search_results_count=search_results_count)
+    search_results = (
+        mongo.db.books
+        .find({'$text': {'$search': search_term}})
+        .limit(8)
+    )
+    search_results_count = (
+        mongo.db.books
+        .find({'$text': {'$search': search_term}})
+        .count()
+    )
+    return render_template(
+        'search-results.html',
+        search_term=search_term,
+        search_results=search_results,
+        search_results_count=search_results_count
+    )
 
 
 #
@@ -81,9 +120,23 @@ def index():
     """
         Return top picks and recent books
     """
-    top_picks = mongo.db.books.find({'top_pick': 'on'}).sort([('$natural', -1)]).limit(8)
-    recent_books = mongo.db.books.find().sort([('$natural', -1)]).limit(8)
-    return render_template('index.html', top_picks=top_picks, recent_books=recent_books)
+    top_picks = (
+        mongo.db.books
+        .find({'top_pick': 'on'})
+        .sort([('$natural', -1)])
+        .limit(8)
+    )
+    recent_books = (
+        mongo.db.books
+        .find()
+        .sort([('$natural', -1)])
+        .limit(8)
+    )
+    return render_template(
+        'index.html',
+        top_picks=top_picks,
+        recent_books=recent_books
+    )
 
 
 @app.route('/books')
@@ -91,8 +144,14 @@ def get_books():
     """
         Return a list of all the books
     """
-    books = mongo.db.books.find()
-    return render_template('books.html', books=books)
+    books = (
+        mongo.db.books
+        .find()
+    )
+    return render_template(
+        'books.html',
+        books=books
+    )
 
 
 @app.route('/book/add')
@@ -100,8 +159,14 @@ def create_book():
     """
         Create Book (Form)
     """
-    genres = mongo.db.genres.find()
-    return render_template('create-book.html', genres=genres)
+    genres = (
+        mongo.db.genres
+        .find()
+    )
+    return render_template(
+        'create-book.html',
+        genres=genres
+    )
 
 
 @app.route('/book/insert', methods=['POST'])
@@ -133,7 +198,7 @@ def insert_book():
             'publication_date': request.form.get('publication_date'),
             'author': request.form.get('author').lower(),
             'publisher': request.form.get('publisher').lower(),
-            'amazon_affiliate_url': request.form.get('amazon_affiliate_url').lower(),
+            'amazon_affiliate_url': request.form.get('amazon_affiliate_url'),
             'genres': request.form.getlist('genres'),
             'top_pick': request.form.get('top_pick')
         })
@@ -149,15 +214,32 @@ def read_book(book_id):
     """
         Read Book / Reviews
     """
-    the_book = mongo.db.books.find_one({'_id': ObjectId(book_id)})
-    genres = mongo.db.genres.find()
-    reviews = list(mongo.db.reviews.find({'book_id': book_id}))
+    the_book = (
+        mongo.db.books
+        .find_one({'_id': ObjectId(book_id)})
+    )
+    genres = (
+        mongo.db.genres
+        .find()
+    )
+    reviews = list(
+        (
+            mongo.db.reviews
+            .find({'book_id': book_id})
+        )
+    )
     ratings = [review['rating'] for review in reviews]
     if len(ratings) < 1:
         average_rating = 0
     else:
         average_rating = sum(ratings) / len(ratings)
-    return render_template('read-book.html', book=the_book, genres=genres, reviews=reviews, average_rating=average_rating)
+    return render_template(
+        'read-book.html',
+        book=the_book,
+        genres=genres,
+        reviews=reviews,
+        average_rating=average_rating
+    )
 
 
 @app.route('/book/<book_id>/edit')
@@ -165,8 +247,15 @@ def edit_book(book_id):
     """
         Update Book (Form)
     """
-    the_book = mongo.db.books.find_one({'_id': ObjectId(book_id)})
-    return render_template('edit-book.html', book=the_book, genres=mongo.db.genres.find())
+    the_book = (
+        mongo.db.books
+        .find_one({'_id': ObjectId(book_id)})
+    )
+    return render_template(
+        'edit-book.html',
+        book=the_book,
+        genres=mongo.db.genres.find()
+    )
 
 
 @app.route('/book/<book_id>/update', methods=['POST'])
@@ -191,7 +280,7 @@ def update_book(book_id):
                         'publication_date': request.form.get('publication_date'),
                         'author': request.form.get('author').lower(),
                         'publisher': request.form.get('publisher').lower(),
-                        'amazon_affiliate_url': request.form.get('amazon_affiliate_url').lower(),
+                        'amazon_affiliate_url': request.form.get('amazon_affiliate_url'),
                         'genres': request.form.getlist('genres'),
                         'top_pick': request.form.get('top_pick')
                     }
@@ -214,7 +303,7 @@ def update_book(book_id):
                             'publication_date': request.form.get('publication_date'),
                             'author': request.form.get('author').lower(),
                             'publisher': request.form.get('publisher').lower(),
-                            'amazon_affiliate_url': request.form.get('amazon_affiliate_url').lower(),
+                            'amazon_affiliate_url': request.form.get('amazon_affiliate_url'),
                             'genres': request.form.getlist('genres'),
                             'top_pick': request.form.get('top_pick')
                         }
@@ -276,9 +365,20 @@ def read_genre(genre):
         Read Genre (from Books)
     """
     the_genre = genre
-    the_genre_id = mongo.db.genres.find_one({'genre': genre})
-    books = mongo.db.books.find({'genres': genre})
-    return render_template('read-genre.html', the_genre=the_genre, the_genre_id=the_genre_id, books=books)
+    the_genre_id = (
+        mongo.db.genres
+        .find_one({'genre': genre})
+    )
+    books = (
+        mongo.db.books
+        .find({'genres': genre})
+    )
+    return render_template(
+        'read-genre.html',
+        the_genre=the_genre,
+        the_genre_id=the_genre_id,
+        books=books
+    )
 
 
 @app.route('/genre/<genre_id>/edit')

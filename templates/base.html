@@ -97,7 +97,6 @@
             </div>
         </div>
     </footer>
-    
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
@@ -105,7 +104,6 @@
             {% endfor %}
         {% endif %}
     {% endwith %}
-    
     <script src="{{ url_for('static', filename='dist/vendors/js/jquery/jquery.min.js') }}"></script> <!-- jQuery -->
     <script src="{{ url_for('static', filename='dist/vendors/js/toastr/toastr.min.js') }}"></script> <!-- Toastr | 6 KB -->
     <script src="{{ url_for('static', filename='dist/vendors/js/magnific-popup/jquery.magnific-popup.min.js') }}"></script> <!-- Magnific Popup | 20 KB -->
