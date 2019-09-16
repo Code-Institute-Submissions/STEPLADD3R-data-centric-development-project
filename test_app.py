@@ -55,3 +55,45 @@ def test_read_book():
     """
     the_book = app.mongo.db.books.find_one({'name': 'Test Book'})
     assert the_book['name'] == 'Test Book'
+
+
+def test_update_book():
+    """
+        Test updating the book
+    """
+    the_book = app.mongo.db.books.find_one({'name': 'Test Book'})
+    the_book_id = the_book['_id']
+    books = app.mongo.db.books
+    books.update_one(
+        {'_id': app.ObjectId(the_book_id)},
+        {
+            '$set': {
+                'name': 'Test Book Updated',
+                'cover_photo': 'test.jpg', # come back to image upload
+                'description': 'Description Updated',
+                'isbn': 'ISBN Updated',
+                'publication_date': '28 August 2019',
+                'author': 'Author Updated'.lower(),
+                'publisher': 'Publisher Updated'.lower(),
+                'amazon_affiliate_url': 'https://www.amazon.co.uk/book&tag=FakeTagUpdated'.lower(),
+                'genres': ['fantasy'],
+                'top_pick': 'off'
+            }
+        }
+    )
+    the_book_query = app.mongo.db.books.find_one({'name': 'Test Book Updated'})
+    assert the_book_query['name'] == 'Test Book Updated'
+
+
+def test_delete_book():
+    """
+        Test deleting the book
+    """
+    the_book = app.mongo.db.books.find_one({'name': 'Test Book Updated'})
+    the_book_id = the_book['_id']
+    app.mongo.db.books.delete_one({'_id': app.ObjectId(the_book_id)})
+    the_book_query = app.mongo.db.books.find_one({'name': 'Test Book Updated'})
+    if the_book_query == None:
+        assert 'Empty'
+    else:
+        assert 'Not Empty'
