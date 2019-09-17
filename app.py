@@ -44,6 +44,11 @@ def global_template_variables():
         .find()
         .limit(4)
     )
+    footer_user_picks_list = list()
+    for user_pick in footer_user_picks:
+        the_book = mongo.db.books.find_one({'_id': ObjectId(user_pick['book_id'])})
+        if the_book not in footer_user_picks_list:
+            footer_user_picks_list.append(the_book)
     footer_recent_books = (
         mongo.db.books
         .find()
@@ -54,7 +59,7 @@ def global_template_variables():
         navbar_genres=navbar_genres,
         footer_genres=footer_genres,
         footer_top_picks=footer_top_picks,
-        footer_user_picks=footer_user_picks,
+        footer_user_picks_list=footer_user_picks_list,
         footer_recent_books=footer_recent_books
     )
 
