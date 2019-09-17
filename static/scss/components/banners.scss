@@ -18,6 +18,10 @@
                 
                 filter: blur(5px);
                 transition: $transition-base;
+                
+                @media ( max-width: 576px ) {
+                    filter: blur(90px);
+                }
             }
             
             .banner__img {

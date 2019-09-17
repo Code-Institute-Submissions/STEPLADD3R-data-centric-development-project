@@ -4,6 +4,11 @@ nav {
         padding: 0 1.5rem;
         background-color: #f4f4f4;
         
+        @media ( max-width: 576px ) {
+            padding: 0;
+            background-color: $primary;
+        }
+        
         a.navbar-brand {
             padding: 1.5rem 0;
         }
@@ -16,6 +21,11 @@ nav {
                     font-weight: 500;
                     border-right: 1px solid #dbdbdb;
                     transition: $transition-base;
+                    
+                    @media ( max-width: 576px ) {
+                        padding: 1rem;
+                        border: 0 !important;
+                    }
                     
                     &:hover {
                         color: #fff;
@@ -50,6 +60,13 @@ nav {
                     max-width: 142.28px;
                     box-shadow: $box-shadow;
                     
+                    @media ( max-width: 576px ) {
+                        width: 100%;
+                        max-width: unset;
+                        min-width: unset;
+                        box-shadow: unset;
+                    }
+                    
                     .dropdown-item {
                         padding: 1rem 1.5rem;
                         text-align: center;
@@ -57,6 +74,10 @@ nav {
                         color: $primary;
                         white-space: pre-wrap;
                         border-bottom: 1px solid #dbdbdb;
+                        
+                        @media ( max-width: 576px ) {
+                            text-align: left;
+                        }
                         
                         &:last-of-type {
                             border-bottom: 0;
@@ -83,13 +104,20 @@ nav {
         }
         
         form.form-inline {
+            @media ( max-width: 576px ) {
+                max-width: 90%;
+                margin: 0 auto 1.5rem auto;
+            }
+            
             input,
             button {
                 border-radius: 0;
             }
             
             input {
-                
+                @media ( max-width: 576px ) {
+                    width: 70%;
+                }
             }
             
             button {
@@ -102,7 +130,33 @@ nav {
                 &:hover {
                     box-shadow: inset 0 0 200px hsla(0,0%,100%,.15);
                 }
+                
+                @media ( max-width: 576px ) {
+                    width: 30%;
+                }
             }
+        }
+    }
+}
+
+@media ( max-width: 576px ) {
+    .navbar-brand {
+        margin-left: 1.5rem;
+        color: #f4f4f4;
+    }
+    
+    .navbar-toggler {
+        margin-right: 1.5rem;
+        background-color: #136966;
+    }
+    
+    .navbar-collapse {
+        background-color: #f4f4f4;
+    }
+    
+    .navbar-toggler-icon-custom {
+        i {
+            color: #f4f4f4;
         }
     }
 }
