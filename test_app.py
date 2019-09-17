@@ -97,3 +97,56 @@ def test_delete_book():
         assert 'Empty'
     else:
         assert 'Not Empty'
+
+
+def test_insert_genre():
+    """
+        Test creating genre
+    """
+    genres = app.mongo.db.genres
+    genres.insert_one({
+        'genre': 'test'
+    })
+    genre_query = app.mongo.db.genres.find_one({'genre': 'test'})
+    assert genre_query['genre'] == 'test'
+
+
+def test_read_genre():
+    """
+        Test reading the genre
+    """
+    the_genre = app.mongo.db.genres.find_one({'genre': 'test'})
+    assert the_genre['genre'] == 'test'
+
+
+def test_update_genre():
+    """
+        Test updating the genre
+    """
+    the_genre = app.mongo.db.genres.find_one({'genre': 'test'})
+    the_genre_id = the_genre['_id']
+    genres = app.mongo.db.genres
+    genres.update_one(
+        {'_id': app.ObjectId(the_genre_id)},
+        {
+            '$set': {
+                'genre': 'test updated',
+            }
+        }
+    )
+    the_genre_query = app.mongo.db.genres.find_one({'genre': 'test updated'})
+    assert the_genre_query['genre'] == 'test updated'
+
+
+def test_delete_genre():
+    """
+        Test deleting the genre
+    """
+    the_genre = app.mongo.db.genres.find_one({'genre': 'test updated'})
+    the_genre_id = the_genre['_id']
+    app.mongo.db.genres.delete_one({'_id': app.ObjectId(the_genre_id)})
+    the_genre_query = app.mongo.db.genres.find_one({'genre': 'test updated'})
+    if the_genre_query == None:
+        assert 'Empty'
+    else:
+        assert 'Not Empty'
