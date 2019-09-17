@@ -7302,6 +7302,13 @@ a.text-dark:hover, a.text-dark:focus {
         display: block;
         width: 100%; }
 
+@media (max-width: 768px) {
+  #list-books .col-md-3,
+  #read-genre .col-md-3 {
+    flex: 1 0 33.333%;
+    width: 33.333%;
+    min-width: 33.333% !important; } }
+
 #list-books .col-md-3:nth-last-of-type(-n+4) .book,
 #read-genre .col-md-3:nth-last-of-type(-n+4) .book {
   margin-bottom: 0; }

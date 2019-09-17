@@ -321,6 +321,12 @@
 #list-books,
 #read-genre {
     .col-md-3 {
+        @media ( max-width: 768px ) {
+            flex: 1 0 33.333%;
+            width: 33.333%;
+            min-width: 33.333% !important;
+        }
+        
         &:nth-last-of-type(-n+4) {
             .book {
                 margin-bottom: 0;

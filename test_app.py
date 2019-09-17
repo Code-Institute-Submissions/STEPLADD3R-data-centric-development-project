@@ -1,16 +1,19 @@
 import app
 
+
 def test_search_results_empty():
     """
         Test Search Functionality
         Test the book we'll create to make sure the search is empty
     """
     search_term = 'Test Book'
-    search_results_count = app.mongo.db.books.count_documents({'$text': {'$search': search_term}})
+    search_results_count = app.mongo.db.books.count_documents(
+                           {'$text': {'$search': search_term}})
     if search_results_count < 1:
         search_results = 'Empty'
     else:
-        search_results = app.mongo.db.books.find({'$text': {'$search': search_term}})
+        search_results = app.mongo.db.books.find(
+                         {'$text': {'$search': search_term}})
     assert search_results == 'Empty'
 
 
@@ -21,17 +24,16 @@ def test_insert_book():
     books = app.mongo.db.books
     books.insert_one({
         'name': 'Test Book',
-        'cover_photo': 'test.jpg', # come back to image upload
         'description': 'Description',
         'isbn': 'ISBN',
         'publication_date': '27 August 2019',
         'author': 'Author'.lower(),
         'publisher': 'Publisher'.lower(),
-        'amazon_affiliate_url': 'https://www.amazon.co.uk/book&tag=FakeTag'.lower(),
+        'amazon_affiliate_url': 'https://www.amazon.co.uk/tag=FakeTag'.lower(),
         'genres': ['fantasy'],
         'top_pick': 'on'
     })
-    book_query = app.mongo.db.books.find_one({ 'name': 'Test Book'})
+    book_query = app.mongo.db.books.find_one({'name': 'Test Book'})
     assert book_query['name'] == 'Test Book'
 
 
@@ -41,11 +43,13 @@ def test_search_results_not_empty():
         Now that the book is inserted, it should not be empty
     """
     search_term = 'Test Book'
-    search_results_count = app.mongo.db.books.count_documents({'$text': {'$search': search_term}})
+    search_results_count = app.mongo.db.books.count_documents(
+                           {'$text': {'$search': search_term}})
     if search_results_count < 1:
         search_results = 'Empty'
     else:
-        search_results = app.mongo.db.books.find({'$text': {'$search': search_term}})
+        search_results = app.mongo.db.books.find(
+                         {'$text': {'$search': search_term}})
     assert search_results != 'Empty'
 
 
@@ -69,13 +73,12 @@ def test_update_book():
         {
             '$set': {
                 'name': 'Test Book Updated',
-                'cover_photo': 'test.jpg', # come back to image upload
                 'description': 'Description Updated',
                 'isbn': 'ISBN Updated',
                 'publication_date': '28 August 2019',
                 'author': 'Author Updated'.lower(),
                 'publisher': 'Publisher Updated'.lower(),
-                'amazon_affiliate_url': 'https://www.amazon.co.uk/book&tag=FakeTagUpdated'.lower(),
+                'amazon_affiliate_url': 'Affiliate Link Updated'.lower(),
                 'genres': ['fantasy'],
                 'top_pick': 'off'
             }
@@ -93,7 +96,7 @@ def test_delete_book():
     the_book_id = the_book['_id']
     app.mongo.db.books.delete_one({'_id': app.ObjectId(the_book_id)})
     the_book_query = app.mongo.db.books.find_one({'name': 'Test Book Updated'})
-    if the_book_query == None:
+    if the_book_query is None:
         assert 'Empty'
     else:
         assert 'Not Empty'
@@ -146,7 +149,7 @@ def test_delete_genre():
     the_genre_id = the_genre['_id']
     app.mongo.db.genres.delete_one({'_id': app.ObjectId(the_genre_id)})
     the_genre_query = app.mongo.db.genres.find_one({'genre': 'test updated'})
-    if the_genre_query == None:
+    if the_genre_query is None:
         assert 'Empty'
     else:
         assert 'Not Empty'
