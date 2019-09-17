@@ -7302,9 +7302,27 @@ a.text-dark:hover, a.text-dark:focus {
 
 #list-books .col-md-3:nth-last-of-type(-n+4) .book {
   margin-bottom: 0; }
+  @media (max-width: 576px) {
+    #list-books .col-md-3:nth-last-of-type(-n+4) .book {
+      margin-bottom: 2rem; }
+      #list-books .col-md-3:nth-last-of-type(-n+4) .book:last-of-type {
+        margin-bottom: 0; } }
 
 #list-books .col-md-3 .book {
   margin-bottom: 2rem; }
+  @media (max-width: 576px) {
+    #list-books .col-md-3 .book {
+      margin-left: 2rem !important;
+      margin-right: 2rem !important; } }
+
+@media (max-width: 576px) {
+  #top-books .col-md-3,
+  #new-books .col-md-3 {
+    flex: 1 0 75%;
+    width: 75%; }
+  .book .col-sm-12.col-md-6 {
+    flex: 1 0 50%;
+    width: 50%; } }
 
 .site-footer {
   background-color: #f4f4f4; }
@@ -7312,7 +7330,9 @@ a.text-dark:hover, a.text-dark:focus {
     padding: 3rem; }
     @media (max-width: 576px) {
       .site-footer .container-fluid .row .col-lg-3 {
-        padding: 1.5rem 3rem; } }
+        padding: 1.5rem; }
+        .site-footer .container-fluid .row .col-lg-3:nth-of-type(2), .site-footer .container-fluid .row .col-lg-3:nth-of-type(3) {
+          padding-bottom: 0; } }
     .site-footer .container-fluid .row .col-lg-3 h5.footer__title {
       text-transform: uppercase;
       font-weight: 500; }
@@ -7441,6 +7461,9 @@ nav.navbar {
     border-left: 1px solid #dbdbdb; }
   nav.navbar ul.navbar-nav li.nav-item:last-of-type {
     margin-right: 2rem; }
+    @media (max-width: 576px) {
+      nav.navbar ul.navbar-nav li.nav-item:last-of-type {
+        margin-right: 0; } }
   nav.navbar ul.navbar-nav li.nav-item > .dropdown-menu {
     background-color: #f4f4f4;
     margin: 0;
@@ -7472,14 +7495,20 @@ nav.navbar {
         color: #ffffff; }
   nav.navbar ul.navbar-nav li.nav-item.darker {
     background-color: #dbdbdb; }
+    @media (max-width: 576px) {
+      nav.navbar ul.navbar-nav li.nav-item.darker:last-of-type {
+        margin-bottom: 1.5rem; } }
     nav.navbar ul.navbar-nav li.nav-item.darker .nav-link {
       border-color: #c3c3c3; }
       nav.navbar ul.navbar-nav li.nav-item.darker .nav-link.border-left {
         border-left: 1px solid #c3c3c3 !important; }
+        @media (max-width: 576px) {
+          nav.navbar ul.navbar-nav li.nav-item.darker .nav-link.border-left {
+            border-left: 0 !important; } }
   @media (max-width: 576px) {
     nav.navbar form.form-inline {
-      max-width: 90%;
-      margin: 0 auto 1.5rem auto; } }
+      padding: 0 1rem;
+      margin-bottom: 1.5rem; } }
   nav.navbar form.form-inline input,
   nav.navbar form.form-inline button {
     border-radius: 0; }

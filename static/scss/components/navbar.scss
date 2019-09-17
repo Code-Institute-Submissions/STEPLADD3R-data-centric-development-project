@@ -48,6 +48,10 @@ nav {
                 
                 &:last-of-type {
                     margin-right: 2rem;
+                    
+                    @media ( max-width: 576px ) {
+                        margin-right: 0;
+                    }
                 }
                 
                 > .dropdown-menu {
@@ -92,11 +96,21 @@ nav {
                 &.darker {
                     background-color: #dbdbdb;
                     
+                    @media ( max-width: 576px ) {
+                        &:last-of-type {
+                            margin-bottom: 1.5rem;
+                        }
+                    }
+                    
                     .nav-link {
                         border-color: #c3c3c3;
                         
                         &.border-left {
                             border-left: 1px solid #c3c3c3 !important;
+                            
+                            @media ( max-width: 576px ) {
+                                border-left: 0 !important;
+                            }
                         }
                     }
                 }
@@ -105,8 +119,8 @@ nav {
         
         form.form-inline {
             @media ( max-width: 576px ) {
-                max-width: 90%;
-                margin: 0 auto 1.5rem auto;
+                padding: 0 1rem;
+                margin-bottom: 1.5rem;
             }
             
             input,

@@ -7,7 +7,12 @@
                 padding: 3rem;
                 
                 @media ( max-width: 576px ) {
-                    padding: 1.5rem 3rem;
+                    padding: 1.5rem;
+                    
+                    &:nth-of-type(2),
+                    &:nth-of-type(3) {
+                        padding-bottom: 0;
+                    }
                 }
                 
                 h5 {
