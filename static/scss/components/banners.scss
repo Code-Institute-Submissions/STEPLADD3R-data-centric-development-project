@@ -3,15 +3,27 @@
         max-height: 500px;
         
         .carousel-item {
-            img {
+            transition: $transition-base;
+            
+            .blur-holder {
+                overflow: hidden;
+                transform: scale(1.2);
+            }
+            
+            .banner__background {
                 object-fit: cover;
                 object-position: center;
                 max-height: 500px;
+                min-height: 500px;
+                
+                filter: blur(5px);
+                transition: $transition-base;
             }
             
             .banner__img {
                 max-height: 250px;
                 margin-bottom: 1rem;
+                box-shadow: $box-shadow;
             }
             
             .banner__title {
