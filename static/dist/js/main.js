@@ -2,6 +2,9 @@
     
     'use strict';
     
+    /* global jQuery */
+    /* global toastr */
+    
     // Bootstrap form validation
     window.addEventListener('load', function() {
         var forms = document.getElementsByClassName('needs-validation');

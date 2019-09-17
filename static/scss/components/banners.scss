@@ -8,6 +8,25 @@
                 object-position: center;
                 max-height: 500px;
             }
+            
+            .banner__img {
+                max-height: 250px;
+                margin-bottom: 1rem;
+            }
+            
+            .banner__title {
+                margin-bottom: 1rem;
+                text: {
+                    align: center;
+                    transform: uppercase;
+                }
+                font-weight: 700;
+            }
+            
+            .banner__description {
+                text-align: center;
+                font-weight: 500;
+            }
         }
     }
 }

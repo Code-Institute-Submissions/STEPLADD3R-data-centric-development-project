@@ -4,9 +4,9 @@
         <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
             <img class="d-block w-100" src="https://placeimg.com/1000/500/any" alt="background">
             <div class="carousel-caption d-none d-md-block">
-                <img src="{{ url_for('upload', filename=user_pick.cover_photo) }}" alt="{{ user_pick.name }} by {{ user_pick.author }}" />
-                <h5>{{ user_pick.name }}</h5>
-                <p>{{ user_pick.description | truncate(100) }}</p>
+                <img src="{{ url_for('upload', filename=user_pick.cover_photo) }}" alt="{{ user_pick.name }} by {{ user_pick.author }}" class="banner__img" />
+                <h5 class="banner__title">{{ user_pick.name }}</h5>
+                <p class="banner__description">{{ user_pick.description | truncate(100) }}</p>
             </div>
         </div>
         {% endfor %}
