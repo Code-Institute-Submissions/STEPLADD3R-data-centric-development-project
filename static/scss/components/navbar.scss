@@ -4,7 +4,7 @@ nav {
         padding: 0 1.5rem;
         background-color: #f4f4f4;
         
-        @media ( max-width: 576px ) {
+        @media ( max-width: 768px ) {
             padding: 0;
             background-color: $primary;
         }
@@ -22,7 +22,7 @@ nav {
                     border-right: 1px solid #dbdbdb;
                     transition: $transition-base;
                     
-                    @media ( max-width: 576px ) {
+                    @media ( max-width: 768px ) {
                         padding: 1rem;
                         border: 0 !important;
                     }
@@ -49,7 +49,7 @@ nav {
                 &:last-of-type {
                     margin-right: 2rem;
                     
-                    @media ( max-width: 576px ) {
+                    @media ( max-width: 768px ) {
                         margin-right: 0;
                     }
                 }
@@ -64,7 +64,7 @@ nav {
                     max-width: 142.28px;
                     box-shadow: $box-shadow;
                     
-                    @media ( max-width: 576px ) {
+                    @media ( max-width: 768px ) {
                         width: 100%;
                         max-width: unset;
                         min-width: unset;
@@ -79,7 +79,7 @@ nav {
                         white-space: pre-wrap;
                         border-bottom: 1px solid #dbdbdb;
                         
-                        @media ( max-width: 576px ) {
+                        @media ( max-width: 768px ) {
                             text-align: left;
                         }
                         
@@ -96,7 +96,7 @@ nav {
                 &.darker {
                     background-color: #dbdbdb;
                     
-                    @media ( max-width: 576px ) {
+                    @media ( max-width: 768px ) {
                         &:last-of-type {
                             margin-bottom: 1.5rem;
                         }
@@ -108,7 +108,7 @@ nav {
                         &.border-left {
                             border-left: 1px solid #c3c3c3 !important;
                             
-                            @media ( max-width: 576px ) {
+                            @media ( max-width: 768px ) {
                                 border-left: 0 !important;
                             }
                         }
@@ -118,7 +118,7 @@ nav {
         }
         
         form.form-inline {
-            @media ( max-width: 576px ) {
+            @media ( max-width: 768px ) {
                 padding: 0 1rem;
                 margin-bottom: 1.5rem;
             }
@@ -129,7 +129,7 @@ nav {
             }
             
             input {
-                @media ( max-width: 576px ) {
+                @media ( max-width: 768px ) {
                     width: 70%;
                 }
             }
@@ -145,7 +145,7 @@ nav {
                     box-shadow: inset 0 0 200px hsla(0,0%,100%,.15);
                 }
                 
-                @media ( max-width: 576px ) {
+                @media ( max-width: 768px ) {
                     width: 30%;
                 }
             }
@@ -153,7 +153,7 @@ nav {
     }
 }
 
-@media ( max-width: 576px ) {
+@media ( max-width: 768px ) {
     .navbar-brand {
         margin-left: 1.5rem;
         color: #f4f4f4;

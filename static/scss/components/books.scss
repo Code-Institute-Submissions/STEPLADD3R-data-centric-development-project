@@ -325,7 +325,7 @@
             .book {
                 margin-bottom: 0;
                 
-                @media ( max-width: 576px ) {
+                @media ( max-width: 768px ) {
                     margin-bottom: 2rem;
                     
                     &:last-of-type {
@@ -340,7 +340,7 @@
         .book {
             margin-bottom: 2rem;
             
-            @media ( max-width: 576px ) {
+            @media ( max-width: 768px ) {
                 margin-left: 2rem !important;
                 margin-right: 2rem !important;
             }
@@ -354,6 +354,24 @@
         .col-md-3 {
             flex: 1 0 75%;
             width: 75%;
+        }
+    }
+    
+    .book {
+        .col-sm-12.col-md-6 {
+            flex: 1 0 50%;
+            width: 50%;
+        }
+    }
+}
+
+@media ( max-width: 768px ) {
+    #top-books,
+    #new-books {
+        .col-md-3 {
+            flex: 1 0 33.333%;
+            width: 33.333%;
+            min-width: 33.333% !important;
         }
     }
     
