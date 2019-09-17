@@ -318,7 +318,8 @@
     }
 }
 
-#list-books {
+#list-books,
+#read-genre {
     .col-md-3 {
         &:nth-last-of-type(-n+4) {
             .book {

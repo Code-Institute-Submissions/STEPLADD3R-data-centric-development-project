@@ -47,6 +47,8 @@
                         </div>
                     </div>
                 </div>
+                {% else %}
+                <p><strong>Sorry, this Genre is currently empty. <a href="{{ url_for('get_genres') }}">View all Genres?</a></strong></p>
                 {% endfor %}
             </div>
         </div>

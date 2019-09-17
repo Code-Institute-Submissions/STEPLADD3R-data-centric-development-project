@@ -16,7 +16,7 @@
                 max-height: 500px;
                 min-height: 500px;
                 
-                filter: blur(5px);
+                filter: blur(45px);
                 transition: $transition-base;
                 
                 @media ( max-width: 576px ) {
@@ -26,7 +26,7 @@
             
             .banner__img {
                 max-height: 250px;
-                margin-bottom: 1rem;
+                margin-bottom: 1.5rem;
                 box-shadow: $box-shadow;
             }
             
@@ -35,6 +35,7 @@
                 text: {
                     align: center;
                     transform: uppercase;
+                    shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
                 }
                 font-weight: 700;
             }
@@ -42,6 +43,7 @@
             .banner__description {
                 text-align: center;
                 font-weight: 500;
+                text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
             }
         }
     }
