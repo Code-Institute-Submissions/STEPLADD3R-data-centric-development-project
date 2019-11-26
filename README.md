@@ -5,9 +5,47 @@
 I was tasked with creating one of three things, I decided to go with the book review and recommendationg site as it seemed like a good example of what a real world project might look like. The goal of this project was to allow users to find books that they would like to read. It would also make a good place for the creator of the app to make a bit of extra money on the side through the use of Amazon Affiliation.
 
 ### User Stories
-As the website admin / owner, I want to be able to create, read, update and delete books from the website, I would also like to monetize the website and my passion via Amazon Affiliate links so that I can earn some passive income.
+* A user of the website wants to be able to read reviews about the latest book releases. They can do this by either checking out the books on the homepage or book page, or by searching for a specific book and clicking into it to learn more about it.
 
-As a user of the website, I would like to read reviews about the latest releases so that I can judge whether or not to buy a book before actually taking the step to purchase it, thus saving money.
+* A user would like to search for books by themselves, as oppose to the default staff selected books.
+    * The user could use the search menu at the top of the application in the navigation bar. Once they input a search term and hit search, they'll have a page filled with their results.
+    * The app only allows for searching by book name at the moment.
+
+* A user would like to find out more information about a book, or many books:
+    * The user could choose from either a staff selected pick, a recently uploaded book or go to the books page and view all of the books.
+    * Once they have chosen a book, they simply need to click read to read more information about the book, such as author, description, publisher, isbn and more.
+
+* A user would like to add a review to a book:
+    * If the user has read the book and would like to let others know their thoughts, they could do so by following the above steps to find said book, and click on the 'Leave a Review' button to post a review.
+    * They should fill out the fields, and click submit.
+
+* A user would like to upload a book to the site:
+    * Anyone can add a book to the site by clicking the 'Add a Book' button, fields with * are required, and validation is carried out on the front and back-end.
+
+* A user would like to edit a book:
+    * The user could find the book they wish to edit, hover over the book cover and select 'edit' rather than 'read'.
+    * Alternatively, an 'Edit' button will appear on the page in the menu, if you are viewing the book as opposed to the book covers.
+    * The form will be prepopulated with the current values, and again validation is carried out on the front and back-end.
+
+* A user would like to delete a book:
+    * Users can delete books from the app by finding the book, clicking through onto the read page, and then a menu item will appear similarly to edit but will say 'Delete'.
+
+* A user would like to browse books by:
+    * Users can browse books by genre, staff picks, user rating and upload date in the footer of the website, regardless of the page.
+    * Alternatively, users could browse by searching as stated above.
+
+* A user would like to add a genre:
+    * Anyone can add a genre to the site by clicking the 'Add a Genre' button, fields with * are required, and validation is carried out on the front and back-end.
+
+* A user would like to edit a genre:
+    * The user could go to the genres route, which can be accessed by going to Genres in the menu and selecting view all, then they could select a genre and edit the name of the genre, in case there was a typo.
+
+* A user would like to delete a genre:
+    * Users can delete genres from the app by selecting the genre they wish to delete and clicking the 'Delete' button in the menu on the selected genre page.
+
+* As the owner of the website, I'd like to help people find a good read in a place of likeminded individuals. This can be achieved by people using the site to add and review books.
+
+* As the owner of the website, I'd also like to make a bit of money from my hobbie, and as such there is a place to add an Amazon Affiliate link when you add or edit a book. (If this was a fully fledged app with users, it'd be limited to admins, same as staff picks would).
 
 ### UX
 Details of the UX design process is available inside the 'project-supplements/user-experience' directory. This directory contains an array of documents that illustrate the UX design process in the form of wireframes.
