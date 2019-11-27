@@ -7302,7 +7302,7 @@ a.text-dark:hover, a.text-dark:focus {
         display: block;
         width: 100%; }
 
-@media (max-width: 768px) {
+@media (min-width: 577px) and (max-width: 768px) {
   #list-books .col-md-3,
   #read-genre .col-md-3 {
     flex: 1 0 33.333%;
@@ -7312,7 +7312,7 @@ a.text-dark:hover, a.text-dark:focus {
 #list-books .col-md-3:nth-last-of-type(-n+4) .book,
 #read-genre .col-md-3:nth-last-of-type(-n+4) .book {
   margin-bottom: 0; }
-  @media (max-width: 768px) {
+  @media (min-width: 577px) and (max-width: 768px) {
     #list-books .col-md-3:nth-last-of-type(-n+4) .book,
     #read-genre .col-md-3:nth-last-of-type(-n+4) .book {
       margin-bottom: 2rem; }
@@ -7323,7 +7323,7 @@ a.text-dark:hover, a.text-dark:focus {
 #list-books .col-md-3 .book,
 #read-genre .col-md-3 .book {
   margin-bottom: 2rem; }
-  @media (max-width: 768px) {
+  @media (min-width: 577px) and (max-width: 768px) {
     #list-books .col-md-3 .book,
     #read-genre .col-md-3 .book {
       margin-left: 2rem !important;
@@ -7338,7 +7338,7 @@ a.text-dark:hover, a.text-dark:focus {
     flex: 1 0 50%;
     width: 50%; } }
 
-@media (max-width: 768px) {
+@media (min-width: 577px) and (max-width: 768px) {
   #top-books .col-md-3,
   #new-books .col-md-3 {
     flex: 1 0 33.333%;
