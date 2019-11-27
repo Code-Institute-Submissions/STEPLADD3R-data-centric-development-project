@@ -61,7 +61,11 @@ After moving from my mockups to the real application, I decided to make a few am
 Images of the UX design process is available inside the 'project-supplements/user-experience' directory. This directory contains an array of documents that illustrate the UX design process in the form of wireframes.
 
 ### Database
-Details of the Database design process is available inside the 'project-supplements/database-design' directory. This directory contains an array of documnents that illustrate how I came to decide on the database collections and fields.
+After I had finished sketching the UI/UX of the application, I moved on to the database design as it's important to plan the database architecture to ensure a scalable app in the future, as well as to help aid in keeping the site fast.
+
+I thought about the collections and fields/field types that I would need and jotted them all down as can be seen in 'project-supplements/database-design' so that I could get my database up and running and get to work on the application.
+
+Images of the Database design process is available inside the 'project-supplements/database-design' directory. This directory contains an array of documnents that illustrate how I came to decide on the database collections and fields.
 
 ### Features
 #### Existing Features
