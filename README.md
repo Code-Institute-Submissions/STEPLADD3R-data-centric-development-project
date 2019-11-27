@@ -130,10 +130,17 @@ I have also ran my JS through a linter (JSHint) and it comes back with no errors
 ### Deployment
 To deploy the application, I chose to use Heroku, below are the steps I took to get the project up and running on Heroku.
 
-1. Created requirements.txt `pip3 freeze --local > requirements.txt` and a Procfile `echo web: python app.py > Procfile`
-2. Created the Heroku App, then followed the steps provided by Heroku to deploy using Heroku CLI (these can be found inside the 'Deploy' section of Heroku)
-3. In the 'Settings' section of Heroku, add in the config vars that matched my environmental variables in app.py
-4. Application now live!
+1. Create requirements.txt `pip3 freeze --local > requirements.txt` 
+2. Create Procfile `echo web: python app.py > Procfile`
+3. Created an app inside of Heroku by giving it a name and selecting a region to host it.
+4. In the 'Settings' section of Heroku, add in the config vars that match the environmental variables in app.py e.g. `IP`, `MONGO_URI`, `SECRET_KEY` etc.
+5. Deploy the app using the Heroku CLI (details can be found inside the 'Deploy' section of Heroku).
+    * At the time of writing it was the following commands
+    * heroku login
+    * heroku git:clone -a data-centric-dev-project-mongo
+    * cd data-centric-dev-project-mongo
+    * git push heroku master
+6. Application is now live!
 
 ### Demo
 A demo of the application can be found here: [Demo](https://data-centric-dev-project-mongo.herokuapp.com)
