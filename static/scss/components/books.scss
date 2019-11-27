@@ -321,7 +321,7 @@
 #list-books,
 #read-genre {
     .col-md-3 {
-        @media ( max-width: 768px ) {
+        @media (min-width: 577px) and ( max-width: 768px ) {
             flex: 1 0 33.333%;
             width: 33.333%;
             min-width: 33.333% !important;
@@ -331,7 +331,7 @@
             .book {
                 margin-bottom: 0;
                 
-                @media ( max-width: 768px ) {
+                @media (min-width: 577px) and ( max-width: 768px ) {
                     margin-bottom: 2rem;
                     
                     &:last-of-type {
@@ -346,7 +346,7 @@
         .book {
             margin-bottom: 2rem;
             
-            @media ( max-width: 768px ) {
+            @media (min-width: 577px) and ( max-width: 768px ) {
                 margin-left: 2rem !important;
                 margin-right: 2rem !important;
             }
@@ -371,7 +371,7 @@
     }
 }
 
-@media ( max-width: 768px ) {
+@media (min-width: 577px) and ( max-width: 768px ) {
     #top-books,
     #new-books {
         .col-md-3 {
