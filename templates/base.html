@@ -80,11 +80,9 @@
                 <div class="col-lg-3">
                     <h5 class="footer__title">Browse By User Ratings</h5>
                     <ul class="footer__ul">
-                        <ul class="footer__ul">
                         {% for user_pick in footer_user_picks_list %}
                             <li><a href="{{ url_for('read_book', book_id=user_pick._id) }}">{{ user_pick.name }}</a></li>
                         {% endfor %}
-                    </ul>
                     </ul>
                 </div>
                 <div class="col-lg-3">

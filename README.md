@@ -96,7 +96,36 @@ Here's a list of technologies used:
 8. MongoDB - Database of choice
 
 ### Testing
-Details of the project testing process is available inside the 'project-supplements/testing' directory.
+I tested the project both manually, and with automated tests.
+
+For my automated tests, I used [Pytest](https://docs.pytest.org/en/latest/contents.html). All of my tests can be found inside of test_app.py and can be tested by running `pytest test_app.py` in the terminal.
+
+My automated tests test the CRUD functionality as well as the search functionality. All of the tests passed as can be seeing inside the 'project-supplements/testing' directory.
+
+Manual testing was also undertaken alongside the automated testing to ensure everything was working.
+
+Below are some of the manual tests undertaken:
+
+* Testing the navigation and hyperlinks (e.g. Leave a Review/Amazon URL etc.) to make sure everything was working.
+
+* Testing the CRUD functionality by creating, reading, editing and deleting multiple books.
+
+* Testing the validation on the CRUD forms works as intended.
+
+* Testing the search functionality by testing book titles I know exist in the database, and book titles that don't exist.
+
+* Testing the responsiveness of the application using a tool called [Browserstack](https://www.browserstack.com/). Using this tool, I tested my website on multiple browsers, devices and operating systems such as:
+    * iPhone (5 through to X)
+    * iPad
+    * iPad Pro
+    * Huawei P20
+    * Samsung Galaxy S10
+    * Samsung Galaxy Tab
+    * Google Chrome, Safari, Firefox, Microsoft Edge and IE11
+
+I have also ran my web app through the W3C Validator and it has passed with only a warning (missing a h2-h6 on the testimonial section).
+
+I have also ran my JS through a linter (JSHint) and it comes back with no errors.
 
 ### Deployment
 To deploy the application, I chose to use Heroku, below are the steps I took to get the project up and running on Heroku.
