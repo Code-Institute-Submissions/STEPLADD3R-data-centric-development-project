@@ -48,7 +48,17 @@ I was tasked with creating one of three things, I decided to go with the book re
 * As the owner of the website, I'd also like to make a bit of money from my hobbie, and as such there is a place to add an Amazon Affiliate link when you add or edit a book. (If this was a fully fledged app with users, it'd be limited to admins, same as staff picks would).
 
 ### UX
-Details of the UX design process is available inside the 'project-supplements/user-experience' directory. This directory contains an array of documents that illustrate the UX design process in the form of wireframes.
+I started by thinking about the user flow and how I want the user to use the application, from there I jotted it down in my notepad. This can be found in 'project-supplements/user-experience'.
+
+Once I had the flow noted down, I thought how can I make sure the user 1) understands how to use the application from the get go and 2) is able to see the main features on the initial page load.
+
+Using my user flow I then sketched a design of how I thought the app should look which can be found in 'project-supplements/user-experience'. Looking at homepage.jpg you're able to see how I tried to make everything sit above the fold, providing the most rated books as well as top picks, with an easy to see search bar in case the user has something already in mind.
+
+Moving on from here, I then created a mockup of the CRUD functionality pages.
+
+After moving from my mockups to the real application, I decided to make a few amends as I noticed after testing the site certain things could work better and make the experience easier for the user such as changing out the burger menu in the mockups to an actual menu, since it was a small menu it's easy to be visible all the time, making the user spend less time clicking to find what they need.
+
+Images of the UX design process is available inside the 'project-supplements/user-experience' directory. This directory contains an array of documents that illustrate the UX design process in the form of wireframes.
 
 ### Database
 Details of the Database design process is available inside the 'project-supplements/database-design' directory. This directory contains an array of documnents that illustrate how I came to decide on the database collections and fields.
